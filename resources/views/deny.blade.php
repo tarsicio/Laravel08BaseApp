@@ -2,13 +2,10 @@
 
 <section>
     <div style="text-align: center;">
-        <h1><b>Bienvenido al sistema base</b></h1>
+        <h1><b>Acceso Denegado...</b></h1>
     </div>
     <div style="text-align: center;">
-        <h1>Debe entrar en su correo y confirmar el link</h1>
-    </div>    
-    <div style="text-align: center;">
-        <h1>enviado para poder tener acceso al sistema.</h1>
+        <h1>Consulte con su Administrador de Sistemas.</h1>
     </div>    
     <div style="text-align: center;">
         <h1>Gracias.</h1>
