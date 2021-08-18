@@ -31,7 +31,7 @@
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.fullname') }}" name="name" value="{{ old('name') }}" autofocus/>
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                    </div>
+                    </div>                    
                     @if (config('auth.providers.users.field','email') === 'username')
                         <div class="form-group has-feedback">
                             <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.username') }}" name="username" autofocus/>

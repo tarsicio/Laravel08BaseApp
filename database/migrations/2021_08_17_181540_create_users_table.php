@@ -15,14 +15,20 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();            
+            $table->unsignedBigInteger('rols_id')->default(8);;
+            $table->string('name')->index();            
+            $table->string('foto')->nullable();;
+            $table->string('email')->unique()->index();            
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('activo', ['ALLOW','DENY'])->nullable()->default('DENY');
+            $table->dateTime('init_day')->nullable();
+            $table->dateTime('end_day')->nullable();
             $table->rememberToken();
             $table->string('confirmation_code')->nullable();
             $table->dateTime('confirmed_at')->nullable();
             $table->timestamps();
+            $table->foreign('rols_id')->references('id')->on('rols');
         });
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\User;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,9 +18,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'rols_id',
+        'name',        
+        'foto',
         'email',
         'password',
+        'activo',
+        'init_day',
+        'end_day',
         'confirmation_code',
         'confirmed_at',  
     ];
@@ -43,6 +48,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function rol(){
+        return $this->belongsTo('App\Models\Security\Rol');
+    }
 
     public function count_noficaciones_user(){
         $user_id = auth()->user()->id;        

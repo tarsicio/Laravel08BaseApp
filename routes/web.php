@@ -16,6 +16,10 @@ Route::get('/check_your_mail', function () {
     return view('adminlte::mail.check_your_mail');
 });
 
+Route::get('/deny', function () {
+    return view('adminlte::deny_allow.deny');
+});
+
 Route::get('register/confirm/{confirmation_code}', 'Auth\RegisterController@confirm')->name('auth.confirm');
 
 Route::get('/', function () {

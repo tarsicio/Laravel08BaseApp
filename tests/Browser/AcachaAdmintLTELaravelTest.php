@@ -7,7 +7,7 @@ use Laravel\Dusk\Browser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use App\Models\User;
+use App\Models\User\User;
 
 /**
  * Class AcachaAdmintLTELaravelTest.

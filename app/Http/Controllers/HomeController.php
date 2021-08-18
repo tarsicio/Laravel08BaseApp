@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use App\Models\User\User;
 /**
  * Class HomeController
  * @package App\Http\Controllers
@@ -40,8 +40,12 @@ class HomeController extends Controller
     public function dashboard(){
         $confirmation_code = auth()->user()->confirmation_code;
         $confirmed_at = auth()->user()->confirmed_at; 
-        $count_notification = (new User)->count_noficaciones_user();         
-        if(is_null($confirmation_code) && isset($confirmed_at)){
+        $count_notification = (new User)->count_noficaciones_user();
+        $user_deny_allow = auth()->user()->activo; 
+        if($user_deny_allow == 'DENY'){
+            auth()->logout();
+            return redirect('/deny');
+        }elseif(is_null($confirmation_code) && isset($confirmed_at)){
             return view('adminlte::home',compact('count_notification'));
         }else{
             auth()->logout();
