@@ -28,8 +28,7 @@ class HomeController extends Controller
     public function index(){
         $confirmation_code = auth()->user()->confirmation_code;
         $confirmed_at = auth()->user()->confirmed_at;
-        if(is_null($confirmation_code) && isset($confirmed_at)){
-            //return view('adminlte::home');
+        if(is_null($confirmation_code) && isset($confirmed_at)){            
             return redirect('/dashboard');
         }else{
             auth()->logout();
@@ -39,13 +38,13 @@ class HomeController extends Controller
 
     public function dashboard(){
         $confirmation_code = auth()->user()->confirmation_code;
-        $confirmed_at = auth()->user()->confirmed_at; 
-        $count_notification = (new User)->count_noficaciones_user();
+        $confirmed_at = auth()->user()->confirmed_at;         
         $user_deny_allow = auth()->user()->activo; 
         if($user_deny_allow == 'DENY'){
             auth()->logout();            
             return redirect('/deny');            
         }else if(is_null($confirmation_code) && isset($confirmed_at)){
+            $count_notification = (new User)->count_noficaciones_user();
             return view('adminlte::home',compact('count_notification'));
         }else{
             auth()->logout();

@@ -1,5 +1,7 @@
 <?php
 use App\Http\Controllers\NotificarController;
+use Illuminate\Support\Facades\Route;
+//use App\Http\Controllers\User\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,13 +25,23 @@ Route::get('register/confirm/{confirmation_code}', 'Auth\RegisterController@conf
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dashboard', 'HomeController@dashboard');
 
 Route::group(['middleware' => 'auth'], function () {
-    //    Route::get('/link1', function ()    {
-//        // Uses Auth Middleware
-//    });
-
-    //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
-    #adminlte_routes
+    Route::get('/link1', function ()    {
+          
+    });
+    Route::resource('/notifications', Notification\NotificationController::class)->only(['index', 'show']);
+    //Route::resource('/users', User\UserController::class);
+    Route::get('/users', 'User\UserController@index')->name('users.index');
+    Route::get('/users/create', 'User\UserController@create')->name('users.create');
+    Route::post('/users', 'User\UserController@store')->name('users.store');
+    //Route::get('/users/{user}', 'User\UserController@show')->name('users.show');
+    Route::get('/users/{user}/edit', 'User\UserController@edit')->name('users.edit');
+    Route::put('/users/{user}', 'User\UserController@update')->name('users.update');
+    Route::delete('/users/{user}', 'User\UserController@destroy')->name('users.destroy');
+    Route::get('/users/list', 'User\UserController@getUsers')->name('users.list');
+    Route::resource('/rols`', Rol\RolController::class);
+    Route::resource('/modelos', Modelo\ModeloController::class);
+    Route::resource('/permisos', Permiso\permisoController::class);
+    Route::get('/dashboard', 'HomeController@dashboard');
 });

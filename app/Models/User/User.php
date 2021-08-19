@@ -58,4 +58,8 @@ class User extends Authenticatable
         $sql_count_notifications = DB::table('notifications')->where('notifiable_id', $user_id)->count();        
         return $sql_count_notifications;
     }
+
+    public function getUsersList_DataTable(){        
+        return DB::table('users')->select('id','name','avatar','email','activo','confirmed_at')->get();
+    }
 }
