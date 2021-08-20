@@ -37,9 +37,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/users', 'User\UserController@store')->name('users.store');
     Route::get('/users/{user}/show', 'User\UserController@show')->name('users.show');
     Route::get('/users/{user}/edit', 'User\UserController@edit')->name('users.edit');
-    Route::put('/users/{user}', 'User\UserController@update')->name('users.update');
+    Route::post('/users/{user}', 'User\UserController@update')->name('users.update');
     Route::delete('/users/{user}', 'User\UserController@destroy')->name('users.destroy');
     Route::get('/users/list', 'User\UserController@getUsers')->name('users.list');
+    Route::get('/user/profile', 'User\UserController@profile')->name('user.profile');
+    //Route::get('/user/profile/', 'User\UserController@update_avatar')->name('user.profile');
     Route::resource('/rols`', Rol\RolController::class);
     Route::resource('/modelos', Modelo\ModeloController::class);
     Route::resource('/permisos', Permiso\permisoController::class);

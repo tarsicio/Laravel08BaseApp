@@ -17,7 +17,7 @@ class UsersSeeder extends Seeder
             [
                 'rols_id'           => 1,
                 'name'              => 'Tarsicio Carrizales',                
-                'avatar'            => 'tarsicio_carrizales.jpg',
+                'avatar'            => 'default.jpg',
                 'email'             => 'telecom.com.ve@gmail.com',
                 'email_verified_at' => null,
                 'password'          => \Hash::make('123456'), // Password de entrada -> 123456
@@ -32,8 +32,8 @@ class UsersSeeder extends Seeder
             ],
             [
                 'rols_id'           => 2,
-                'name'              => 'Elena Perez',                
-                'avatar'            => 'user_1.jpg',
+                'name'              => 'Carlos Gonzalez',                
+                'avatar'            => 'default.jpg',
                 'email'             => 'user@user.com',
                 'email_verified_at' => null,
                 'password'          => \Hash::make('123456'), 
@@ -48,8 +48,8 @@ class UsersSeeder extends Seeder
             ],
             [
                 'rols_id'           => 8,
-                'name'              => 'Maria Carrizales',                
-                'avatar'            => 'user_2.jpg',
+                'name'              => 'José Pérez',                
+                'avatar'            => 'default.jpg',
                 'email'             => 'user_2@user.com',
                 'email_verified_at' => null,
                 'password'          => \Hash::make('123456'),

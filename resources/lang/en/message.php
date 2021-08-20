@@ -30,7 +30,7 @@ return [
     'signFacebook'            => 'Sign in using Facebook',
     'signTwitter'             => 'Sign in using Twitter',
     'signGoogle+'             => 'Sign in using Google+',
-    'signLinkedin'             => 'Sign in using Linkedin',
+    'signLinkedin'            => 'Sign in using Linkedin',
     'sendpassword'            => 'Send Password Reset Link',
     'passwordreset'           => 'Reset password',
     'pagenotfound'            => 'Page not found',
@@ -136,4 +136,7 @@ return [
     'entering'                => 'Entering...',
     'registered'              => 'User Registered!',
     'users'                   => 'Users',
+    'perfil_user'             => 'User Profile',
+    'update_profile'          => 'Update Profile Image',
+    'profile'                 => 'S Profile',  
 ];

@@ -1,11 +1,17 @@
 @extends('adminlte::layouts.app')
 
+@section('css_database')
+    @include('adminlte::layouts.partials.link')
+@endsection
+
 @section('htmlheader_title')
     {{ trans('adminlte_lang::message.home') }}
 @endsection
+
 @section('contentheader_title')
     <h2 class="mb-4">{{ trans('message.users') }}</h2>
 @endsection
+
 @section('main-content')
 <div class="container-fluid">
     <div class="card">
@@ -27,4 +33,4 @@
         </div>
     </div>
 </div>
-@endsection   
+@endsection

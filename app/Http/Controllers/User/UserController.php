@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User\User;
+use Auth;
 
 class UserController extends Controller
 {
@@ -29,6 +30,13 @@ class UserController extends Controller
             echo "Captured Throwable: " . $e->getMessage(), "\n";
         }        
     }
+
+    public function profile(){
+        $count_notification = (new User)->count_noficaciones_user();
+        $user = Auth::user();        
+        return view('User.profile',compact('count_notification','user'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -81,7 +89,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $count_notification = (new User)->count_noficaciones_user();
+        $user = Auth::user();
+        $user_Update = User::find( $id);        
+        // Se actualizan todos los datos solicitados por el Cliente
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');            
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();            
+            \Image::make($avatar)->resize(300, 300)
+            ->save( public_path('/storage/avatars/' . $filename ) );            
+            $user_Update->avatar = $filename;
+            $user_Update->save();
+        }
+        return view('User.users',compact('count_notification','user'));
     }
 
     /**

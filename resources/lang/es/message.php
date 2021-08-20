@@ -132,5 +132,8 @@ return [
     'loggedin'                => 'Login correcto!',
     'entering'                => 'Entrando...',
     'registered'              => 'Usuario registrado!',
-    'users'                   => 'Usuarios',  
+    'users'                   => 'Usuarios',
+    'perfil_user'             => 'Perfil Usuarios', 
+    'update_profile'          => 'Actualizar perfil usuario',
+    'profile'                 => ' Perfil',   
 ];
