@@ -12,5 +12,6 @@
     </section><!-- #intro -->
 
 </div>
+@include('sweetalert::alert')
 </body>
 </html>

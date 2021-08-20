@@ -5,6 +5,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User\User;
+use RealRashid\SweetAlert\Facades\Alert;
 /**
  * Class HomeController
  * @package App\Http\Controllers
@@ -41,13 +42,15 @@ class HomeController extends Controller
         $confirmed_at = auth()->user()->confirmed_at;         
         $user_deny_allow = auth()->user()->activo; 
         if($user_deny_allow == 'DENY'){
-            auth()->logout();            
+            auth()->logout();
+            alert()->warning('Acceso denegado','Consulte con su Administrador de Sistemas');
             return redirect('/deny');            
         }else if(is_null($confirmation_code) && isset($confirmed_at)){
             $count_notification = (new User)->count_noficaciones_user();
             return view('adminlte::home',compact('count_notification'));
         }else{
             auth()->logout();
+            alert()->info('Verifique su Correo','Confirme el código enviado a su correo para utilizar el sistema');            
             return redirect('/check_your_mail');
         }
     }

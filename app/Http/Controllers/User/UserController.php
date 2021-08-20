@@ -100,6 +100,7 @@ class UserController extends Controller
             ->save( public_path('/storage/avatars/' . $filename ) );            
             $user_Update->avatar = $filename;
             $user_Update->save();
+            alert()->success('Usuario Actualizado','El usuario '.$user->name. ' actualizado correctamente');
         }
         return view('User.users',compact('count_notification','user'));
     }

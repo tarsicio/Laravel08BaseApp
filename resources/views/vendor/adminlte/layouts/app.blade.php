@@ -29,7 +29,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="skin-blue sidebar-mini">
+<body class="skin-blue sidebar-mini">    
 <div id="app" v-cloak>
     <div class="wrapper">
 
@@ -98,6 +98,7 @@ desired effect
     });    
   });
 </script>
-@show   
+@show  
+@include('sweetalert::alert')
 </body>
 </html>
