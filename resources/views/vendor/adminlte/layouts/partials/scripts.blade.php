@@ -2,7 +2,7 @@
 
 <!-- JQuery and bootstrap are required by Laravel 5.3 in resources/assets/js/bootstrap.js-->
 <!--  -->
-@include('adminlte::layouts.partials.link_script')
+
 <!-- Laravel App -->
  <script src="{{ url (mix('/js/app.js')) }}" type="text/javascript"></script>
 
