@@ -37,6 +37,24 @@ class UserController extends Controller
         return view('User.profile',compact('count_notification','user'));
     }
 
+    public function update_avatar(Request $request, $id)
+    {
+        $count_notification = (new User)->count_noficaciones_user();
+        $user = Auth::user();
+        $user_Update = User::find( $id);        
+        // Se actualizan todos los datos solicitados por el Cliente
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');            
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();            
+            \Image::make($avatar)->resize(300, 300)
+            ->save( public_path('/storage/avatars/' . $filename ) );            
+            $user_Update->avatar = $filename;
+            $user_Update->save();
+            alert()->success('Usuario Actualizado','El usuario '.$user->name. ' actualizado correctamente');
+        }
+        return redirect('/dashboard');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -92,16 +110,7 @@ class UserController extends Controller
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();
         $user_Update = User::find( $id);        
-        // Se actualizan todos los datos solicitados por el Cliente
-        if($request->hasFile('avatar')){
-            $avatar = $request->file('avatar');            
-            $filename = time() . '.' . $avatar->getClientOriginalExtension();            
-            \Image::make($avatar)->resize(300, 300)
-            ->save( public_path('/storage/avatars/' . $filename ) );            
-            $user_Update->avatar = $filename;
-            $user_Update->save();
             alert()->success('Usuario Actualizado','El usuario '.$user->name. ' actualizado correctamente');
-        }
         return view('User.users',compact('count_notification','user'));
     }
 

@@ -12,7 +12,9 @@
         "intervention/image": "^2.6",
         "laravel/framework": "^8.54",
         "laravel/tinker": "^2.5",
+        "laravelcollective/html": "^6.2",
         "realrashid/sweet-alert": "^4.0",
+        "silviolleite/laravelpwa": "^2.0",
         "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {

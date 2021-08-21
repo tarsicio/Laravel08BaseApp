@@ -139,4 +139,5 @@ return [
     'perfil_user'             => 'User Profile',
     'update_profile'          => 'Update Profile Image',
     'profile'                 => 'S Profile',  
+    'dashboard'                 => 'Dashboard',   
 ];

@@ -33,4 +33,5 @@
             echo json_encode($trans);
         @endphp
     </script>
+    @laravelPWA
 </head>

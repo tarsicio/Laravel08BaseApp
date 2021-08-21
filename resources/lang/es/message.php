@@ -136,4 +136,5 @@ return [
     'perfil_user'             => 'Perfil Usuarios', 
     'update_profile'          => 'Actualizar perfil usuario',
     'profile'                 => ' Perfil',   
+    'dashboard'                 => 'Dashboard',   
 ];

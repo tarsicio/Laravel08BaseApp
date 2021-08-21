@@ -25,7 +25,9 @@ Route::get('register/confirm/{confirmation_code}', 'Auth\RegisterController@conf
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/offline', function () {    
+    return view('laravelpwa::offline');
+});
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/link1', function ()    {
           
@@ -41,7 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/users/{user}', 'User\UserController@destroy')->name('users.destroy');
     Route::get('/users/list', 'User\UserController@getUsers')->name('users.list');
     Route::get('/user/profile', 'User\UserController@profile')->name('user.profile');
-    //Route::get('/user/profile/', 'User\UserController@update_avatar')->name('user.profile');
+    Route::post('/user/profile/{id}', 'User\UserController@update_avatar')->name('user.profile');
     Route::resource('/rols`', Rol\RolController::class);
     Route::resource('/modelos', Modelo\ModeloController::class);
     Route::resource('/permisos', Permiso\permisoController::class);
