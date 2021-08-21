@@ -13,39 +13,61 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
+
 Route::get('/deny', function () {    
     return view('deny');
 });
+
 Route::get('/check_your_mail', function () {
     return view('adminlte::mail.check_your_mail');
 });
 
-Route::get('register/confirm/{confirmation_code}', 'Auth\RegisterController@confirm')->name('auth.confirm');
-
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/offline', function () {    
     return view('laravelpwa::offline');
 });
+
+ // *********************************************************************************************************
+    /*
+    * Grupo Middleware para Autenticar y verifcar que tiene Permiso asociado a su Roll
+    */
+// *********************************************************************************************************
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/link1', function ()    {
           
     });
     Route::resource('/notifications', Notification\NotificationController::class)->only(['index', 'show']);
-    //Route::resource('/users', User\UserController::class);
-    Route::get('/users', 'User\UserController@index')->name('users.index');
-    Route::get('/users/create', 'User\UserController@create')->name('users.create');
-    Route::post('/users', 'User\UserController@store')->name('users.store');
-    Route::get('/users/{user}/show', 'User\UserController@show')->name('users.show');
-    Route::get('/users/{user}/edit', 'User\UserController@edit')->name('users.edit');
-    Route::post('/users/{user}', 'User\UserController@update')->name('users.update');
-    Route::delete('/users/{user}', 'User\UserController@destroy')->name('users.destroy');
-    Route::get('/users/list', 'User\UserController@getUsers')->name('users.list');
-    Route::get('/user/profile', 'User\UserController@profile')->name('user.profile');
-    Route::post('/user/profile/{id}', 'User\UserController@update_avatar')->name('user.profile');
+    // *********************************************************************************************************
+    /*
+    * Rutas de Usuarios, para todas las operaciones
+    */
+    Route::get('/users', 'User\UserController@index')->name('users.index')->middleware('permiso');
+    Route::get('/users/create', 'User\UserController@create')->name('users.create')->middleware('permiso');
+    Route::post('/users', 'User\UserController@store')->name('users.store')->middleware('permiso');
+    Route::get('/users/{user}/show', 'User\UserController@show')->name('users.show')->middleware('permiso');
+    Route::get('/users/{user}/edit', 'User\UserController@edit')->name('users.edit')->middleware('permiso');
+    Route::post('/users/{user}', 'User\UserController@update')->name('users.update')->middleware('permiso');
+    Route::delete('/users/{user}', 'User\UserController@destroy')->name('users.destroy')->middleware('permiso');
+    Route::get('/users/list', 'User\UserController@getUsers')->name('users.list')->middleware('permiso');
+    Route::get('/user/profile', 'User\UserController@profile')->name('user.profile')->middleware('permiso');
+    Route::post('/user/profile/{id}', 'User\UserController@update_avatar')->name('user.profile')->middleware('permiso');
+    /*
+    * Fin de las Rutas de Usuarios, para todas las operaciones
+    */
+    // *********************************************************************************************************
     Route::resource('/rols`', Rol\RolController::class);
     Route::resource('/modelos', Modelo\ModeloController::class);
     Route::resource('/permisos', Permiso\permisoController::class);
     Route::get('/dashboard', 'HomeController@dashboard');
 });
+// *********************************************************************************************************
+    /*
+    * FIN del Grupo Middleware para Autenticar y verifcar que tiene Permiso asociado a su Roll
+    */
+// *********************************************************************************************************
+
+// La presente Ruta se encarga de validar los datos enviados al Correo de Usuario que se Registró
+Route::get('register/confirm/{confirmation_code}', 'Auth\RegisterController@confirm')->name('auth.confirm');

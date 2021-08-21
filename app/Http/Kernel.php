@@ -62,5 +62,23 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'permiso' =>  \App\Http\Middleware\RolPermisoIsAllow::class,
+    ];
+
+    /*
+    * Realizado por Tarsicio Carrizales telecom.com.ve@gmail.com
+    * La presente propiedad tiene como finalidad establecer en 
+    * que orden se van a ejecutar los Middleware deseados.
+    */
+    protected $middlewarePriority = [
+        \Illuminate\Cookie\Middleware\EncryptCookies::class,
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests::class,
+        \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        \Illuminate\Session\Middleware\AuthenticateSession::class,
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        \Illuminate\Auth\Middleware\Authorize::class,
+        \App\Http\Middleware\RolPermisoIsAllow::class,
     ];
 }
