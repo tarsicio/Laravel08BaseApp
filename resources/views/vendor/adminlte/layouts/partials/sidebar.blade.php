@@ -39,12 +39,13 @@
             <li class="header">{{ trans('message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('/users') }}"><i class='fa fa-link'></i> <span>{{ trans('message.users') }}</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('message.anotherlink') }}</span></a></li>
+            <li><a href="{{ url('/notificaciones') }}"><i class='fa fa-link'></i> <span>{{ trans('message.menu_notificaciones') }}</span></a></li>
             <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('message.menu_seguridad') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">{{ trans('message.linklevel2') }}</a></li>
-                    <li><a href="#">{{ trans('message.linklevel2') }}</a></li>
+                    <li><a href="{{ url('/roles') }}">{{ trans('message.menu_rol') }}</a></li>
+                    <li><a href="{{ url('/modelos') }}">{{ trans('message.menu_modelo') }}</a></li>
+                    <li><a href="{{ url('/permisos') }}">{{ trans('message.menu_permiso') }}</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

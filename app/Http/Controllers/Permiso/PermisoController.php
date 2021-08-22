@@ -1,9 +1,17 @@
 <?php
-
+/**
+* Realizado por @author Tarsicio Carrizales Agosto 2021
+* Correo: telecom.com.ve@gmail.com
+*/
 namespace App\Http\Controllers\Permiso;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User\User;
+use App\Models\Security\Modelo;
+use App\Models\Security\Rol;
+use App\Models\Security\Permiso;
+use Auth;
 
 class PermisoController extends Controller
 {
@@ -14,7 +22,11 @@ class PermisoController extends Controller
      */
     public function index()
     {
-        //
+        $user_rols_id = Auth::user()->rols_id;
+        $count_notification = (new User)->count_noficaciones_user();
+        $permisos = (new Permiso)->datos_Permiso($user_rols_id);
+        $roles = (new Rol)->datos_roles();
+        return view('Permiso.permisos',compact('count_notification','permisos','roles'));
     }
 
     /**

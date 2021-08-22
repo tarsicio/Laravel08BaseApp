@@ -15,42 +15,42 @@ class RolsSeeder extends Seeder
     {
         \DB::table('rols')->insert([
             [
-                'name' => 'Root',                
+                'name' => 'ROOT',                
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'name' => 'Administrador',                
+                'name' => 'ADMINISTRADOR',                
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'name' => 'Gerente',                
+                'name' => 'GERENTE',                
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'name' => 'Coordinador',                
+                'name' => 'COORDINADOR',                
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'name' => 'Supervisor',                
+                'name' => 'SUPERVIDOR',                
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'name' => 'Secretaria',                
+                'name' => 'SECRETARIA',                
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'name' => 'Invitado',                
+                'name' => 'INVITADO',                
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'name' => 'Basico',                
+                'name' => 'BASICO',                
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],

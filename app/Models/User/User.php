@@ -1,4 +1,8 @@
 <?php
+/**
+* Realizado por @author Tarsicio Carrizales Agosto 2021
+* Correo: telecom.com.ve@gmail.com
+*/
 
 namespace App\Models\User;
 
@@ -49,93 +53,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */    
     public function rol(){
         return $this->belongsTo('App\Models\Security\Rol');
     }
 
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
     public function count_noficaciones_user(){
         $user_id = auth()->user()->id;        
         $sql_count_notifications = DB::table('notifications')->where('notifiable_id', $user_id)->count();        
         return $sql_count_notifications;
     }
 
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
     public function getUsersList_DataTable(){        
         return DB::table('users')->select('id','name','avatar','email','activo','confirmed_at')->get();
     }
 
-    public function userAccess($modelo,$status,$user_rols_id){
-        $permiso = 'DENY';        
-        switch ($status) {
-            case 'view':            
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
-                break;
-            case 'add':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
-                break;
-            case 'edit':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
-                break;
-            case 'update':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
-                break;    
-            case 'delete':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
-                break;
-                case 'print':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
-                break;
-            case 'download':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
-                break;    
-            case 'upload':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
-                break;
-        }        
-        return $permiso;
-    }
-
-    public function permisoReturn($status,$user_rols_id,$modelo,$permiso){                
-        try {
-            $permisos = DB::table('permisos')
-                    ->join('modelos', 'modelos.id', '=', 'permisos.modelos_id')
-                    ->select('permisos.'.$status)                                
-                    ->where('permisos.rols_id',$user_rols_id)
-                    ->where('modelos.name',$modelo)
-                    ->where('modelos.activo','ALLOW')->get();                     
-                    if(!$permisos->isEmpty()){
-                        foreach($permisos as $permiso_02){
-                            switch ($status) {
-                                case 'view':            
-                                    $permiso = $permiso_02->view;
-                                    break;
-                                case 'add':
-                                    $permiso = $permiso_02->add;
-                                    break;
-                                case 'edit':
-                                    $permiso = $permiso_02->edit;
-                                    break;
-                                case 'update':
-                                    $permiso = $permiso_02->update;
-                                    break;    
-                                case 'delete':
-                                    $permiso = $permiso_02->delete;
-                                    break;
-                                    case 'print':
-                                    $permiso = $permiso_02->print;
-                                    break;
-                                case 'download':
-                                    $permiso = $permiso_02->download;
-                                    break;    
-                                case 'upload':
-                                    $permiso = $permiso_02->upload;
-                                    break;
-                                }                            
-                        }
-                    }                    
-        } catch (Throwable $e){
-            //echo "Captured Throwable: " . $e->getMessage(), "\n";
-            return $permiso;
-        }        
-        return $permiso;
-    }
 }

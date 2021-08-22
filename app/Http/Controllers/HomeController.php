@@ -1,4 +1,8 @@
 <?php
+/**
+* Realizado por @author Tarsicio Carrizales Agosto 2021
+* Correo: telecom.com.ve@gmail.com
+*/
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
@@ -25,6 +29,7 @@ class HomeController extends Controller
      * Show the application dashboard.
      *
      * @return Response
+     * Realizado por @author Tarsicio Carrizales
      */
     public function index(){
         $confirmation_code = auth()->user()->confirmation_code;
@@ -37,6 +42,9 @@ class HomeController extends Controller
         }
     }
 
+    /**
+    * Realizado por @author Tarsicio Carrizales
+    */
     public function dashboard(){
         $confirmation_code = auth()->user()->confirmation_code;
         $confirmed_at = auth()->user()->confirmed_at;         

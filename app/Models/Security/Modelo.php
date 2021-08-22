@@ -1,9 +1,13 @@
 <?php
-
+/**
+* Realizado por @author Tarsicio Carrizales Agosto 2021
+* Correo: telecom.com.ve@gmail.com
+*/
 namespace App\Models\Security;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Modelo extends Model
 {
@@ -17,4 +21,5 @@ class Modelo extends Model
     public function permisos(){
         return $this->hasMany('App\Models\Security\Permiso');
     }
+
 }

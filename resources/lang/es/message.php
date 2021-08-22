@@ -136,5 +136,10 @@ return [
     'perfil_user'             => 'Perfil Usuarios', 
     'update_profile'          => 'Actualizar perfil usuario',
     'profile'                 => ' Perfil',   
-    'dashboard'                 => 'Dashboard',   
+    'dashboard'               => 'Dashboard',
+    'menu_seguridad'          => 'Seguridad',
+    'menu_rol'                => 'Roles',
+    'menu_modelo'             => 'Modelos',
+    'menu_permiso'            => 'Permisos',
+    'menu_notificaciones'     => 'Notificaciones',
 ];

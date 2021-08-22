@@ -1,5 +1,8 @@
 <?php
-
+/**
+* Realizado por @author Tarsicio Carrizales Agosto 2021
+* Correo: telecom.com.ve@gmail.com
+*/
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
@@ -38,6 +41,7 @@ class NotificarEventos extends Notification
      *
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
+     * Realizado por @author Tarsicio Carrizales
      */
     public function toMail($notifiable)
     {
@@ -52,6 +56,7 @@ class NotificarEventos extends Notification
      *
      * @param  mixed  $notifiable
      * @return array
+     * Realizado por @author Tarsicio Carrizales
      */
     public function toArray($notifiable)
     {

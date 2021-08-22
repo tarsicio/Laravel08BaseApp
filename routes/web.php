@@ -1,4 +1,8 @@
 <?php
+/**
+* Realizado por @author Tarsicio Carrizales Agosto 2021
+* Correo: telecom.com.ve@gmail.com
+*/
 use App\Http\Controllers\NotificarController;
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\User\UserController;
@@ -32,13 +36,11 @@ Route::get('/offline', function () {
 
  // *********************************************************************************************************
     /*
-    * Grupo Middleware para Autenticar y verifcar que tiene Permiso asociado a su Roll
+    * Grupo Middleware para Autenticar y verifcar que tiene Permiso asociado a su Rol
     */
 // *********************************************************************************************************
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/link1', function ()    {
-          
-    });
+    
     Route::resource('/notifications', Notification\NotificationController::class)->only(['index', 'show']);
     // *********************************************************************************************************
     /*
@@ -50,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users/{user}/show', 'User\UserController@show')->name('users.show')->middleware('permiso:user,view');
     Route::get('/users/{user}/edit', 'User\UserController@edit')->name('users.edit')->middleware('permiso:user,edit');
     Route::post('/users/{user}', 'User\UserController@update')->name('users.update')->middleware('permiso:user,update');
-    Route::delete('/users/{user}', 'User\UserController@destroy')->name('users.destroy')->middleware('permiso:user,delete');
+    Route::post('/users/{user}', 'User\UserController@destroy')->name('users.destroy')->middleware('permiso:user,delete');
     Route::get('/users/list', 'User\UserController@getUsers')->name('users.list')->middleware('permiso:user,view');
     Route::get('/user/profile', 'User\UserController@profile')->name('user.profile')->middleware('permiso:user,view');
     Route::post('/user/profile/{id}', 'User\UserController@update_avatar')->name('user.profile')->middleware('permiso:user,update');
@@ -60,7 +62,29 @@ Route::group(['middleware' => 'auth'], function () {
     // *********************************************************************************************************
     Route::resource('/rols`', Rol\RolController::class);
     Route::resource('/modelos', Modelo\ModeloController::class);
-    Route::resource('/permisos', Permiso\permisoController::class);
+    // *********************************************************************************************************
+    /*
+    * Rutas de Permiso, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
+    */
+    Route::get('/permisos', 'Permiso\PermisoController@index')
+    ->name('permisos.index')->middleware('permiso:permiso,view');
+    Route::get('/permisos/create', 'Permiso\PermisoController@create')
+    ->name('permisos.create')->middleware('permiso:permiso,add');
+    Route::post('/permisos', 'Permiso\PermisoController@store')
+    ->name('permisos.store')->middleware('permiso:permiso,add');
+    Route::get('/permisos/{permiso}/show', 'Permiso\PermisoController@show')
+    ->name('permisos.show')->middleware('permiso:permiso,view');
+    Route::get('/permisos/{permiso}/edit', 'Permiso\PermisoController@edit')
+    ->name('permisos.edit')->middleware('permiso:permiso,edit');
+    Route::post('/permisos/{permiso}', 'Permiso\PermisoController@update')
+    ->name('permisos.update')->middleware('permiso:permiso,update');
+    Route::post('/permisos/{permiso}', 'Permiso\PermisoController@destroy')
+    ->name('permisos.destroy')->middleware('permiso:permiso,delete');    
+    /*
+    * Fin de las Rutas de Permiso, para todas las operaciones
+    */
+    // *********************************************************************************************************
+
     Route::get('/dashboard', 'HomeController@dashboard');
 });
 // *********************************************************************************************************

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Models\User\User;
+use App\Models\Security\Permiso;
 
 class RolPermisoIsAllow
 {
@@ -17,7 +17,7 @@ class RolPermisoIsAllow
      */
     public function handle(Request $request, Closure $next, $modelo = null, $status = null)
     {
-        $allow = (new User)->userAccess($modelo,$status,$request->user()->rols_id);        
+        $allow = (new Permiso)->userAccess($modelo,$status,$request->user()->rols_id);        
         if (!is_null($request->user()->rols_id) && $allow == 'ALLOW') {            
             return $next($request);    
         }        
