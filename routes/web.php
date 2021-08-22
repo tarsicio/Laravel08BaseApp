@@ -44,16 +44,16 @@ Route::group(['middleware' => 'auth'], function () {
     /*
     * Rutas de Usuarios, para todas las operaciones
     */
-    Route::get('/users', 'User\UserController@index')->name('users.index')->middleware('permiso');
-    Route::get('/users/create', 'User\UserController@create')->name('users.create')->middleware('permiso');
-    Route::post('/users', 'User\UserController@store')->name('users.store')->middleware('permiso');
-    Route::get('/users/{user}/show', 'User\UserController@show')->name('users.show')->middleware('permiso');
-    Route::get('/users/{user}/edit', 'User\UserController@edit')->name('users.edit')->middleware('permiso');
-    Route::post('/users/{user}', 'User\UserController@update')->name('users.update')->middleware('permiso');
-    Route::delete('/users/{user}', 'User\UserController@destroy')->name('users.destroy')->middleware('permiso');
-    Route::get('/users/list', 'User\UserController@getUsers')->name('users.list')->middleware('permiso');
-    Route::get('/user/profile', 'User\UserController@profile')->name('user.profile')->middleware('permiso');
-    Route::post('/user/profile/{id}', 'User\UserController@update_avatar')->name('user.profile')->middleware('permiso');
+    Route::get('/users', 'User\UserController@index')->name('users.index')->middleware('permiso:user,view');
+    Route::get('/users/create', 'User\UserController@create')->name('users.create')->middleware('permiso:user,add');
+    Route::post('/users', 'User\UserController@store')->name('users.store')->middleware('permiso:user,add');
+    Route::get('/users/{user}/show', 'User\UserController@show')->name('users.show')->middleware('permiso:user,view');
+    Route::get('/users/{user}/edit', 'User\UserController@edit')->name('users.edit')->middleware('permiso:user,edit');
+    Route::post('/users/{user}', 'User\UserController@update')->name('users.update')->middleware('permiso:user,update');
+    Route::delete('/users/{user}', 'User\UserController@destroy')->name('users.destroy')->middleware('permiso:user,delete');
+    Route::get('/users/list', 'User\UserController@getUsers')->name('users.list')->middleware('permiso:user,view');
+    Route::get('/user/profile', 'User\UserController@profile')->name('user.profile')->middleware('permiso:user,view');
+    Route::post('/user/profile/{id}', 'User\UserController@update_avatar')->name('user.profile')->middleware('permiso:user,update');
     /*
     * Fin de las Rutas de Usuarios, para todas las operaciones
     */

@@ -51,7 +51,7 @@ class UserController extends Controller
             $user_Update->avatar = $filename;
             $user_Update->save();
             alert()->success('Usuario Actualizado','El usuario '.$user->name. ' actualizado correctamente');
-        }
+        }        
         return redirect('/dashboard');
     }
 

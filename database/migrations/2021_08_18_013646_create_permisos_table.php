@@ -18,11 +18,12 @@ class CreatePermisosTable extends Migration
             $table->unsignedBigInteger('modelos_id');
             $table->unsignedBigInteger('rols_id');
             $table->enum('delete', ['ALLOW','DENY'])->nullable()->default('DENY');
+            $table->enum('update', ['ALLOW','DENY'])->nullable()->default('DENY');
             $table->enum('edit', ['ALLOW','DENY'])->nullable()->default('DENY');
             $table->enum('add', ['ALLOW','DENY'])->nullable()->default('DENY');
             $table->enum('view', ['ALLOW','DENY'])->nullable()->default('DENY');
             $table->timestamps();
-            $table->unique(['modelos_id','rols_id','delete','edit','add','view']);            
+            $table->unique(['modelos_id','rols_id','delete','update','edit','add','view']);            
             $table->foreign('modelos_id')->references('id')->on('modelos');
             $table->foreign('rols_id')->references('id')->on('rols');
         });

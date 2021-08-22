@@ -62,4 +62,96 @@ class User extends Authenticatable
     public function getUsersList_DataTable(){        
         return DB::table('users')->select('id','name','avatar','email','activo','confirmed_at')->get();
     }
+
+    public function userAccess($modelo,$status,$user_rols_id){
+        $permiso = 'DENY';        
+        switch ($status) {
+            case 'view':
+                $id_model = DB::table('modelos')
+                                ->select('id')
+                                ->where('name',$modelo)
+                                ->where('activo','ALLOW')->get(); 
+                                $model_id = 0;
+                                foreach($id_model as $id){
+                                    $model_id = $id->id;
+                                }                                
+                $tabla = DB::table('permisos')
+                                ->select('view')
+                                ->where('modelos_id',$model_id)
+                                ->where('rols_id',$user_rols_id)->get();
+                                foreach($tabla as $name){
+                                    $permiso = $name->view;
+                                }                                
+                break;
+            case 'add':
+                $id_model = DB::table('modelos')
+                                ->select('id')
+                                ->where('name',$modelo)
+                                ->where('activo','ALLOW')->get();
+                                $model_id = 0;
+                                foreach($id_model as $id){
+                                    $model_id = $id->id;
+                                } 
+                $tabla = DB::table('permisos')
+                                ->select('add')
+                                ->where('modelos_id',$model_id)
+                                ->where('rols_id',$user_rols_id)->get();
+                                foreach($tabla as $name){
+                                    $permiso = $name->add;
+                                }
+                break;
+            case 'edit':
+                $id_model = DB::table('modelos')
+                                ->select('id')
+                                ->where('name',$modelo)
+                                ->where('activo','ALLOW')->get();
+                                $model_id = 0;
+                                foreach($id_model as $id){
+                                    $model_id = $id->id;
+                                }
+                $tabla = DB::table('permisos')
+                                ->select('edit')
+                                ->where('modelos_id',$model_id)
+                                ->where('rols_id',$user_rols_id)->get();
+                                foreach($tabla as $name){
+                                    $permiso = $name->edit;
+                                }
+                break;
+            case 'update':
+                $id_model = DB::table('modelos')
+                                ->select('id')
+                                ->where('name',$modelo)
+                                ->where('activo','ALLOW')->get();
+                                $model_id = 0;
+                                foreach($id_model as $id){
+                                    $model_id = $id->id;
+                                }
+                $tabla = DB::table('permisos')
+                                ->select('update')
+                                ->where('modelos_id',$model_id)
+                                ->where('rols_id',$user_rols_id)->get();
+                                foreach($tabla as $name){
+                                    $permiso = $name->update;
+                                }                                
+                break;    
+            case 'delete':
+                $id_model = DB::table('modelos')
+                                ->select('id')
+                                ->where('name',$modelo)
+                                ->where('activo','ALLOW')->get();
+                                $model_id = 0;
+                                foreach($id_model as $id){
+                                    $model_id = $id->id;
+                                }
+                $tabla = DB::table('permisos')
+                                ->select('delete')
+                                ->where('modelos_id',$model_id)
+                                ->where('rols_id',$user_rols_id)->get();
+                                foreach($tabla as $name){
+                                    $permiso = $name->delete;
+                                }
+                break;
+        }        
+        return $permiso;
+    }
 }
