@@ -13,6 +13,7 @@ class PermisosSeeder extends Seeder
      */
     public function run()
     {
+        // Los presente permiso corresponden al rol = Root
         \DB::table('permisos')->insert([
             [
                 'modelos_id' => 1,                        
@@ -22,6 +23,9 @@ class PermisosSeeder extends Seeder
                 'edit'       => 'ALLOW',
                 'add'        => 'ALLOW',
                 'view'       => 'ALLOW',
+                'print'      => 'ALLOW',
+                'download'   => 'ALLOW',
+                'upload'     => 'ALLOW',
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],
@@ -33,6 +37,9 @@ class PermisosSeeder extends Seeder
                 'edit'       => 'ALLOW',
                 'add'        => 'ALLOW',
                 'view'       => 'ALLOW',
+                'print'      => 'ALLOW',
+                'download'   => 'ALLOW',
+                'upload'     => 'ALLOW',
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],
@@ -44,6 +51,9 @@ class PermisosSeeder extends Seeder
                 'edit'       => 'ALLOW',
                 'add'        => 'ALLOW',
                 'view'       => 'ALLOW',
+                'print'      => 'ALLOW',
+                'download'   => 'ALLOW',
+                'upload'     => 'ALLOW',
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],
@@ -55,6 +65,9 @@ class PermisosSeeder extends Seeder
                 'edit'       => 'ALLOW',
                 'add'        => 'ALLOW',
                 'view'       => 'ALLOW',
+                'print'      => 'ALLOW',
+                'download'   => 'ALLOW',
+                'upload'     => 'ALLOW',
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],
@@ -66,6 +79,9 @@ class PermisosSeeder extends Seeder
                 'edit'       => 'ALLOW',
                 'add'        => 'ALLOW',
                 'view'       => 'ALLOW',
+                'print'      => 'ALLOW',
+                'download'   => 'ALLOW',
+                'upload'     => 'ALLOW',
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],

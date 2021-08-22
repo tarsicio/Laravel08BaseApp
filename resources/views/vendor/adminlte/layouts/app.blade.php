@@ -29,7 +29,9 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="skin-blue sidebar-mini">    
+<body class="skin-blue sidebar-mini">
+    <!-- Libreria DomPdf para Imprimir segun sea el caso -->
+    
 <div id="app" v-cloak>
     <div class="wrapper">
 

@@ -17,5 +17,6 @@
 </head>
 
 <body data-spy="scroll" data-target="#navigation" data-offset="50">
+<!-- Libreria DomPdf para Imprimir segun sea el caso -->
 
 <div id="app" v-cloak>

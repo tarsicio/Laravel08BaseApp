@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User\User;
 use Auth;
+use Dompdf\Dompdf;
 
 class UserController extends Controller
 {
@@ -26,7 +27,7 @@ class UserController extends Controller
                 $data =  (new User)->getUsersList_DataTable();            
                 return datatables()->of($data)->toJson();        
             }
-        }catch(Throwable $t){
+        }catch(Throwable $e){
             echo "Captured Throwable: " . $e->getMessage(), "\n";
         }        
     }
@@ -55,6 +56,21 @@ class UserController extends Controller
         return redirect('/dashboard');
     }
 
+    public function print(){
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml('hello world');
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream();
+        return true;
+    }
     /**
      * Show the form for creating a new resource.
      *

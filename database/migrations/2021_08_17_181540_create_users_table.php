@@ -22,8 +22,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('activo', ['ALLOW','DENY'])->nullable()->default('DENY');
-            $table->dateTime('init_day')->nullable();
-            $table->dateTime('end_day')->nullable();
+            $table->dateTime('init_day')->nullable();// Fecha inicio para entrar al sistema
+            $table->dateTime('end_day')->nullable();// Fecha final para entrar el sistema
             $table->rememberToken();
             $table->string('confirmation_code')->nullable();
             $table->dateTime('confirmed_at')->nullable();

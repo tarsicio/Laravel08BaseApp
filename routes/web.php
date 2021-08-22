@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/notifications', Notification\NotificationController::class)->only(['index', 'show']);
     // *********************************************************************************************************
     /*
-    * Rutas de Usuarios, para todas las operaciones
+    * Rutas de Usuarios, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
     */
     Route::get('/users', 'User\UserController@index')->name('users.index')->middleware('permiso:user,view');
     Route::get('/users/create', 'User\UserController@create')->name('users.create')->middleware('permiso:user,add');

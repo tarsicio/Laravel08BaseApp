@@ -66,91 +66,75 @@ class User extends Authenticatable
     public function userAccess($modelo,$status,$user_rols_id){
         $permiso = 'DENY';        
         switch ($status) {
-            case 'view':
-                $id_model = DB::table('modelos')
-                                ->select('id')
-                                ->where('name',$modelo)
-                                ->where('activo','ALLOW')->get(); 
-                                $model_id = 0;
-                                foreach($id_model as $id){
-                                    $model_id = $id->id;
-                                }                                
-                $tabla = DB::table('permisos')
-                                ->select('view')
-                                ->where('modelos_id',$model_id)
-                                ->where('rols_id',$user_rols_id)->get();
-                                foreach($tabla as $name){
-                                    $permiso = $name->view;
-                                }                                
+            case 'view':            
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
                 break;
             case 'add':
-                $id_model = DB::table('modelos')
-                                ->select('id')
-                                ->where('name',$modelo)
-                                ->where('activo','ALLOW')->get();
-                                $model_id = 0;
-                                foreach($id_model as $id){
-                                    $model_id = $id->id;
-                                } 
-                $tabla = DB::table('permisos')
-                                ->select('add')
-                                ->where('modelos_id',$model_id)
-                                ->where('rols_id',$user_rols_id)->get();
-                                foreach($tabla as $name){
-                                    $permiso = $name->add;
-                                }
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
                 break;
             case 'edit':
-                $id_model = DB::table('modelos')
-                                ->select('id')
-                                ->where('name',$modelo)
-                                ->where('activo','ALLOW')->get();
-                                $model_id = 0;
-                                foreach($id_model as $id){
-                                    $model_id = $id->id;
-                                }
-                $tabla = DB::table('permisos')
-                                ->select('edit')
-                                ->where('modelos_id',$model_id)
-                                ->where('rols_id',$user_rols_id)->get();
-                                foreach($tabla as $name){
-                                    $permiso = $name->edit;
-                                }
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
                 break;
             case 'update':
-                $id_model = DB::table('modelos')
-                                ->select('id')
-                                ->where('name',$modelo)
-                                ->where('activo','ALLOW')->get();
-                                $model_id = 0;
-                                foreach($id_model as $id){
-                                    $model_id = $id->id;
-                                }
-                $tabla = DB::table('permisos')
-                                ->select('update')
-                                ->where('modelos_id',$model_id)
-                                ->where('rols_id',$user_rols_id)->get();
-                                foreach($tabla as $name){
-                                    $permiso = $name->update;
-                                }                                
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
                 break;    
             case 'delete':
-                $id_model = DB::table('modelos')
-                                ->select('id')
-                                ->where('name',$modelo)
-                                ->where('activo','ALLOW')->get();
-                                $model_id = 0;
-                                foreach($id_model as $id){
-                                    $model_id = $id->id;
-                                }
-                $tabla = DB::table('permisos')
-                                ->select('delete')
-                                ->where('modelos_id',$model_id)
-                                ->where('rols_id',$user_rols_id)->get();
-                                foreach($tabla as $name){
-                                    $permiso = $name->delete;
-                                }
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
                 break;
+                case 'print':
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
+                break;
+            case 'download':
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
+                break;    
+            case 'upload':
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
+                break;
+        }        
+        return $permiso;
+    }
+
+    public function permisoReturn($status,$user_rols_id,$modelo,$permiso){                
+        try {
+            $permisos = DB::table('permisos')
+                    ->join('modelos', 'modelos.id', '=', 'permisos.modelos_id')
+                    ->select('permisos.'.$status)                                
+                    ->where('permisos.rols_id',$user_rols_id)
+                    ->where('modelos.name',$modelo)
+                    ->where('modelos.activo','ALLOW')->get();                     
+                    if(!$permisos->isEmpty()){
+                        foreach($permisos as $permiso_02){
+                            switch ($status) {
+                                case 'view':            
+                                    $permiso = $permiso_02->view;
+                                    break;
+                                case 'add':
+                                    $permiso = $permiso_02->add;
+                                    break;
+                                case 'edit':
+                                    $permiso = $permiso_02->edit;
+                                    break;
+                                case 'update':
+                                    $permiso = $permiso_02->update;
+                                    break;    
+                                case 'delete':
+                                    $permiso = $permiso_02->delete;
+                                    break;
+                                    case 'print':
+                                    $permiso = $permiso_02->print;
+                                    break;
+                                case 'download':
+                                    $permiso = $permiso_02->download;
+                                    break;    
+                                case 'upload':
+                                    $permiso = $permiso_02->upload;
+                                    break;
+                                }                            
+                        }
+                    }                    
+        } catch (Throwable $e){
+            //echo "Captured Throwable: " . $e->getMessage(), "\n";
+            return $permiso;
         }        
         return $permiso;
     }
