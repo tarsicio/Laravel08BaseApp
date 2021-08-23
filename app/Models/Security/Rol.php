@@ -30,4 +30,21 @@ class Rol extends Model
         return DB::table('rols')->select('id','name')->orderBy('id')
         ->where('activo','ALLOW')->pluck('name', 'id')->toArray();        
     }
-}
+
+    public function get_nombre_rol($user_rols_id){
+        try{
+            $nombre = "";
+            $nombres = DB::table('rols')->select('name')
+                    ->where('activo','ALLOW')
+                    ->where('id',$user_rols_id)->get();
+                    if(!$nombres->isEmpty()){
+                        foreach($nombres as $nombre_01){
+                            $nombre = $nombre_01->name;
+                        }
+                    }
+        }catch(Throwable $e){
+            return $nombre;
+        }
+        return $nombre;
+    }    
+} // END CLASS
