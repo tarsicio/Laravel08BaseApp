@@ -142,7 +142,7 @@ return [
     'dashboard'               => 'Dashboard',
     'menu_seguridad'          => 'Seguridad',
     'menu_rol'                => 'Rols',
-    'menu_modelo'             => 'Models',
+    'menu_modulo'             => 'Modules',
     'menu_permiso'            => 'Permissions',
     'menu_notificaciones'     => 'Notifications',
 ];

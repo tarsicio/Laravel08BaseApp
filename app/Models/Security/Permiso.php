@@ -14,7 +14,7 @@ class Permiso extends Model
     use HasFactory;
 
     protected $fillable = [        
-        'modelos_id',
+        'modulos_id',
         'rols_id',
         'delete',
         'edit',
@@ -26,40 +26,40 @@ class Permiso extends Model
         return $this->belongsTo('App\Models\Security\Rol');
     }
 
-    public function modelo(){
-        return $this->belongsTo('App\Models\Security\modelo');
+    public function modulo(){
+        return $this->belongsTo('App\Models\Security\modulo');
     }
 
     /**
     * Realizado por @author Tarsicio Carrizales 
     * Correo: telecom.com.ve@gmail.com
     */
-    public function userAccess($modelo,$status,$user_rols_id){
+    public function userAccess($modulo,$status,$user_rols_id){
         $permiso = 'DENY';        
         switch ($status) {
             case 'view':            
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
                 break;
             case 'add':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
                 break;
             case 'edit':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
                 break;
             case 'update':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
                 break;    
             case 'delete':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
                 break;
                 case 'print':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
                 break;
             case 'download':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
                 break;    
             case 'upload':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modelo,$permiso);
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
                 break;
         }        
         return $permiso;
@@ -69,14 +69,14 @@ class Permiso extends Model
     * Realizado por @author Tarsicio Carrizales 
     * Correo: telecom.com.ve@gmail.com
     */
-    public function permisoReturn($status,$user_rols_id,$modelo,$permiso){                
+    public function permisoReturn($status,$user_rols_id,$modulo,$permiso){                
         try {
             $permisos = DB::table('permisos')
-                    ->join('modelos', 'modelos.id', '=', 'permisos.modelos_id')
+                    ->join('modulos', 'modulos.id', '=', 'permisos.modulos_id')
                     ->select('permisos.'.$status)                                
                     ->where('permisos.rols_id',$user_rols_id)
-                    ->where('modelos.name',$modelo)
-                    ->where('modelos.activo','ALLOW')->get();                     
+                    ->where('modulos.name',$modulo)
+                    ->where('modulos.activo','ALLOW')->get();                     
                     if(!$permisos->isEmpty()){
                         foreach($permisos as $permiso_02){
                             switch ($status) {
@@ -117,9 +117,9 @@ class Permiso extends Model
     public function datos_Permiso($user_rols_id){
         try {
             $permisos = DB::table('permisos')
-                    ->join('modelos','modelos.id', '=', 'permisos.modelos_id')
+                    ->join('modulos','modulos.id', '=', 'permisos.modulos_id')
                     ->select('permisos.id',
-                        'modelos.name',
+                        'modulos.name',
                         'permisos.delete',
                         'permisos.update',
                         'permisos.edit',
@@ -130,7 +130,7 @@ class Permiso extends Model
                         'permisos.download',
                         'permisos.upload')                                
                     ->where('permisos.rols_id',$user_rols_id)                    
-                    ->where('modelos.activo','ALLOW')->get();                                         
+                    ->where('modulos.activo','ALLOW')->get();                                         
         }catch(Throwable $e){
             $permisos = [];
             return $permisos;

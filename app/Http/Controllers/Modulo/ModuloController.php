@@ -3,12 +3,12 @@
 * Realizado por @author Tarsicio Carrizales Agosto 2021
 * Correo: telecom.com.ve@gmail.com
 */
-namespace App\Http\Controllers\Modelo;
+namespace App\Http\Controllers\Modulo;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ModeloController extends Controller
+class ModuloController extends Controller
 {
     /**
      * Display a listing of the resource.

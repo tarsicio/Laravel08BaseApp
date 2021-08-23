@@ -15,7 +15,7 @@ class CreatePermisosTable extends Migration
     {
         Schema::create('permisos', function (Blueprint $table) {
             $table->id();            
-            $table->unsignedBigInteger('modelos_id');
+            $table->unsignedBigInteger('modulos_id');
             $table->unsignedBigInteger('rols_id');
             $table->enum('delete', ['ALLOW','DENY'])->nullable()->default('DENY');
             $table->enum('update', ['ALLOW','DENY'])->nullable()->default('DENY');
@@ -26,8 +26,8 @@ class CreatePermisosTable extends Migration
             $table->enum('download', ['ALLOW','DENY'])->nullable()->default('DENY');
             $table->enum('upload', ['ALLOW','DENY'])->nullable()->default('DENY');
             $table->timestamps();
-            $table->unique(['modelos_id','rols_id','delete','update','edit','add','view']);            
-            $table->foreign('modelos_id')->references('id')->on('modelos');
+            $table->unique(['modulos_id','rols_id','delete','update','edit','add','view']);            
+            $table->foreign('modulos_id')->references('id')->on('modulos');
             $table->foreign('rols_id')->references('id')->on('rols');
         });
     }

@@ -8,7 +8,7 @@ namespace App\Http\Controllers\Permiso;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User\User;
-use App\Models\Security\Modelo;
+use App\Models\Security\Modulo;
 use App\Models\Security\Rol;
 use App\Models\Security\Permiso;
 use Auth;

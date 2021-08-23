@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class ModelosSeeder extends Seeder
+class ModulosSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,7 @@ class ModelosSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('modelos')->insert([
+        \DB::table('modulos')->insert([
             [
                 'name' => 'user',                
                 'created_at' => \Carbon\Carbon::now(),
@@ -25,7 +25,7 @@ class ModelosSeeder extends Seeder
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'name' => 'modelo',                
+                'name' => 'modulo',                
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ],

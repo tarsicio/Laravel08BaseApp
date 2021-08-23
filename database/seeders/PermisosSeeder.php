@@ -16,7 +16,7 @@ class PermisosSeeder extends Seeder
         // Los presente permiso corresponden al rol = Root
         \DB::table('permisos')->insert([
             [
-                'modelos_id' => 1,                        
+                'modulos_id' => 1,                        
                 'rols_id'    => 1,
                 'delete'     => 'ALLOW',
                 'update'     => 'ALLOW',
@@ -30,7 +30,7 @@ class PermisosSeeder extends Seeder
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'modelos_id' => 2,                        
+                'modulos_id' => 2,                        
                 'rols_id'    => 1,
                 'delete'     => 'ALLOW',
                 'update'     => 'ALLOW',
@@ -44,7 +44,7 @@ class PermisosSeeder extends Seeder
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'modelos_id' => 3,                        
+                'modulos_id' => 3,                        
                 'rols_id'    => 1,
                 'delete'     => 'ALLOW',
                 'update'     => 'ALLOW',
@@ -58,7 +58,7 @@ class PermisosSeeder extends Seeder
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'modelos_id' => 4,                        
+                'modulos_id' => 4,                        
                 'rols_id'    => 1,
                 'delete'     => 'ALLOW',
                 'update'     => 'ALLOW',
@@ -72,7 +72,7 @@ class PermisosSeeder extends Seeder
                 'updated_at' => \Carbon\Carbon::now(),
             ],
             [
-                'modelos_id' => 5,                        
+                'modulos_id' => 5,                        
                 'rols_id'    => 1,
                 'delete'     => 'ALLOW',
                 'update'     => 'ALLOW',

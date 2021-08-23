@@ -61,7 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
     */
     // *********************************************************************************************************
     Route::resource('/rols`', Rol\RolController::class);
-    Route::resource('/modelos', Modelo\ModeloController::class);
+    Route::resource('/modulos', Modulo\ModuloController::class);
     // *********************************************************************************************************
     /*
     * Rutas de Permiso, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.

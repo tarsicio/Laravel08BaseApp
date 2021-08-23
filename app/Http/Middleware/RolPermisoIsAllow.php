@@ -15,9 +15,9 @@ class RolPermisoIsAllow
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $modelo = null, $status = null)
+    public function handle(Request $request, Closure $next, $modulo = null, $status = null)
     {
-        $allow = (new Permiso)->userAccess($modelo,$status,$request->user()->rols_id);        
+        $allow = (new Permiso)->userAccess($modulo,$status,$request->user()->rols_id);        
         if (!is_null($request->user()->rols_id) && $allow == 'ALLOW') {            
             return $next($request);    
         }        
