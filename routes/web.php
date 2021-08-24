@@ -66,20 +66,13 @@ Route::group(['middleware' => 'auth'], function () {
     /*
     * Rutas de Permiso, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
     */
-    Route::get('/permisos', 'Permiso\PermisoController@index')
-    ->name('permisos.index')->middleware('permiso:permiso,view');
-    Route::get('/permisos/create', 'Permiso\PermisoController@create')
-    ->name('permisos.create')->middleware('permiso:permiso,add');
-    Route::post('/permisos', 'Permiso\PermisoController@store')
-    ->name('permisos.store')->middleware('permiso:permiso,add');
-    Route::get('/permisos/{permiso}/show', 'Permiso\PermisoController@show')
-    ->name('permisos.show')->middleware('permiso:permiso,view');
-    Route::get('/permisos/{permiso}/edit', 'Permiso\PermisoController@edit')
-    ->name('permisos.edit')->middleware('permiso:permiso,edit');
-    Route::post('/permisos/{permiso}', 'Permiso\PermisoController@update')
-    ->name('permisos.update')->middleware('permiso:permiso,update');
-    Route::post('/permisos/{permiso}', 'Permiso\PermisoController@destroy')
-    ->name('permisos.destroy')->middleware('permiso:permiso,delete');    
+    Route::get('/permisos', 'Permiso\PermisoController@index')->name('permisos.index')->middleware('permiso:permiso,view');
+    Route::get('/permisos/create', 'Permiso\PermisoController@create')->name('permisos.create')->middleware('permiso:permiso,add');
+    Route::post('/permisos', 'Permiso\PermisoController@store')->name('permisos.store')->middleware('permiso:permiso,add');
+    Route::get('/permisos/{permiso}', 'Permiso\PermisoController@show')->name('permisos.show')->middleware('permiso:permiso,view');
+    Route::get('/permisos/{permiso}/edit', 'Permiso\PermisoController@edit')->name('permisos.edit')->middleware('permiso:permiso,edit');
+    Route::post('/permisos/{permiso}', 'Permiso\PermisoController@update')->name('permisos.update')->middleware('permiso:permiso,update');
+    Route::post('/permisos/{permiso}/delete', 'Permiso\PermisoController@destroy')->name('permisos.destroy')->middleware('permiso:permiso,delete');    
     /*
     * Fin de las Rutas de Permiso, para todas las operaciones
     */

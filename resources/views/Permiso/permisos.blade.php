@@ -34,6 +34,9 @@
         </div>
     </div>
 </div>
+<div style="text-align:center">
+    <label style="color:black;">PERMISOS DEL ROL&nbsp;</label><label id="nombre_rol" style="color:blue;">{{ $nombre_rol}}</label>  
+</div>
 <section class="content">
     <div class="row">
         <div class="col-md-12">

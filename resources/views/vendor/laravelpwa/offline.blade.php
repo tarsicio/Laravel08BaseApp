@@ -1,5 +1,5 @@
-@include('adminlte::layouts.partials.html_landing')
-
+@include('laravelpwa::meta')
+{{-- @include('adminlte::layouts.partials.html_landing') --}}
 <section>
     <div style="text-align: center;">
         <h1><b>Usted no esta conectado a (Internet)</b></h1>

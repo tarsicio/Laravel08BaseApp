@@ -28,11 +28,12 @@ class PermisoController extends Controller
         if($nombre_rol == 'ROOT'){
             $permisos = (new Permiso)->datos_Permiso($user_rols_id);
             $roles = (new Rol)->datos_roles();
+            $nombre_rol = 'ROOT';
         }else{
             $permisos = empty($permisos);
             $roles = empty($roles);
         }        
-        return view('Permiso.permisos',compact('count_notification','permisos','roles'));
+        return view('Permiso.permisos',compact('count_notification','permisos','roles','nombre_rol'));
     }
 
     /**
@@ -62,9 +63,13 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$rols_id)
     {
-        //
+        dd($rols_id);
+        if($request->ajax()){
+            
+        return response()->json($permisos);
+      }
     }
 
     /**
