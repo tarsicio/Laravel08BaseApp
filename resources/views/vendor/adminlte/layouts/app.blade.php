@@ -62,45 +62,7 @@ desired effect
     <!-- El link_script.blade.php se utiliza para llevar el control con el DataTable-->
     @include('adminlte::layouts.partials.link_script')    
 @show
-@section('script_datatable')
-<script type="text/javascript">
-  $(function () {
-    
-    var table = $('.users_all').DataTable({
-        processing: true,
-        serverSide: true,
-        responsive: true,
-        autoWidth : false,        
-        ajax: "{{ route('users.list') }}",        
-        columns: [             
-            {data: 'id', name: 'id'},
-            {data: 'name', name: 'name'},
-            {
-                data: 'avatar',name: 'avatar'
-                //"render": function(data, type, row) {
-                  //  return '<img src="'+url()+'/storage/avatars/'+data+'" class="img-circle" style="height:35px;width:35px;"/>';
-                //}
-            },
-            {data: 'email', name: 'email'},
-            {data: 'activo', name: 'activo'},
-            {data: 'confirmed_at', name: 'confirmed_at'},                        
-        ],
-        "language": {
-            "lengthMenu": "Mostrar _MENU_ registros por página",
-            "zeroRecords": "Nada encontrado !!! - disculpe",
-            "info": "Mostrando la página _PAGE_ de _PAGES_",
-            "infoEmpty": "Registros no disponible",
-            "infoFiltered": "(filtrado de _MAX_ registros totales)",
-            "search": "Buscar:",
-            "paginate": {
-                "next": "Siguiente",
-                "previous": "Anterior",
-            }
-        }       
-    });    
-  });
-</script>
-@show  
+
 @include('sweetalert::alert')
 </body>
 </html>

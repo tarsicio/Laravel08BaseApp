@@ -26,7 +26,7 @@
                         </div>
                         {!! Form::token() !!}
                         <div style="text-align:left;">
-                        {!! Form::select('name', $roles, null, ['placeholder' => 'Escoja una Opción','class' => 'form-control']) !!}
+                        {!! Form::select('name', $roles, null, ['placeholder' => 'Escoja una Opción','class' => 'form-control','id' => 'rols_id']) !!}
                         </div>
                     </div>
                 {!! Form::close() !!}
@@ -44,7 +44,7 @@
             
     <div class="row">
         @foreach($permisos as $permiso)
-        <div class="col-lg-3 col-xs-12 col-md-6">
+        <div class="col-lg-3 col-md-4 col-xs-12">
             <li>
             <a data-toggle="collapse" data-parent="#{{$permiso->name}}" href="#{{$permiso->name}}">
                 <i class="fa fa-square"></i>{{strtoupper($permiso->name)}}
@@ -128,5 +128,8 @@
 @else
   @php alert()->warning('Acceso Denegado','Debe ser ROOT, para tener acceso a los permisos'); @endphp
 @endif
+@endsection
+@section('script_especiales')
+    <script src="{{ url ('/js_permiso/permiso.js') }}" type="text/javascript"></script>
 @endsection
 
