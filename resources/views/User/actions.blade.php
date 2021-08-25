@@ -1,0 +1,1 @@
+<a href="{{route ('user.profile')}}" class="btn btn-primary">Perfil</a>

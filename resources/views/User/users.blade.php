@@ -16,6 +16,8 @@
     <link href="{{ url ('/css_datatable/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url ('/css_datatable/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url ('/css_datatable/responsive.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url ('/css_datatable/buttons.dataTables.min.css') }}" rel="stylesheet">
+
 @endsection
 
 @section('main-content')
@@ -30,7 +32,7 @@
                                 <th>Avatar</th>
                                 <th>Correo</th>
                                 <th>Condición</th>
-                                <th>Confirmo</th>
+                                <th>Confirmó ?</th>                                
                             </tr>
                         </thead>
                     <tbody>
@@ -45,6 +47,7 @@
 <script src="{{ url ('/js_datatable/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/dataTables.responsive.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/responsive.bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ url ('/js_datatable/dataTables.buttons.min.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
   $(function () {
     
@@ -65,7 +68,7 @@
             },
             {data: 'email', name: 'email'},
             {data: 'activo', name: 'activo'},
-            {data: 'confirmed_at', name: 'confirmed_at'},                        
+            {data: 'confirmed_at', name: 'confirmed_at'},            
         ],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página",

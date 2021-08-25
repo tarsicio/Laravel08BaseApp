@@ -79,4 +79,30 @@ class User extends Authenticatable
         return DB::table('users')->select('id','name','avatar','email','activo','confirmed_at')->get();
     }
 
-}
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
+    public function count_User_Rol(){        
+        return DB::table('users')
+            ->join('rols', 'users.rols_id', '=', 'rols.id')
+            ->select('users.rols_id AS ID_ROLS',
+                    'rols.name AS NAME_ROLS',DB::raw('COUNT(users.rols_id) AS TOTAL_USERS'))
+            ->where('rols.activo','ALLOW')                    
+            ->groupBy('users.rols_id')->limit(10)->get();
+    }
+
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
+    public function count_User_notifications(){        
+        return DB::table('users')
+            ->join('notifications', 'users.id', '=', 'notifications.notifiable_id')
+            ->select('users.name AS USER_NAME',
+                DB::raw('COUNT(notifications.notifiable_id) AS TOTAL_NOTIFICATIONS'))
+            ->where('users.activo','ALLOW')                    
+            ->groupBy('notifications.notifiable_id')->limit(10)->get();
+    }
+    
+}// Fin del Modelo User

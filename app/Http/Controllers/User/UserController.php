@@ -140,4 +140,19 @@ class UserController extends Controller
     {
         //
     }
-}
+
+    public function usuarioRol(Request $request){
+      if($request->ajax()){
+        $countUserRol = (new User)->count_User_Rol();        
+        return response()->json($countUserRol);
+      }
+    }
+
+    public function notificationsUser(Request $request){
+      if($request->ajax()){
+        $countNotificationsUsers = (new User)->count_User_notifications();        
+        return response()->json($countNotificationsUsers);
+      }
+    }
+
+} // Fin de la clase UserController.

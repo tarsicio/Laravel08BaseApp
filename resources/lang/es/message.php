@@ -142,4 +142,6 @@ return [
     'menu_modulo'             => 'Modulos',
     'menu_permiso'            => 'Permisos',
     'menu_notificaciones'     => 'Notificaciones',
+    'count_users_rol'         => 'Total de usuarios por Rol',
+    'countUsersNotifications' => 'Total de notificaciones por Usuarios',
 ];

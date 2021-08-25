@@ -46,6 +46,7 @@
     </div>
             
     <div class="row">
+        @php //dd($permisos); @endphp
         @foreach($permisos as $permiso)
         <div class="col-lg-3 col-md-4 col-xs-12">
             <li>
@@ -79,36 +80,36 @@
                             <input type="hidden" id="{{$permiso->id}}" name="permiso_delete_id" value="{{$permiso->id}}">
                             <input type="hidden" id="{{$permiso->id}}" name="permiso_delete" value="{{$permiso->id}}">
                             <div class="form-group form-inline">
-                            <label for="delecte" style="color:black;">DELETE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            {!! Form::select('delete', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->delete,['class' => 'form-control', 'id' => 'delete']) !!}
+                            <label for="{{$permiso->name}}" style="color:black;">DELETE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                           {!! Form::select('delete', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->delete,['class' => 'form-control', 'id' => 'delete_'.$permiso->name.'_'.$permiso->id]) !!}
                             </div>
                             <div class="form-group form-inline">
-                            <label for="delecte" style="color:black;">UPDATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                           {!! Form::select('update', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->update,['class' => 'form-control', 'id' => 'delete']) !!}
+                            <label for="{{$permiso->name}}" style="color:black;">UPDATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                           {!! Form::select('update', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->update,['class' => 'form-control', 'id' => 'update_'.$permiso->name.'_'.$permiso->id]) !!}
+                            </div>                            
+                            <div class="form-group form-inline">
+                            <label for="{{$permiso->name}}" style="color:black;">EDIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                           {!! Form::select('edit', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->edit,['class' => 'form-control', 'id' => 'edit_'.$permiso->name.'_'.$permiso->id]) !!}
                             </div>
                             <div class="form-group form-inline">
-                            <label for="delecte" style="color:black;">EDIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                           {!! Form::select('edit', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->edit,['class' => 'form-control', 'id' => 'delete']) !!}
-                            </div>
-                            <div class="form-group form-inline">
-                            <label for="delecte" style="color:black;">CREATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                           {!! Form::select('add', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->add,['class' => 'form-control', 'id' => 'delete']) !!}
+                            <label for="{{$permiso->name}}" style="color:black;">CREATE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                           {!! Form::select('add', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->add,['class' => 'form-control', 'id' => 'add_'.$permiso->name.'_'.$permiso->id]) !!}
                            </div>
                            <div class="form-group form-inline">
-                            <label for="delecte" style="color:black;">VIEW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
-                           {!! Form::select('view', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->view,['class' => 'form-control', 'id' => 'delete']) !!}
+                            <label for="{{$permiso->name}}" style="color:black;">VIEW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
+                           {!! Form::select('view', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->view,['class' => 'form-control', 'id' => 'view_'.$permiso->name.'_'.$permiso->id]) !!}
                             </div>
                             <div class="form-group form-inline">
-                            <label for="delecte" style="color:black;">PRINT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                           {!! Form::select('print', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->print,['class' => 'form-control', 'id' => 'delete']) !!}
+                            <label for="{{$permiso->name}}" style="color:black;">PRINT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                           {!! Form::select('print', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->print,['class' => 'form-control', 'id' => 'print_'.$permiso->name.'_'.$permiso->id]) !!}
                             </div>
                             <div class="form-group form-inline">
-                            <label for="delecte" style="color:black;">DOWNLOAD&nbsp;&nbsp;</label>
-                           {!! Form::select('download', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->download,['class' => 'form-control', 'id' => 'delete']) !!}
+                            <label for="{{$permiso->name}}" style="color:black;">DOWNLOAD&nbsp;&nbsp;</label>
+                           {!! Form::select('download', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->download,['class' => 'form-control', 'id' => 'download_'.$permiso->name.'_'.$permiso->id]) !!}
                             </div>
                             <div class="form-group form-inline">
-                            <label for="delecte" style="color:black;">UPLOAD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                           {!! Form::select('upload', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->upload,['class' => 'form-control', 'id' => 'delete']) !!}
+                            <label for="{{$permiso->name}}" style="color:black;">UPLOAD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                           {!! Form::select('upload', ['ALLOW' => 'ALLOW', 'DENY' => 'DENY'], $permiso->upload,['class' => 'form-control', 'id' => 'upload_'.$permiso->name.'_'.$permiso->id]) !!}
                             </div>
                            {!! Form::close() !!}
                      </div>

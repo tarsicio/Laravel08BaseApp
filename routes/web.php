@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users/list', 'User\UserController@getUsers')->name('users.list')->middleware('permiso:user,view');
     Route::get('/user/profile', 'User\UserController@profile')->name('user.profile')->middleware('permiso:user,view');
     Route::post('/user/profile/{id}', 'User\UserController@update_avatar')->name('user.profile')->middleware('permiso:user,update');
+    Route::get('/user/usuarioRol', 'User\UserController@usuarioRol')->name('user.usuarioRol');
+    Route::get('/user/notificationsUser', 'User\UserController@notificationsUser')->name('user.notificationsUser');
     /*
     * Fin de las Rutas de Usuarios, para todas las operaciones
     */

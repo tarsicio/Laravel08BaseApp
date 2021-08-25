@@ -64,8 +64,7 @@ class PermisoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request,$rols_id)
-    {
-        dd($rols_id);
+    {        
         if($request->ajax()){
             
         return response()->json($permisos);
