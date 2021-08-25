@@ -38,7 +38,9 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">{{ trans('message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('/users') }}"><i class='fa fa-link'></i> <span>{{ trans('message.users') }}</span></a></li>
+            <li class="active"><a href="{{ url('/dashboard') }}"><i class='fa fa-link'></i> <span>{{ trans('message.dashboard') }}</span></a></li>            
+            <!-- Optionally, you can add icons to the links -->
+            <li><a href="{{ url('/users') }}"><i class='fa fa-link'></i> <span>{{ trans('message.users') }}</span></a></li>
             <li><a href="{{ url('/notificaciones') }}"><i class='fa fa-link'></i> <span>{{ trans('message.menu_notificaciones') }}</span></a></li>
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('message.menu_seguridad') }}</span> <i class="fa fa-angle-left pull-right"></i></a>

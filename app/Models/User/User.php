@@ -89,7 +89,8 @@ class User extends Authenticatable
             ->select('users.rols_id AS ID_ROLS',
                     'rols.name AS NAME_ROLS',DB::raw('COUNT(users.rols_id) AS TOTAL_USERS'))
             ->where('rols.activo','ALLOW')                    
-            ->groupBy('users.rols_id')->limit(10)->get();
+            ->groupBy('users.rols_id')
+            ->orderByDesc('TOTAL_USERS')->limit(10)->get();
     }
 
     /**
@@ -102,7 +103,69 @@ class User extends Authenticatable
             ->select('users.name AS USER_NAME',
                 DB::raw('COUNT(notifications.notifiable_id) AS TOTAL_NOTIFICATIONS'))
             ->where('users.activo','ALLOW')                    
-            ->groupBy('notifications.notifiable_id')->limit(10)->get();
+            ->groupBy('notifications.notifiable_id')
+            ->orderByDesc('TOTAL_NOTIFICATIONS')->limit(10)->get();
+    }
+
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
+    public function userTotalActivo(){
+        $countActivos = DB::table('users')            
+                            ->select(DB::raw('COUNT(users.activo) AS TOTAL_ALLOW'))
+                            ->where('users.activo','ALLOW')                    
+                            ->groupBy('users.activo')->get();
+            if(!$countActivos->isEmpty()){
+                foreach($countActivos as $countActivo){
+                   $total = $countActivo->TOTAL_ALLOW;
+                }
+            }else{
+                $total = 0;
+                return $total;
+            }
+        return $total;
     }
     
+
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
+    public function totalRoles(){
+        $totalRoles = DB::table('rols')            
+                            ->select(DB::raw('COUNT(rols.id) AS TOTAL_ALLOW'))
+                            ->where('rols.activo','ALLOW')                    
+                            ->groupBy('rols.activo')->get();
+            if(!$totalRoles->isEmpty()){
+                foreach($totalRoles as $totalRole){
+                   $total = $totalRole->TOTAL_ALLOW;
+                }
+            }else{
+                $total = 0;
+                return $total;
+            }
+        return $total;
+    }
+
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
+    public function userTotalDeny(){
+        $countActivos = DB::table('users')            
+                            ->select(DB::raw('COUNT(users.activo) AS TOTAL_DENY'))
+                            ->where('users.activo','DENY')                    
+                            ->groupBy('users.activo')->get();
+            if(!$countActivos->isEmpty()){
+                foreach($countActivos as $countActivo){
+                   $total = $countActivo->TOTAL_DENY;
+                }
+            }else{
+                $total = 0;
+                return $total;
+            }
+        return $total;
+    }
+
 }// Fin del Modelo User

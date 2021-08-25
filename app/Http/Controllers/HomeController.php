@@ -55,7 +55,11 @@ class HomeController extends Controller
             return redirect('/deny');            
         }else if(is_null($confirmation_code) && isset($confirmed_at)){
             $count_notification = (new User)->count_noficaciones_user();
-            return view('adminlte::home',compact('count_notification'));
+            $user_total_activos = (new User)->userTotalActivo();
+            $total_roles = (new User)->totalRoles();
+            $user_total_Deny = (new User)->userTotalDeny();            
+            return view('adminlte::home',compact('count_notification','user_total_activos',
+                                                  'total_roles','user_total_Deny'));
         }else{
             auth()->logout();
             alert()->info('Verifique su Correo','Confirme el código enviado a su correo para utilizar el sistema');            

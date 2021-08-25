@@ -10,15 +10,16 @@
 
 @section('main-content')
 
+@if(Auth::user()->rols_id == 1)
 <div class="row">        
     <div class="col-lg-4 col-md-6 col-xs-12">            
-		<x-box titulo="Total Usuarios" cantidad="3" name="usuarios" color="bg-yellow"></x-box>		
+		<x-box titulo="Usuarios ALLOW" cantidad="{{$user_total_activos}}" name="usuarios activos" color="bg-yellow"></x-box>		
 	</div>
 	<div class="col-lg-4 col-md-6 col-xs-12">            		
-		<x-box titulo="Total Roles" cantidad="8" name="roles" ></x-box>
+		<x-box titulo="Roles ALLOW" cantidad="{{$total_roles}}" name="roles activos" ></x-box>
 	</div>
 	<div class="col-lg-4 col-md-6 col-xs-12">            		
-		<x-box titulo="Total Bloqueados" cantidad="4" name="bloqueados" color="bg-red"></x-box>
+		<x-box titulo="Usuarios DENY" cantidad="{{$user_total_Deny}}" name="usuarios bloqueados" color="bg-red"></x-box>
 	</div>
 </div>
 	<!--  CANVAS de las Metricas Para User, Rol y Notificaciones, para View-->
@@ -45,6 +46,11 @@
           </div>
         </div>
         <hr/>
+@else
+ <div style="text-align:center;">
+ 	Bienvenido a su Doshboard de usuario, por favor emplemente en este lugar su lógica.
+ </div>
+@endif        
 @endsection
 
 @section('script_Chart')

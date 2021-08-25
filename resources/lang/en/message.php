@@ -145,6 +145,6 @@ return [
     'menu_modulo'             => 'Modules',
     'menu_permiso'            => 'Permissions',
     'menu_notificaciones'     => 'Notifications',
-    'count_users_rol'         => 'Total Users by Role',
-    'countUsersNotifications' => 'Total notifications by Users',
+    'count_users_rol'         => 'TOTAL USERS BY ROLE',
+    'countUsersNotifications' => 'TOTAL NOTIFICATIONS BY USERS',
 ];

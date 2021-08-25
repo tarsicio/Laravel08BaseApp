@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $count_notification = (new User)->count_noficaciones_user();
+        $count_notification = (new User)->count_noficaciones_user();        
         return view('User.users',compact('count_notification'));
     }
 
