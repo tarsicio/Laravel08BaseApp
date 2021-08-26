@@ -51,7 +51,7 @@ return [
     'createdby'               => 'Creado por',
     'seecode'                 => 'Ver código en',
     'online'                  => 'En Línea',
-    'home'                    => 'Inicio',
+    'home_1'                    => 'Inicio',
     'header'                  => 'ENCABEZAMIENTO',
     'anotherlink'             => 'Otro enlace',
     'multilevel'              => 'Multinivel',
@@ -144,4 +144,18 @@ return [
     'menu_notificaciones'     => 'Notificaciones',
     'count_users_rol'         => 'TOTAL DE USUARIOS POR ROL',
     'countUsersNotifications' => 'TOTAL DE NOTIFICACIONES POR USUARIOS',
+    'home'                    => [
+        'sistema'             => 'SISTEMA BASE LARAVEL 8',
+        'titulo_01'           => 'Manejo de Users, Rols, Permiso y Notificaciones',
+        'titulo_02'           => '100% funcional',
+        'realizado'           => 'Realizado por: ',
+        'mail'                => 'Correo: ',
+    ],
+    'dashboard_user'          => [
+        'user_allow'          => 'Usuarios activos',
+        'rols_allow'          => 'Roles activos',
+        'user_deny'           => 'Usuarios inactivos',
+        'mensaje_dashboard'   => 'Bienvenido Dashboard de usuario, falta implementar, observe el Dashboard de ROOT',
+        'mensaje_interno_box' => 'hay un total de: ',
+    ],
 ];

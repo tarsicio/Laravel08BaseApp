@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Adminlte-laravel - {{ trans('adminlte_lang::message.landingdescription') }} ">
+    <meta name="description" content="Adminlte-laravel - {{ trans('message.landingdescription') }} ">
     <meta name="author" content="Tarsicio Carrizales">
 
-    <title>{{ trans('adminlte_lang::message.landingdescriptionpratt') }}</title>
+    <title>{{ trans('message.landingdescriptionpratt') }}</title>
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('/css/all-landing.css') }}" rel="stylesheet">

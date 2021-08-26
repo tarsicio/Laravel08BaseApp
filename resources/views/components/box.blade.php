@@ -4,7 +4,7 @@
         <div class="inner">                        
             <h3>{{$titulo}}</h3>
             <div class="form-group form-inline">
-                hay un total de: {{$cantidad}}&nbsp;&nbsp;{{$name}}
+                {{ trans('message.dashboard_user.mensaje_interno_box') }} {{$cantidad}}&nbsp;&nbsp;{{$name}}
             </div>
         </div>
         <div class="icon">

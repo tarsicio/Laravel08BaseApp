@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
+Route::get('idioma/{lang}', 'Lenguaje\LenguajeController@cambioLenguaje')
+            ->name('idioma.cambioLenguaje')->middleware('idiomas');
+
 Route::get('/deny', function () {    
     return view('deny');
 });

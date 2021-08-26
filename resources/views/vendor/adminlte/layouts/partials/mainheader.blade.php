@@ -6,7 +6,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>HORUS</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Inicio</b></span>
+        <span class="logo-lg"><b>{{ trans('message.home_1') }}</b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -89,7 +89,7 @@
                                     <a href="{{ url('/homework') }}">
                                         <!-- Task title and progress text -->
                                         <h3>
-                                            {{ trans('adminlte_lang::message.tasks') }}
+                                            {{ trans('message.tasks') }}
                                             <small class="pull-right">20%</small>
                                         </h3>
                                         <!-- The progress bar -->

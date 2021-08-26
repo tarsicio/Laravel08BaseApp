@@ -1,7 +1,7 @@
 @extends('adminlte::layouts.app')
 
 @section('htmlheader_title')
-	{{ trans('adminlte_lang::message.home') }}
+	{{ trans('message.home_1') }}
 @endsection
 
 @section('contentheader_title')
@@ -13,13 +13,13 @@
 @if(Auth::user()->rols_id == 1)
 <div class="row">        
     <div class="col-lg-4 col-md-6 col-xs-12">            
-		<x-box titulo="Usuarios ALLOW" cantidad="{{$user_total_activos}}" name="usuarios activos" color="bg-yellow"></x-box>		
+		<x-box titulo="{{ trans('message.dashboard_user.user_allow') }}" cantidad="{{$user_total_activos}}" name="{{ trans('message.dashboard_user.user_allow') }}" color="bg-yellow"></x-box>		
 	</div>
 	<div class="col-lg-4 col-md-6 col-xs-12">            		
-		<x-box titulo="Roles ALLOW" cantidad="{{$total_roles}}" name="roles activos" ></x-box>
+		<x-box titulo="{{ trans('message.dashboard_user.rols_allow') }}" cantidad="{{$total_roles}}" name="{{ trans('message.dashboard_user.rols_allow') }}" ></x-box>
 	</div>
 	<div class="col-lg-4 col-md-6 col-xs-12">            		
-		<x-box titulo="Usuarios DENY" cantidad="{{$user_total_Deny}}" name="usuarios bloqueados" color="bg-red"></x-box>
+		<x-box titulo="{{ trans('message.dashboard_user.user_deny') }}" cantidad="{{$user_total_Deny}}" name="{{ trans('message.dashboard_user.user_deny') }}" color="bg-red"></x-box>
 	</div>
 </div>
 	<!--  CANVAS de las Metricas Para User, Rol y Notificaciones, para View-->
@@ -48,7 +48,7 @@
         <hr/>
 @else
  <div style="text-align:center;">
- 	Bienvenido a su Doshboard de usuario, por favor emplemente en este lugar su lógica.
+ 	<h3>{{ trans('message.dashboard_user.mensaje_dashboard') }}</h3>
  </div>
 @endif        
 @endsection
