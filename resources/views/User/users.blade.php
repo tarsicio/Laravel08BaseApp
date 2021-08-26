@@ -28,11 +28,11 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nombre</th>
+                                <th>{{ trans('message.datadatable_user.nombre') }}</th>
                                 <th>Avatar</th>
-                                <th>Correo</th>
-                                <th>Condición</th>
-                                <th>Confirmó ?</th>                                
+                                <th>{{ trans('message.datadatable_user.mail') }}</th>
+                                <th>{{ trans('message.datadatable_user.condicion') }}</th>
+                                <th>{{ trans('message.datadatable_user.confirmo') }}</th>                                
                             </tr>
                         </thead>
                     <tbody>

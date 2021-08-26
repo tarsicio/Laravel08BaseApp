@@ -150,7 +150,7 @@ return [
     'home'                    => [
         'sistema'             => 'BASE SYSTEM LARAVEL 8',
         'titulo_01'           => 'Management of Users, Rols, Permission and Notifications',
-        'titulo_02'           => '100% functional',
+        'titulo_02'           => 'Functional 100%',
         'realizado'           => 'Made by:',
         'mail'                => 'EMail: '
     ],
@@ -160,5 +160,16 @@ return [
         'user_deny'           => 'Deny Users',
         'mensaje_dashboard'   => 'Welcome user Dashboard, you need to implement, look at the ROOT Dashboard',
         'mensaje_interno_box' => 'there is a total of: ',
+    ],
+    'permisos_rol'            => [
+        'msg_rol'             => 'ROLE PERMISSIONS',
+        'roles'               => 'AVAILABLE ROLES',
+        'opcion'              => 'Choose an Option',        
+    ],
+    'datadatable_user'        => [
+        'nombre'              => 'Name',
+        'mail'                => 'Email',
+        'condicion'           => 'Condition',
+        'confirmo'            => 'Confirmed ?',   
     ],
 ];

@@ -119,6 +119,8 @@ class Permiso extends Model
             $permisos = DB::table('permisos')
                     ->join('modulos','modulos.id', '=', 'permisos.modulos_id')
                     ->select('permisos.id',
+                        'permisos.modulos_id',
+                        'permisos.rols_id',
                         'modulos.name',
                         'permisos.delete',
                         'permisos.update',

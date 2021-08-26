@@ -147,7 +147,7 @@ return [
     'home'                    => [
         'sistema'             => 'SISTEMA BASE LARAVEL 8',
         'titulo_01'           => 'Manejo de Users, Rols, Permiso y Notificaciones',
-        'titulo_02'           => '100% funcional',
+        'titulo_02'           => '100% Funcional',
         'realizado'           => 'Realizado por: ',
         'mail'                => 'Correo: ',
     ],
@@ -157,5 +157,16 @@ return [
         'user_deny'           => 'Usuarios inactivos',
         'mensaje_dashboard'   => 'Bienvenido Dashboard de usuario, falta implementar, observe el Dashboard de ROOT',
         'mensaje_interno_box' => 'hay un total de: ',
+    ],
+    'permisos_rol'            => [
+        'msg_rol'             => 'PERMISOS DEL ROL',
+        'roles'               => 'ROLES DISPONIBLES',
+        'opcion'              => 'Escoja una Opción',
+    ],
+    'datadatable_user'        => [
+        'nombre'              => 'Nombre',
+        'mail'                => 'Correo',
+        'condicion'           => 'Condición',
+        'confirmo'            => 'Confirmó ?',   
     ],
 ];
