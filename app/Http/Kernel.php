@@ -64,14 +64,14 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'permiso' =>  \App\Http\Middleware\RolPermisoIsAllow::class,        
-        'idiomas' =>  \App\Http\Middleware\Lenguaje::class,
+        //'idiomas' =>  \App\Http\Middleware\Lenguaje::class,
     ];
 
-    /*
+    /**
     * Realizado por Tarsicio Carrizales telecom.com.ve@gmail.com
     * La presente propiedad tiene como finalidad establecer en 
     * que orden se van a ejecutar los Middleware deseados.
-    */
+    
     protected $middlewarePriority = [
         \Illuminate\Cookie\Middleware\EncryptCookies::class,
         \Illuminate\Session\Middleware\StartSession::class,
@@ -83,4 +83,5 @@ class Kernel extends HttpKernel
         \Illuminate\Auth\Middleware\Authorize::class,
         \App\Http\Middleware\RolPermisoIsAllow::class,        
     ];
+    */
 }

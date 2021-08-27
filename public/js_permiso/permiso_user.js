@@ -5,254 +5,166 @@
  * y realizar los ajustes necesarios por el nombre de cada módulo nuevo
  */
 $(document).ready(function () {
-  ////////////////////////////////////////////// 01 ///////////////////////////////////////////////////////
+  
+  ////////////////////////////////////////////// 01 DELETE ///////////////////////////////////////////////////////
   $('body').on('click', '.delete_allow_user', function(){    
-    let filtrado = $(".delete_allow_user").attr('id');
-    console.log(filtrado);
-    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");
-    $.post('/permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){
-      //
+    let filtrado = $(".delete_allow_user").attr('id');    
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");    
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>DELETE ALLOW</b>');
     });
-    console.log(accion);
-    console.log(cambio);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN ALLOW');            
   }); //FIN DE '.delete_allow_user'
 
   $('body').on('click', '.delete_deny_user', function(){
-    //$.post('/permisos/' + rols_id , function(data){
-    //});
-    let filtrado = $(".delete_deny_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN DENY');            
+    let filtrado = $(".delete_deny_user").attr('id');    
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>DELETE DENY</b>');
+    });
   }); // FIN DE '.delete_deny_user'
-////////////////////////////////////////////////  02  /////////////////////////////////////////////////////
+////////////////////////////////////////////////  02 UPDATE /////////////////////////////////////////////////////
   $('body').on('click', '.update_allow_user', function(){
-    //$.post('/permisos/' + rols_id , function(data){
-    //});    
-    let filtrado = $(".update_allow_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN ALLOW');            
+    let filtrado = $(".update_allow_user").attr('id');    
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");    
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);        
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>UPDATE ALLOW</b>');
+    });
   });// FIN DE '.update_allow_user'
 
-  $('body').on('click', '.update_deny_user', function(){  
-    //$.post('/permisos/' + rols_id , function(data){
-    //});
-    let filtrado = $(".update_deny_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN DENY');            
+  $('body').on('click', '.update_deny_user', function(){      
+    let filtrado = $(".update_deny_user").attr('id');    
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");    
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);        
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>UPDATE DENY</b>');      
+    });
   });// FIN DE '.update_deny_user'
-/////////////////////////////////////////////  03 ////////////////////////////////////////////////////////
-$('body').on('click', '.edit_allow_user', function(){
-    //$.post('/permisos/' + rols_id , function(data){
-    //});    
-    let filtrado = $(".edit_allow_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN ALLOW');            
+/////////////////////////////////////////////  03 EDIT ////////////////////////////////////////////////////////
+$('body').on('click', '.edit_allow_user', function(){    
+    let filtrado = $(".edit_allow_user").attr('id');    
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");    
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);        
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>EDIT ALLOW</b>');      
+    });
   });// FIN DE '.update_allow_user'
 
-  $('body').on('click', '.edit_deny_user', function(){  
-    //$.post('/permisos/' + rols_id , function(data){
-    //});
+  $('body').on('click', '.edit_deny_user', function(){      
     let filtrado = $(".edit_deny_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN DENY');            
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");    
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);        
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>EDIT DENY</b>');     
+    });
   });// FIN DE '.edit_deny_user'
-/////////////////////////////////////////////  04  ////////////////////////////////////////////////////////
+/////////////////////////////////////////////  04 ADD  ////////////////////////////////////////////////////////
 $('body').on('click', '.add_allow_user', function(){
-    //$.post('/permisos/' + rols_id , function(data){
-    //});    
-    let filtrado = $(".add_allow_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN ALLOW');            
+    let filtrado = $(".add_allow_user").attr('id');    
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");    
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);        
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>CREATE ALLOW</b>');      
+    });
   });// FIN DE '.add_allow_user'
 
   $('body').on('click', '.add_deny_user', function(){  
-    //$.post('/permisos/' + rols_id , function(data){
-    //});
-    let filtrado = $(".add_deny_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN DENY');            
+    let filtrado = $(".add_deny_user").attr('id');    
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>CREATE DENY</b>');     
+    });
   });// FIN DE '.add_deny_user'
-/////////////////////////////////////////////   05  ////////////////////////////////////////////////////////
-$('body').on('click', '.view_allow_user', function(){
-    //$.post('/permisos/' + rols_id , function(data){
-    //});    
-    let filtrado = $(".view_allow_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN ALLOW');            
+/////////////////////////////////////////////   05 VIEW  ////////////////////////////////////////////////////////
+$('body').on('click', '.view_allow_user', function(){    
+    let filtrado = $(".view_allow_user").attr('id');    
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");    
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);        
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>VIEW ALLOW</b>');      
+    });
   });// FIN DE '.view_allow_user'
 
-  $('body').on('click', '.view_deny_user', function(){  
-    //$.post('/permisos/' + rols_id , function(data){
-    //});
-    let filtrado = $(".view_deny_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN DENY');            
+  $('body').on('click', '.view_deny_user', function(){      
+    let filtrado = $(".view_deny_user").attr('id');    
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);        
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>VIEW DENY</b>');     
+    });
   });// FIN DE '.view_deny_user'
-//////////////////////////////////////////  06  ///////////////////////////////////////////////////////////
+//////////////////////////////////////////  06 PRINT ///////////////////////////////////////////////////////////
 $('body').on('click', '.print_allow_user', function(){
-    //$.post('/permisos/' + rols_id , function(data){
-    //});    
     let filtrado = $(".print_allow_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN ALLOW');            
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");    
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);        
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>PRINT ALLOW</b>');     
+    });
   });// FIN DE '.print_allow_user'
 
   $('body').on('click', '.print_deny_user', function(){  
-    //$.post('/permisos/' + rols_id , function(data){
-    //});
     let filtrado = $(".print_deny_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN DENY');            
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");    
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>PRINT DENY</b>');      
+    });
   });// FIN DE '.print_deny_user'
-/////////////////////////////////////////  07  ////////////////////////////////////////////////////////////
+/////////////////////////////////////////  07 DOWNLOAD  ////////////////////////////////////////////////////////////
 $('body').on('click', '.download_allow_user', function(){
-    //$.post('/permisos/' + rols_id , function(data){
-    //});    
-    let filtrado = $(".download_allow_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN ALLOW');            
+    let filtrado = $(".download_allow_user").attr('id');    
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>DOWNLOAD ALLOW</b>');      
+    });
   });// FIN DE '.download_allow_user'
 
-  $('body').on('click', '.download_deny_user', function(){  
-    //$.post('/permisos/' + rols_id , function(data){
-    //});
-    let filtrado = $(".download_deny_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN DENY');            
+  $('body').on('click', '.download_deny_user', function(){      
+    let filtrado = $(".download_deny_user").attr('id');    
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");    
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);        
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>DOWNLOAD DENY</b>');     
+    });
   });// FIN DE '.download_deny_user'
-////////////////////////////////////////////////  08  /////////////////////////////////////////////////////
+////////////////////////////////////////////////  08 UPLOAD /////////////////////////////////////////////////////
 $('body').on('click', '.upload_allow_user', function(){
-    //$.post('/permisos/' + rols_id , function(data){
-    //});    
-    let filtrado = $(".upload_allow_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN ALLOW');            
+    let filtrado = $(".upload_allow_user").attr('id');    
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);        
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>UPLOAD ALLOW</b>');      
+    });
   });// FIN DE '.upload_allow_user'
 
   $('body').on('click', '.upload_deny_user', function(){  
-    //$.post('/permisos/' + rols_id , function(data){
-    //});
     let filtrado = $(".upload_deny_user").attr('id');
-    console.log(filtrado);
-    let [accion,allow,id,modulos_id,rols_id] = filtrado.split("_");
-    console.log(accion);
-    console.log(allow);
-    console.log(id);
-    console.log(modulos_id);
-    console.log(rols_id);
-    $('#nombre_rol').empty();
-    $('#nombre_rol').html('HACIENDO CLICK EN DENY');            
+    let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");
+    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id , function(data){      
+        console.log(data);
+        $('#mensaje_user').empty();
+        $('#mensaje_user').html('<b>UPLOAD DENY</b>');     
+    });
   });// FIN DE '.upload_deny_user'
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 }); // FIN DE $(document).ready(function () {

@@ -20,16 +20,16 @@ class Lenguaje
          /*
          * If esta a true el valor de la variable status que tenemos en locale.php
          */
-        if (config('local.status')) {
-            if (session()->has('local') &&
-                in_array(session()->get('local'), array_keys(config('local.languages')))) {
+        if (config('locale.status')) {
+            if (session()->has('locale') &&
+                in_array(session()->get('locale'), array_keys(config('locale.languages')))) {
                 /*
                  * Establece el locale de Laravel
                  */
-                app()->setLocale(session()->get('local'));
-                setlocale(LC_TIME, config('local.languages')[session()->get('local')][1]);
-                Carbon::setLocale(config('local.languages')[session()->get('local')][0]);
-                if (config('local.languages')[session()->get('local')][2]) {
+                app()->setLocale(session()->get('locale'));
+                setlocale(LC_TIME, config('locale.languages')[session()->get('locale')][1]);
+                Carbon::setLocale(config('locale.languages')[session()->get('locale')][0]);
+                if (config('locale.languages')[session()->get('locale')][2]) {
                     session(['lang-rtl' => true]);
                 } else {
                     session()->forget('lang-rtl');

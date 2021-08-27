@@ -114,6 +114,10 @@ class Permiso extends Model
         return $permiso;
     }
 
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
     public function datos_Permiso($user_rols_id){
         try {
             $permisos = DB::table('permisos')
@@ -137,7 +141,23 @@ class Permiso extends Model
             $permisos = [];
             return $permisos;
         }
-        
         return $permisos;
+    }
+
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
+    public function updatePermiso($accion,$cambio,$id,$modulos_id,$rols_id){        
+        try{        
+        $updateSQL = DB::table('permisos')
+                        ->where('id',$id)
+                        ->where('modulos_id',$modulos_id)
+                        ->where('rols_id',$rols_id)
+                        ->update([$accion => $cambio,'updated_at' => NOW()]);
+                        return $updateSQL;
+        }catch(Throwable $e){            
+            return $updateSQL = $e;
+        }                
     }
 }

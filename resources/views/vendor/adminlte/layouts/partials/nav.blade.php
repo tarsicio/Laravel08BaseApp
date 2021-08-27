@@ -12,8 +12,8 @@
                     <li class="active"><a href="{{ url('/') }}" class="smoothScroll">{{ trans('message.home_1') }}</a></li>                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    @if (config('local.status') && count(config('local.languages')) > 1)                        
-                            @foreach (array_keys(config('local.languages')) as $lang)
+                    @if (config('locale.status') && count(config('locale.languages')) > 1)                        
+                            @foreach (array_keys(config('locale.languages')) as $lang)
                                 @if ($lang != App::getLocale())
                                    <li><a href="{!! route('idioma.cambioLenguaje', $lang) !!}">
                                             <b>{!! $lang !!} <small>{!! $lang !!}</small></b>

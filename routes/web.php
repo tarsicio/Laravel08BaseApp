@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('idioma/{lang}', 'Lenguaje\LenguajeController@cambioLenguaje')
-            ->name('idioma.cambioLenguaje')->middleware('idiomas');
+            ->name('idioma.cambioLenguaje');
 
 Route::get('/deny', function () {    
     return view('deny');
@@ -65,7 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
     * Fin de las Rutas de Usuarios, para todas las operaciones
     */
     // *********************************************************************************************************
-    Route::resource('/rols`', Rol\RolController::class);
+    Route::resource('/rols', Rol\RolController::class);
     Route::resource('/modulos', Modulo\ModuloController::class);
     // *********************************************************************************************************
     /*
@@ -73,11 +73,16 @@ Route::group(['middleware' => 'auth'], function () {
     */
     Route::get('/permisos', 'Permiso\PermisoController@index')->name('permisos.index')->middleware('permiso:permiso,view');
     Route::get('/permisos/create', 'Permiso\PermisoController@create')->name('permisos.create')->middleware('permiso:permiso,add');
-    Route::post('/permisos', 'Permiso\PermisoController@store')->name('permisos.store')->middleware('permiso:permiso,add');
-    Route::get('/permisos/{permiso}', 'Permiso\PermisoController@show')->name('permisos.show')->middleware('permiso:permiso,view');
-    Route::get('/permisos/{permiso}/edit', 'Permiso\PermisoController@edit')->name('permisos.edit')->middleware('permiso:permiso,edit');
-    Route::post('/permisos/{accion}/{cambio}/{id}/{modulos_id}/{rols_id}', 'Permiso\PermisoController@update')->name('permisos.update')->middleware('permiso:permiso,update');
-    Route::post('/permisos/{permiso}/delete', 'Permiso\PermisoController@destroy')->name('permisos.destroy')->middleware('permiso:permiso,delete');    
+    Route::post('/permisos','Permiso\PermisoController@store')
+    ->name('permisos.store')->middleware('permiso:permiso,add');
+    Route::get('/permisos/{permiso}','Permiso\PermisoController@show')
+    ->name('permisos.show')->middleware('permiso:permiso,view');
+    Route::get('/permisos/{permiso}/edit','Permiso\PermisoController@edit')
+    ->name('permisos.edit')->middleware('permiso:permiso,edit');
+    Route::post('/permisos/{accion}/{cambio}/{id}/{modulos_id}/{rols_id}','Permiso\PermisoController@update')
+    ->name('permisos.update')->middleware('permiso:permiso,update');
+    Route::post('/permisos/{permiso}/delete',
+        'Permiso\PermisoController@destroy')->name('permisos.destroy')->middleware('permiso:permiso,delete');    
     /*
     * Fin de las Rutas de Permiso, para todas las operaciones
     */

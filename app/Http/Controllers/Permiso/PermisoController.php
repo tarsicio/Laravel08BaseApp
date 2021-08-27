@@ -21,19 +21,17 @@ class PermisoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {        
         $count_notification = (new User)->count_noficaciones_user();
-        $user_rols_id = Auth::user()->rols_id;
-        $nombre_rol = (new Rol)->get_nombre_rol($user_rols_id);        
-        if($nombre_rol == 'ROOT'){
-            $permisos = (new Permiso)->datos_Permiso($user_rols_id);
-            $roles = (new Rol)->datos_roles();
-            $nombre_rol = 'ROOT';
-        }else{
+        $rols_id = Auth::user()->rols_id;
+        $permisos = (new Permiso)->datos_Permiso($rols_id);
+        $roles = (new Rol)->datos_roles();
+        if(empty($permisos) || empty($roles)){
             $permisos = empty($permisos);
             $roles = empty($roles);
-        }        
-        return view('Permiso.permisos',compact('count_notification','permisos','roles','nombre_rol'));
+        }
+        $nombre_rol = (new Rol)->get_nombre_rol($rols_id);
+        return view('Permiso.permisos',compact('count_notification','permisos','roles','nombre_rol','rols_id'));
     }
 
     /**
@@ -65,10 +63,19 @@ class PermisoController extends Controller
      */
     public function show(Request $request,$rols_id)
     {        
-        if($request->ajax()){
-            
-        return response()->json($permisos);
-      }
+        $count_notification = (new User)->count_noficaciones_user();
+        $user_rols_id = Auth::user()->rols_id;
+        $permisos = (new Permiso)->datos_Permiso($user_rols_id);
+        $roles = (new Rol)->datos_roles();
+        if(empty($permisos) || empty($roles)){
+            $permisos = empty($permisos);
+            $roles = empty($roles);
+        }
+        $nombre_rol = (new Rol)->get_nombre_rol($user_rols_id);        
+        if($nombre_rol == 'ROOT'){
+            $nombre_rol = 'ROOT';
+        }     
+        return view('Permiso.permisos',compact('count_notification','permisos','roles','nombre_rol'));
     }
 
     /**
@@ -90,8 +97,12 @@ class PermisoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $accion,$cambio,$id,$modulos_id,$rols_id)
-    {
-        dd($request);
+    {        
+        if($request->ajax()) {
+            $resultado = (new Permiso)->updatePermiso($accion,$cambio,$id,$modulos_id,$rols_id);            
+            return response()->json($resultado);
+            //return redirect()->back();
+        }
     }
 
     /**
@@ -102,6 +113,6 @@ class PermisoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return response()->json($id);
     }
 }

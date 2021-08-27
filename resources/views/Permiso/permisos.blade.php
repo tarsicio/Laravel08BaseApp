@@ -26,7 +26,7 @@
                         </div>
                         {!! Form::token() !!}
                         <div style="text-align:left;">
-                        {!! Form::select('name', $roles, null, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id']) !!}
+                        {!! Form::select('name', $roles, $rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id']) !!}
                         </div>
                     </div>
                 {!! Form::close() !!}
@@ -35,7 +35,8 @@
     </div>
 </div>
 <div style="text-align:center">
-    <label style="color:black;">{{ trans('message.permisos_rol.msg_rol') }}&nbsp;</label><label id="nombre_rol" style="color:blue;">{{ $nombre_rol}}</label>  
+    <label style="color:black;">{{ trans('message.permisos_rol.msg_rol') }}&nbsp;</label>
+    <label id="nombre_rol" style="color:blue;">{{ $nombre_rol}}</label>  
 </div>
 <section class="content">
     <div class="row">
@@ -75,91 +76,86 @@
               <!--   <div class="small-box bg-blue card-body">  -->
                      <div class="inner">
                           <h4>{!! Form::label('permiso', strtoupper($permiso->name), ['class' => 'control-label']) !!}</h4>
-                          {!! Form::open(['route' => 'permisos.store','method' => 'post']) !!}
-                            <input type="hidden" id="{{$permiso->id}}" name="permiso_delete_id" value="{{$permiso->id}}">
-                            <input type="hidden" id="{{$permiso->id}}" name="permiso_delete" value="{{$permiso->id}}">
-                            
+                            {!! Form::open(array('url' => '#', 'method' => 'post')) !!}
+
+                            <div class="form-group form-inline" style="color:black; text-align:center; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;" id="mensaje_{{$permiso->name}}">
+                                Mensaje
+                            </div>
+
                             <div class="form-group form-inline" style="text-align:center; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;">
                                 <ul>
                                     <li style="color:black;"><b>DELETE</b></li>
-                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('delete', 'ALLOW', ($permiso->delete == 'ALLOW') ? true : false,['class' => 'delete_allow_'.$permiso->name, 'id' => 'delete_allow_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
-                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('delete', 'DENY', ($permiso->delete == 'DENY') ? true : false,['class' => 'delete_deny_'.$permiso->name, 'id' => 'delete_deny_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
+                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('delete', 'ALLOW', ($permiso->delete == 'ALLOW') ? true : false,['class' => 'delete_allow_'.$permiso->name, 'id' => 'delete_ALLOW_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
+                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('delete', 'DENY', ($permiso->delete == 'DENY') ? true : false,['class' => 'delete_deny_'.$permiso->name, 'id' => 'delete_DENY_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
                                     </li>
                                 </ul>
                             </div>
-                            {!! Form::close() !!}
-                            {!! Form::open(['route' => 'permisos.store','method' => 'post']) !!}
+                           
                             <div class="form-group form-inline" style="text-align:center; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;">
                                 <ul>
                                     <li style="color:black;"><b>UPDATE</b></li>
-                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('update', 'ALLOW', ($permiso->update == 'ALLOW') ? true : false,['class' => 'update_allow_'.$permiso->name, 'id' => 'update_allow_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
-                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('update', 'DENY', ($permiso->update == 'DENY') ? true : false,['class' => 'update_deny_'.$permiso->name, 'id' => 'update_deny_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
+                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('update', 'ALLOW', ($permiso->update == 'ALLOW') ? true : false,['class' => 'update_allow_'.$permiso->name, 'id' => 'update_ALLOW_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
+                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('update', 'DENY', ($permiso->update == 'DENY') ? true : false,['class' => 'update_deny_'.$permiso->name, 'id' => 'update_DENY_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
                                     </li>
                                 </ul>
                             </div>
-                            {!! Form::close() !!}
-                            {!! Form::open(['route' => 'permisos.store','method' => 'post']) !!}
+                           
                             
                             <div class="form-group form-inline" style="text-align:center; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;">
                                 <ul>
                                     <li style="color:black;"><b>EDIT</b></li>
-                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('edit', 'ALLOW', ($permiso->edit == 'ALLOW') ? true : false,['class' => 'edit_allow_'.$permiso->name, 'id' => 'edit_allow_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
-                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('edit', 'DENY', ($permiso->edit == 'DENY') ? true : false,['class' => 'edit_deny_'.$permiso->name, 'id' => 'edit_deny_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
+                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('edit', 'ALLOW', ($permiso->edit == 'ALLOW') ? true : false,['class' => 'edit_allow_'.$permiso->name, 'id' => 'edit_ALLOW_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
+                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('edit', 'DENY', ($permiso->edit == 'DENY') ? true : false,['class' => 'edit_deny_'.$permiso->name, 'id' => 'edit_DENY_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
                                     </li>
                                 </ul>
                             </div>
-                           {!! Form::close() !!}
-                            {!! Form::open(['route' => 'permisos.store','method' => 'post']) !!}
+                           
                            <div class="form-group form-inline" style="text-align:center; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;">
                                 <ul>
                                     <li style="color:black;"><b>CREATE</b></li>
-                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('add', 'ALLOW', ($permiso->add == 'ALLOW') ? true : false,['class' => 'add_allow_'.$permiso->name, 'id' => 'add_allow_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
-                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('add', 'DENY', ($permiso->add == 'DENY') ? true : false,['class' => 'add_deny_'.$permiso->name, 'id' => 'add_deny_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
+                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('add', 'ALLOW', ($permiso->add == 'ALLOW') ? true : false,['class' => 'add_allow_'.$permiso->name, 'id' => 'add_ALLOW_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
+                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('add', 'DENY', ($permiso->add == 'DENY') ? true : false,['class' => 'add_deny_'.$permiso->name, 'id' => 'add_DENY_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
                                     </li>
                                 </ul>
                             </div>
-                            {!! Form::close() !!}
-                            {!! Form::open(['route' => 'permisos.store','method' => 'post']) !!}
+                            
                             <div class="form-group form-inline" style="text-align:center; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;">
                                 <ul>
                                     <li style="color:black;"><b>VIEW</b></li>
-                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('view', 'ALLOW', ($permiso->view == 'ALLOW') ? true : false,['class' => 'view_allow_'.$permiso->name, 'id' => 'view_allow_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
-                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('view', 'DENY', ($permiso->view == 'DENY') ? true : false,['class' => 'view_deny_'.$permiso->name, 'id' => 'view_deny_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
+                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('view', 'ALLOW', ($permiso->view == 'ALLOW') ? true : false,['class' => 'view_allow_'.$permiso->name, 'id' => 'view_ALLOW_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
+                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('view', 'DENY', ($permiso->view == 'DENY') ? true : false,['class' => 'view_deny_'.$permiso->name, 'id' => 'view_DENY_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
                                     </li>
                                 </ul>
                             </div>
-                            {!! Form::close() !!}
-                            {!! Form::open(['route' => 'permisos.store','method' => 'post']) !!}
+                           
                             <div class="form-group form-inline" style="text-align:center; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;">
                                 <ul>
                                     <li style="color:black;"><b>PRINT</b></li>
-                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('print', 'ALLOW', ($permiso->print == 'ALLOW') ? true : false,['class' => 'print_allow_'.$permiso->name, 'id' => 'print_allow_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
-                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('print', 'DENY', ($permiso->print == 'DENY') ? true : false,['class' => 'print_deny_'.$permiso->name, 'id' => 'print_deny_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
+                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('print', 'ALLOW', ($permiso->print == 'ALLOW') ? true : false,['class' => 'print_allow_'.$permiso->name, 'id' => 'print_ALLOW_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
+                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('print', 'DENY', ($permiso->print == 'DENY') ? true : false,['class' => 'print_deny_'.$permiso->name, 'id' => 'print_DENY_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
                                     </li>
                                 </ul>
                             </div>
-                            {!! Form::close() !!}
-                            {!! Form::open(['route' => 'permisos.store','method' => 'post']) !!}
+                           
                             <div class="form-group form-inline" style="text-align:center; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;">
                                 <ul>
                                     <li style="color:black;"><b>DOWNLOAD</b></li>
-                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('download', 'ALLOW', ($permiso->download == 'ALLOW') ? true : false,['class' => 'download_allow_'.$permiso->name, 'id' => 'download_allow_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
-                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('download', 'DENY', ($permiso->download == 'DENY') ? true : false,['class' => 'download_deny_'.$permiso->name, 'id' => 'download_deny_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
+                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('download', 'ALLOW', ($permiso->download == 'ALLOW') ? true : false,['class' => 'download_allow_'.$permiso->name, 'id' => 'download_ALLOW_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
+                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('download', 'DENY', ($permiso->download == 'DENY') ? true : false,['class' => 'download_deny_'.$permiso->name, 'id' => 'download_DENY_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
                                     </li>
                                 </ul>
                             </div>
-                            {!! Form::close() !!}
-                            {!! Form::open(['route' => 'permisos.store','method' => 'post']) !!}
+                           
 
                             <div class="form-group form-inline" style="text-align:center; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;">
                                 <ul>
                                     <li style="color:black;"><b>UPLOAD</b></li>
-                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('upload', 'ALLOW', ($permiso->upload == 'ALLOW') ? true : false,['class' => 'upload_allow_'.$permiso->name, 'id' => 'upload_allow_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
-                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('upload', 'DENY', ($permiso->upload == 'DENY') ? true : false,['class' => 'upload_deny_'.$permiso->name, 'id' => 'upload_deny_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
+                                        <li style="color:black;">{{ Form::label('ALLOW', 'ALLOW')}}&nbsp;{{Form::radio('upload', 'ALLOW', ($permiso->upload == 'ALLOW') ? true : false,['class' => 'upload_allow_'.$permiso->name, 'id' => 'upload_ALLOW_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}&nbsp;
+                                        {{ Form::label('DENY', 'DENY')}}&nbsp;{{Form::radio('upload', 'DENY', ($permiso->upload == 'DENY') ? true : false,['class' => 'upload_deny_'.$permiso->name, 'id' => 'upload_DENY_'.$permiso->id.'_'.$permiso->modulos_id.'_'.$permiso->rols_id] )}}
                                     </li>
                                 </ul>
                             </div>
-                           {!! Form::close() !!}
+                          {!! Form::close() !!}
                             
                      </div>
                      <div class="icon">
