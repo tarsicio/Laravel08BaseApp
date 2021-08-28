@@ -64,18 +64,15 @@ class PermisoController extends Controller
     public function show(Request $request,$rols_id)
     {        
         $count_notification = (new User)->count_noficaciones_user();
-        $user_rols_id = Auth::user()->rols_id;
-        $permisos = (new Permiso)->datos_Permiso($user_rols_id);
+        //$rols_id = Auth::user()->rols_id;
+        $permisos = (new Permiso)->datos_Permiso($rols_id);
         $roles = (new Rol)->datos_roles();
         if(empty($permisos) || empty($roles)){
             $permisos = empty($permisos);
             $roles = empty($roles);
         }
-        $nombre_rol = (new Rol)->get_nombre_rol($user_rols_id);        
-        if($nombre_rol == 'ROOT'){
-            $nombre_rol = 'ROOT';
-        }     
-        return view('Permiso.permisos',compact('count_notification','permisos','roles','nombre_rol'));
+        $nombre_rol = (new Rol)->get_nombre_rol($rols_id);
+        return view('Permiso.permisos',compact('count_notification','permisos','roles','nombre_rol','rols_id'));
     }
 
     /**

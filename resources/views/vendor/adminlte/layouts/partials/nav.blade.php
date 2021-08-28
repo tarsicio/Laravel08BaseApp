@@ -17,6 +17,11 @@
                                 @if ($lang != App::getLocale())
                                    <li><a href="{!! route('idioma.cambioLenguaje', $lang) !!}">
                                             <b>{!! $lang !!} <small>{!! $lang !!}</small></b>
+                                            @if ($lang == 'en')
+                                                <img src="{{ url ('/banderas/us.png') }}" class="user-image" alt="Bandera Image"/>
+                                            @else
+                                                <img src="{{ url ('/banderas/es.png') }}" class="user-image" alt="Bandera Image"/>
+                                            @endif
                                     </a></li>
                                 @endif
                             @endforeach                        

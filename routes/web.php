@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/permisos/create', 'Permiso\PermisoController@create')->name('permisos.create')->middleware('permiso:permiso,add');
     Route::post('/permisos','Permiso\PermisoController@store')
     ->name('permisos.store')->middleware('permiso:permiso,add');
-    Route::get('/permisos/{permiso}','Permiso\PermisoController@show')
+    Route::post('/permisos/{permiso}','Permiso\PermisoController@show')
     ->name('permisos.show')->middleware('permiso:permiso,view');
     Route::get('/permisos/{permiso}/edit','Permiso\PermisoController@edit')
     ->name('permisos.edit')->middleware('permiso:permiso,edit');

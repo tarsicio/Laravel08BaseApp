@@ -18,18 +18,15 @@
 <div class="row">
     <div class="col-lg-12 col-xs-12">             
         <div class="card">
-            <div class="card-body">            
-                {!! Form::open(['route' => 'permisos.store','method' => 'post']) !!}
+            <div class="card-body">                          
                     <div class="form-group">
                         <div style="text-align:left;">
                             {!! Form::label('name',trans('message.permisos_rol.roles'), ['class' => 'control-label']) !!}
-                        </div>
-                        {!! Form::token() !!}
+                        </div>                        
                         <div style="text-align:left;">
-                        {!! Form::select('name', $roles, $rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id']) !!}
+                        {!! Form::select('name', $roles, $rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id']) !!}                                            
                         </div>
-                    </div>
-                {!! Form::close() !!}
+                    </div>                
             </div>
         </div>
     </div>
@@ -79,7 +76,7 @@
                             {!! Form::open(array('url' => '#', 'method' => 'post')) !!}
 
                             <div class="form-group form-inline" style="color:black; text-align:center; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;" id="mensaje_{{$permiso->name}}">
-                                Mensaje
+                                {{ trans('message.permisos_rol.mensaje') }}
                             </div>
 
                             <div class="form-group form-inline" style="text-align:center; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid;">

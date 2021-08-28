@@ -164,7 +164,8 @@ return [
     'permisos_rol'            => [
         'msg_rol'             => 'ROLE PERMISSIONS',
         'roles'               => 'AVAILABLE ROLES',
-        'opcion'              => 'Choose an Option',        
+        'opcion'              => 'Choose an Option',
+        'mensaje'             => 'Messages',        
     ],
     'datadatable_user'        => [
         'nombre'              => 'Name',

@@ -5,7 +5,6 @@
  * y realizar los ajustes necesarios por el nombre de cada módulo nuevo
  */
 $(document).ready(function () {
-  
   ////////////////////////////////////////////// 01 DELETE ///////////////////////////////////////////////////////
   $('body').on('click', '.delete_allow_user', function(){    
     let filtrado = $(".delete_allow_user").attr('id');    
