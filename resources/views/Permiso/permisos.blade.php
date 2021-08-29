@@ -20,7 +20,7 @@
         <div class="card">
             <div class="card-body">                
                 {!! Form::open(array('url'=>'/permisos/'.$rols_id,'method'=>'POST','id' => 'form_permiso_id')) !!}
-                {!! Form::token(); !!}               
+                {!! Form::token(['class'=>'token_app']); !!}               
                     <div class="form-group">
                         <div style="text-align:left;">
                             {!! Form::label('name',trans('message.permisos_rol.roles'), ['class' => 'control-label']) !!}
@@ -181,6 +181,11 @@
 @endif
 @endsection
 @section('script_especiales')
+    <script src="{{ url ('/js_permiso/control_roles.js') }}" type="text/javascript"></script>
     <script src="{{ url ('/js_permiso/permiso_user.js') }}" type="text/javascript"></script>
+   <!-- <script src="{{ url ('/js_permiso/permiso_notification.js') }}" type="text/javascript"></script>
+    <script src="{{ url ('/js_permiso/permiso_modulo.js') }}" type="text/javascript"></script>
+    <script src="{{ url ('/js_permiso/permiso_permiso.js') }}" type="text/javascript"></script>
+    <script src="{{ url ('/js_permiso/permiso_rol.js') }}" type="text/javascript"></script> -->
 @endsection
 
