@@ -35,10 +35,10 @@ class Permiso extends Model
     * Correo: telecom.com.ve@gmail.com
     */
     public function userAccess($modulo,$status,$user_rols_id){
-        $permiso = 'DENY';        
+        $permiso = 'DENY';                
         switch ($status) {
             case 'view':            
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
+                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);                
                 break;
             case 'add':
                 $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
@@ -61,7 +61,7 @@ class Permiso extends Model
             case 'upload':
                 $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
                 break;
-        }        
+        }            
         return $permiso;
     }
 

@@ -21,7 +21,7 @@ class RolPermisoIsAllow
         if (!is_null($request->user()->rols_id) && $allow == 'ALLOW') {            
             return $next($request);    
         }        
-        alert()->warning('Acceso Denegado','Consulte a su Administrador');
+        alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje'));
         return redirect('/dashboard');
     }
 }

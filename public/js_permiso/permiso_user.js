@@ -5,6 +5,15 @@
  * y realizar los ajustes necesarios por el nombre de cada módulo nuevo
  */
 $(document).ready(function () {
+///////////////////////////  AL CAMBIAR LA SELECCION PARA ESCOGER EL ROL ////////////////////////////////////////
+    $(document).on('change','#rols_id', function (e) {
+        var rols_id = $('#rols_id').val();        
+        var url_vieja = $('#form_permiso_id').attr('action');        
+        var largo = url_vieja.length;
+        var url_nueva = url_vieja.substring(0,largo-1);
+        $('#form_permiso_id').attr('action',url_nueva + rols_id);
+    });
+  ////////////////////////// FIN  AL CAMBIAR LA SELECCION PARA ESCOGER EL ROL ////////////////////////////////////
   ////////////////////////////////////////////// 01 DELETE ///////////////////////////////////////////////////////
   $('body').on('click', '.delete_allow_user', function(){    
     let filtrado = $(".delete_allow_user").attr('id');    

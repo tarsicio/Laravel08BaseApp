@@ -13,12 +13,14 @@
 @endsection
     
 @section('main-content')
-@if(!empty($roles) && !empty($permisos))
+@if(Auth::user()->rols_id == 1)
 <div class="container-fluid">
 <div class="row">
     <div class="col-lg-12 col-xs-12">             
         <div class="card">
-            <div class="card-body">                          
+            <div class="card-body">                
+                {!! Form::open(array('url'=>'/permisos/'.$rols_id,'method'=>'POST','id' => 'form_permiso_id')) !!}
+                {!! Form::token(); !!}               
                     <div class="form-group">
                         <div style="text-align:left;">
                             {!! Form::label('name',trans('message.permisos_rol.roles'), ['class' => 'control-label']) !!}
@@ -26,7 +28,10 @@
                         <div style="text-align:left;">
                         {!! Form::select('name', $roles, $rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id']) !!}                                            
                         </div>
+                        <hr>
+                        {!! Form::submit(trans('message.mensajes_alert.submit_01'),['class'=> 'form-control btn btn-primary']) !!}
                     </div>                
+                {!!  Form::close() !!}                
             </div>
         </div>
     </div>
@@ -172,7 +177,7 @@
 </section>
 </div>
 @else
-  @php alert()->warning('Acceso Denegado','Debe ser ROOT, para tener acceso a los permisos'); @endphp
+  @php alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje')); @endphp
 @endif
 @endsection
 @section('script_especiales')

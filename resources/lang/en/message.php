@@ -150,7 +150,7 @@ return [
     'home'                    => [
         'sistema'             => 'BASE SYSTEM LARAVEL 8',
         'titulo_01'           => 'Management of Users, Rols, Permission and Notifications',
-        'titulo_02'           => 'Functional 100%',
+        'titulo_02'           => 'Functional 100% and PWA Laravel 8',
         'realizado'           => 'Made by:',
         'mail'                => 'EMail: '
     ],
@@ -172,5 +172,12 @@ return [
         'mail'                => 'Email',
         'condicion'           => 'Condition',
         'confirmo'            => 'Confirmed ?',   
+    ],
+    'mensajes_alert'          => [
+        'denegado'            => 'Deny Access',
+        'mensaje'             => 'Administrator consult',
+        'submit_01'           => 'PROCESE EL ROL SELECCIONADO',
+        'creando'             => 'Creando Permisos',
+        'creando_permisos'    => 'Por favor espere un momento ...',
     ],
 ];
