@@ -177,5 +177,6 @@ return [
         'submit_01'           => 'PROCESE EL ROL SELECCIONADO',
         'creando'             => 'Creando Permisos',
         'creando_permisos'    => 'Por favor espere un momento ...',
+        'implementar'         => 'PENDIENTE POR IMPLEMENTAR',
     ],
 ];

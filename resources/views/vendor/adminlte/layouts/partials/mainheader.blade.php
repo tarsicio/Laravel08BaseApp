@@ -64,7 +64,7 @@
                             <!-- Inner Menu: contains the notifications -->
                             <ul class="menu">
                                 <li><!-- start notification -->
-                                    <a href="{{ url('/notifications/all') }}">
+                                    <a href="{{ url('/notificaciones') }}">
                                         <i class="fa fa-bell text-aqua"></i> {{ trans('message.notifications') }}{{$count_notification}}{{ trans('message.notifications_2') }}
                                     </a>
                                 </li><!-- end notification -->

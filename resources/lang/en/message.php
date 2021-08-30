@@ -177,8 +177,9 @@ return [
     'mensajes_alert'          => [
         'denegado'            => 'Deny Access',
         'mensaje'             => 'Administrator consult',
-        'submit_01'           => 'PROCESE EL ROL SELECCIONADO',
-        'creando'             => 'Creando Permisos',
-        'creando_permisos'    => 'Por favor espere un momento ...',
+        'submit_01'           => 'PROCESS THE SELECTED ROLE',
+        'creando'             => 'Creating Permissions',
+        'creando_permisos'    => 'Wait a moment please ...',
+        'implementar'         => 'PENDING TO IMPLEMENT, INVITE A COFFEE',
     ],
 ];

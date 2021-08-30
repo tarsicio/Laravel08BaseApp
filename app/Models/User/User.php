@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -67,7 +68,9 @@ class User extends Authenticatable
     */
     public function count_noficaciones_user(){
         $user_id = auth()->user()->id;        
-        $sql_count_notifications = DB::table('notifications')->where('notifiable_id', $user_id)->count();        
+        $sql_count_notifications = DB::table('notifications')
+                                        ->where('notifiable_id', $user_id)
+                                        ->where('read_at', null)->count();        
         return $sql_count_notifications;
     }
 
@@ -166,7 +169,7 @@ class User extends Authenticatable
                 return $total;
             }
         return $total;
-    }
+    }   
 
     /**
     * Realizado por @author Tarsicio Carrizales 
@@ -176,8 +179,9 @@ class User extends Authenticatable
         $user = Auth::user();       
         return DB::table('notifications')
                     ->where('notifiable_id',$user->id)
+                    ->where('read_at',null)
                     ->select('id','data','read_at','created_at')
                     ->orderByDesc('created_at')->get();
-    }
+    } 
 
 }// Fin del Modelo User

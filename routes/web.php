@@ -43,7 +43,9 @@ Route::get('/offline', function () {
     */
 // *********************************************************************************************************
 Route::group(['middleware' => 'auth'], function () {
-    
+
+    Route::get('/mail', 'Mail\MailController@index')->name('mail.index');
+    Route::get('/homework', 'Tarea\TareaController@index')->name('homework.index');
     // *********************************************************************************************************
     /*
     * Rutas de Usuarios, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
