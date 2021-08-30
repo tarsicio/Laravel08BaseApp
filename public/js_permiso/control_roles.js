@@ -8,6 +8,7 @@ $(document).ready(function () {
         var diferencia = largo - posicion;        
         var url_nueva = url_vieja.substring(0,(largo+1)-diferencia);        
         $('#form_permiso_id').attr('action',url_nueva + rols_id);
+        $('#mostar_ocultar_permisos').empty();
     });
   ////////////////////////// FIN  AL CAMBIAR LA SELECCION PARA ESCOGER EL ROL ////////////////////////////////////
 });

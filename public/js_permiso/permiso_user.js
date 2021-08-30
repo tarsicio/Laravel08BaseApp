@@ -16,11 +16,14 @@
  */
 $(document).ready(function () {
   ////////////////////////////////////////////// 01 DELETE ///////////////////////////////////////////////////////
-  $('body').on('click', '.delete_allow_user', function(){ 
-    let filtrado = $(".delete_allow_user").attr('id');    
+  $('body').on('click', '.delete_allow_user', function(event){ 
+    event.preventDefault();
+    let filtrado = $(".delete_allow_user").attr('id');
+    console.log(filtrado);    
     let [accion,cambio,id,modulos_id,rols_id] = filtrado.split("_");
-    $.post('permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id, 
-            {_token:$('meta[name="csrf-token"]').attr('content')},function(data){ 
+    var url = 'permisos/' + accion + '/' + cambio + '/' + id + '/' + modulos_id + '/' + rols_id
+    var data = {_token:$('meta[name="csrf-token"]').attr('content')}
+    $.post(url,data,function(data){ 
         console.log(data);
         $('#mensaje_user').empty();
         $('#mensaje_user').html('<b>DELETE ALLOW</b>');

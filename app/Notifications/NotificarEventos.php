@@ -65,4 +65,5 @@ class NotificarEventos extends Notification
             'body' => $this->notificacion['body']
         ];
     }
+    
 }

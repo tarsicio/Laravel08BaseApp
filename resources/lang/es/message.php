@@ -168,7 +168,8 @@ return [
         'nombre'              => 'Nombre',
         'mail'                => 'Correo',
         'condicion'           => 'Condición',
-        'confirmo'            => 'Confirmó ?',   
+        'confirmo'            => 'Confirmó ?',
+        'fecha'               => 'Fecha',
     ],
     'mensajes_alert'          => [
         'denegado'            => 'Acceso Denegado',

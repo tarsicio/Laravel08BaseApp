@@ -154,10 +154,11 @@ class Permiso extends Model
                         ->where('id',$id)
                         ->where('modulos_id',$modulos_id)
                         ->where('rols_id',$rols_id)
-                        ->update([$accion => $cambio,'updated_at' => NOW()]);
-                        return $updateSQL;
+                        ->update([$accion => $cambio,'updated_at' => NOW()]);                        
         }catch(Throwable $e){            
             return $updateSQL = $e;
-        }                
+        }
+        return $updateSQL;
     }
+    
 }

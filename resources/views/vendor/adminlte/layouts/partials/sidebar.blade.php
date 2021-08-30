@@ -45,7 +45,7 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('message.menu_seguridad') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ url('/roles') }}">{{ trans('message.menu_rol') }}</a></li>
+                    <li><a href="{{ url('/rols') }}">{{ trans('message.menu_rol') }}</a></li>
                     <li><a href="{{ url('/modulos') }}">{{ trans('message.menu_modulo') }}</a></li>
                     <li><a href="{{ url('/permisos') }}">{{ trans('message.menu_permiso') }}</a></li>
                 </ul>

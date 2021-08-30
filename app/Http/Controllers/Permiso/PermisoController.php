@@ -12,6 +12,7 @@ use App\Models\Security\Modulo;
 use App\Models\Security\Rol;
 use App\Models\Security\Permiso;
 use Auth;
+use App\Models\Security\CreateRecordPermiso AS InsertRecord;
 
 class PermisoController extends Controller
 {
@@ -24,12 +25,26 @@ class PermisoController extends Controller
     {        
         $count_notification = (new User)->count_noficaciones_user();
         $rols_id = Auth::user()->rols_id;        
-        $permisos = (new Permiso)->datos_Permiso($rols_id);        
         $roles = (new Rol)->datos_roles();        
         $nombre_rol = (new Rol)->get_nombre_rol($rols_id);        
-        return view('Permiso.permisos',compact('count_notification','permisos','roles','nombre_rol','rols_id'));
+        return view('Permiso.permisos',compact('count_notification','roles','nombre_rol','rols_id'));
     }
 
+    /**
+     * Display a listing of the resource.
+     * @author Tarsicio Carrizales telecom.com.ve@gmail.com
+     * @return \Illuminate\Http\Response
+     */
+    public function getModulos(Request $request){        
+        try{
+            if ($request->ajax()) {
+                $data =  (new Modulo)->getModulosList_DataTable();                
+                return datatables()->of($data)->toJson();        
+            }
+        }catch(Throwable $e){
+            echo "Captured Throwable: " . $e->getMessage(), "\n";
+        }        
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -60,7 +75,7 @@ class PermisoController extends Controller
     public function show(Request $request,$rols_id)
     {        
         $count_notification = (new User)->count_noficaciones_user();        
-        $permisos = (new Permiso)->datos_Permiso($rols_id);                
+        $permisos = (new Permiso)->datos_Permiso($rols_id);
         $roles = (new Rol)->datos_roles();
         $total_registros = $permisos->count();        
         if($total_registros == 0){            
@@ -72,6 +87,11 @@ class PermisoController extends Controller
              * info
              * question 
              */
+            $modulos = (new Modulo)->datos_modulos();
+            foreach($modulos as $modulo){
+                $bolean = (new InsertRecord)->generarPermisosModuloRol($modulo->id,$rols_id);
+            }
+            $permisos = (new Permiso)->datos_Permiso($rols_id);
             alert()->success(trans('Permisos Creados'),trans('Se crearon todos los permisos como DENY, ajustelos'));
         }        
         $nombre_rol = (new Rol)->get_nombre_rol($rols_id);
@@ -99,11 +119,10 @@ class PermisoController extends Controller
      */
     public function update(Request $request, $accion,$cambio,$id,$modulos_id,$rols_id)
     {
-        //if($request->ajax()) {
+        if($request->ajax()) {
             $resultado = (new Permiso)->updatePermiso($accion,$cambio,$id,$modulos_id,$rols_id);            
-            return response()->json($resultado);
-            //return redirect()->back();
-        //}
+            return response()->json($resultado);        
+        }
     }
 
     /**

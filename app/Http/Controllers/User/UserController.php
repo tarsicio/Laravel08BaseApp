@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @author Tarsicio Carrizales telecom.com.ve@gmail.com
      * @return \Illuminate\Http\Response
      */
     public function index()

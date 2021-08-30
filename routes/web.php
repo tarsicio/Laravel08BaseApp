@@ -44,7 +44,17 @@ Route::get('/offline', function () {
 // *********************************************************************************************************
 Route::group(['middleware' => 'auth'], function () {
     
-    Route::resource('/notifications', Notification\NotificationController::class)->only(['index', 'show']);
+    // *********************************************************************************************************
+    /*
+    * Rutas de Usuarios, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
+    */
+    Route::get('/notificaciones', 'Notification\NotificationController@index')->name('notificaciones.index')->middleware('permiso:notification,view');
+    Route::get('/notificaciones/{notificacion}/show', 'Notification\NotificationController@show')->name('notificaciones.show')->middleware('permiso:notification,view');
+    Route::get('/notificaciones/list', 'Notification\NotificationController@getNotifications')->name('notificaciones.list')->middleware('permiso:notification,view');
+    /*
+    * Fin de las Rutas de Usuarios, para todas las operaciones
+    */
+    // *********************************************************************************************************
     // *********************************************************************************************************
     /*
     * Rutas de Usuarios, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
@@ -65,27 +75,54 @@ Route::group(['middleware' => 'auth'], function () {
     * Fin de las Rutas de Usuarios, para todas las operaciones
     */
     // *********************************************************************************************************
-    Route::resource('/rols', Rol\RolController::class);
-    Route::resource('/modulos', Modulo\ModuloController::class);
     // *********************************************************************************************************
     /*
     * Rutas de Permiso, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
     */
     Route::get('/permisos', 'Permiso\PermisoController@index')->name('permisos.index')->middleware('permiso:permiso,view');
+    Route::get('/permisos/list', 'Permiso\PermisoController@getModulos')->name('permisos.list')->middleware('permiso:permiso,view');
     Route::get('/permisos/create', 'Permiso\PermisoController@create')->name('permisos.create')->middleware('permiso:permiso,add');
-    Route::post('/permisos','Permiso\PermisoController@store')
-    ->name('permisos.store')->middleware('permiso:permiso,add');
-    Route::post('/permisos/{permiso}','Permiso\PermisoController@show')
-    ->name('permisos.show')->middleware('permiso:permiso,view');
-    Route::get('/permisos/{permiso}/edit','Permiso\PermisoController@edit')
-    ->name('permisos.edit')->middleware('permiso:permiso,edit');
-    Route::post('/permisos/{accion}/{cambio}/{id}/{modulos_id}/{rols_id}','Permiso\PermisoController@update')
-    ->name('permisos.update')->middleware('permiso:permiso,update');
-    Route::post('/permisos/{permiso}/delete',
-        'Permiso\PermisoController@destroy')->name('permisos.destroy')->middleware('permiso:permiso,delete');    
+    Route::post('/permisos','Permiso\PermisoController@store')->name('permisos.store')->middleware('permiso:permiso,add');
+    Route::post('/permisos/{permiso}','Permiso\PermisoController@show')->name('permisos.show')->middleware('permiso:permiso,view');
+    Route::get('/permisos/{permiso}/edit','Permiso\PermisoController@edit')->name('permisos.edit')->middleware('permiso:permiso,edit');
+    Route::post('/permisos/{accion}/{cambio}/{id}/{modulos_id}/{rols_id}','Permiso\PermisoController@update')->name('permisos.update')->middleware('permiso:permiso,update');
+    Route::post('/permisos/{permiso}/delete','Permiso\PermisoController@destroy')->name('permisos.destroy')->middleware('permiso:permiso,delete');    
     /*
     * Fin de las Rutas de Permiso, para todas las operaciones
     */
+    // *********************************************************************************************************
+    // *********************************************************************************************************    
+    /*
+    * Rutas de Roles, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
+    */
+    Route::get('/rols', 'Rol\RolController@index')->name('rols.index')->middleware('permiso:rol,view');
+    Route::get('/rols/create', 'Rol\RolController@create')->name('rols.create')->middleware('permiso:rol,add');
+    Route::post('/rols', 'Rol\RolController@store')->name('rols.store')->middleware('permiso:rol,add');
+    Route::get('/rols/{rol}/show', 'Rol\RolController@show')->name('rols.show')->middleware('permiso:rol,view');
+    Route::get('/rols/{rol}/edit', 'Rol\RolController@edit')->name('rols.edit')->middleware('permiso:rol,edit');
+    Route::post('/rols/{rol}', 'Rol\RolController@update')->name('rols.update')->middleware('permiso:rol,update');
+    Route::post('/rols/{rol}', 'Rol\RolController@destroy')->name('rols.destroy')->middleware('permiso:rol,delete');
+    Route::get('/rols/list', 'Rol\RolController@getRols')->name('rols.list')->middleware('permiso:rol,view');        
+    /*
+    * Fin de las Rutas de Usuarios, para todas las operaciones
+    */
+    // *********************************************************************************************************
+    // *********************************************************************************************************
+    /*
+    * Rutas de Roles, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
+    */
+    Route::get('/modulos', 'Modulo\ModuloController@index')->name('modulos.index')->middleware('permiso:modulo,view');
+    Route::get('/modulos/create', 'Modulo\ModuloController@create')->name('modulos.create')->middleware('permiso:modulo,add');
+    Route::post('/modulos', 'Modulo\ModuloController@store')->name('modulos.store')->middleware('permiso:modulo,add');
+    Route::get('/modulos/{modulo}/show', 'Modulo\ModuloController@show')->name('modulos.show')->middleware('permiso:modulo,view');
+    Route::get('/modulos/{modulo}/edit', 'Modulo\ModuloController@edit')->name('modulos.edit')->middleware('permiso:modulo,edit');
+    Route::post('/modulos/{modulo}', 'Modulo\ModuloController@update')->name('modulos.update')->middleware('permiso:modulo,update');
+    Route::post('/modulos/{modulo}', 'Modulo\ModuloController@destroy')->name('modulos.destroy')->middleware('permiso:modulo,delete');
+    Route::get('/modulos/list', 'Modulo\ModuloController@getModulos')->name('modulos.list')->middleware('permiso:modulo,view');        
+    /*
+    * Fin de las Rutas de Usuarios, para todas las operaciones
+    */
+    // *********************************************************************************************************
     // *********************************************************************************************************
 
     Route::get('/dashboard', 'HomeController@dashboard');
@@ -98,3 +135,5 @@ Route::group(['middleware' => 'auth'], function () {
 
 // La presente Ruta se encarga de validar los datos enviados al Correo de Usuario que se Registró
 Route::get('register/confirm/{confirmation_code}', 'Auth\RegisterController@confirm')->name('auth.confirm');
+// *********************************************************************************************************
+// *********************************************************************************************************

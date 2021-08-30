@@ -7,17 +7,39 @@ namespace App\Http\Controllers\Rol;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User\User;
+use App\Models\Security\Modulo;
+use App\Models\Security\Rol;
+use App\Models\Security\Permiso;
+use Auth;
 
 class RolController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @author Tarsicio Carrizales telecom.com.ve@gmail.com
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {        
+        $count_notification = (new User)->count_noficaciones_user();
+        return view('Rol.rols',compact('count_notification'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     * @author Tarsicio Carrizales telecom.com.ve@gmail.com
+     * @return \Illuminate\Http\Response
+     */
+    public function getRols(Request $request){     
+        try{
+            if ($request->ajax()) {
+                $data =  (new Rol)->getRolsList_DataTable();                
+                return datatables()->of($data)->toJson();        
+            }
+        }catch(Throwable $e){
+            echo "Captured Throwable: " . $e->getMessage(), "\n";
+        }        
     }
 
     /**

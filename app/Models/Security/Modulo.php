@@ -18,8 +18,28 @@ class Modulo extends Model
         'activo',        
     ];
 
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
     public function permisos(){
         return $this->hasMany('App\Models\Security\Permiso');
+    }
+
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
+    public function datos_modulos(){
+        return DB::table('modulos')->select('id','name')->orderBy('id')->get();
+    }
+
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
+    public function getModulosList_DataTable(){        
+        return DB::table('modulos')->select('id','name','activo')->get();
     }
 
 }

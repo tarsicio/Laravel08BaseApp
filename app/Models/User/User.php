@@ -168,4 +168,16 @@ class User extends Authenticatable
         return $total;
     }
 
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
+    public function getNotificationsList_DataTable(){
+        $user = Auth::user();       
+        return DB::table('notifications')
+                    ->where('notifiable_id',$user->id)
+                    ->select('id','data','read_at','created_at')
+                    ->orderByDesc('created_at')->get();
+    }
+
 }// Fin del Modelo User

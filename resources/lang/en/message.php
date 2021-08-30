@@ -171,7 +171,8 @@ return [
         'nombre'              => 'Name',
         'mail'                => 'Email',
         'condicion'           => 'Condition',
-        'confirmo'            => 'Confirmed ?',   
+        'confirmo'            => 'Confirmed ?',
+        'fecha'               => 'Date',   
     ],
     'mensajes_alert'          => [
         'denegado'            => 'Deny Access',

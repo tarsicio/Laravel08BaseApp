@@ -26,7 +26,7 @@ class CreatePermisosTable extends Migration
             $table->enum('download', ['ALLOW','DENY'])->nullable()->default('DENY');
             $table->enum('upload', ['ALLOW','DENY'])->nullable()->default('DENY');
             $table->timestamps();
-            $table->unique(['modulos_id','rols_id','delete','update','edit','add','view']);            
+            $table->unique(['modulos_id','rols_id']);            
             $table->foreign('modulos_id')->references('id')->on('modulos');
             $table->foreign('rols_id')->references('id')->on('rols');
         });
