@@ -16,10 +16,11 @@
                             @foreach (array_keys(config('locale.languages')) as $lang)
                                 @if ($lang != App::getLocale())
                                    <li><a href="{!! route('idioma.cambioLenguaje', $lang) !!}">
-                                            <b>{!! $lang !!} <small>{!! $lang !!}</small></b>
-                                            @if ($lang == 'en')
+                                            @if ($lang == 'es')
+                                                <b>en <small>en</small></b>
                                                 <img src="{{ url ('/banderas/us.png') }}" class="user-image" alt="Bandera Image"/>
                                             @else
+                                                <b>es <small>es</small></b>
                                                 <img src="{{ url ('/banderas/es.png') }}" class="user-image" alt="Bandera Image"/>
                                             @endif
                                     </a></li>

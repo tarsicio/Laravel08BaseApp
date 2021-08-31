@@ -147,7 +147,7 @@ return [
     'home'                    => [
         'sistema'             => 'SISTEMA BASE LARAVEL 8',
         'titulo_01'           => 'Manejo de Users, Rols, Permiso y Notificaciones',
-        'titulo_02'           => '100% Funcional y Laravel 8 PWA',
+        'titulo_02'           => '100% Funcional y PWA',
         'realizado'           => 'Realizado por: ',
         'mail'                => 'Correo: ',
     ],
@@ -168,7 +168,7 @@ return [
         'nombre'              => 'Nombre',
         'mail'                => 'Correo',
         'condicion'           => 'Condición',
-        'confirmo'            => 'Confirmó ?',
+        'confirmo'            => 'Confirmó',
         'fecha'               => 'Fecha',
     ],
     'mensajes_alert'          => [
@@ -177,6 +177,16 @@ return [
         'submit_01'           => 'PROCESE EL ROL SELECCIONADO',
         'creando'             => 'Creando Permisos',
         'creando_permisos'    => 'Por favor espere un momento ...',
-        'implementar'         => 'PENDIENTE POR IMPLEMENTAR',
+        'implementar'         => 'PENDIENTE POR IMPLEMENTAR, INVITAME UN CAFÉ',        
+    ],
+    'botones'                 => [
+        'delete'              => 'Eliminar',
+        'update'              => 'Actualizar',
+        'edit'                => 'Editar',
+        'add'                 => 'Crear',
+        'view'                => 'Ver',
+        'print'               => 'Imprimir',
+        'download'            => 'Descargar',
+        'upload'              => 'Subir', 
     ],
 ];

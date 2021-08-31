@@ -15,8 +15,7 @@ class UserController extends Controller
      * @author Tarsicio Carrizales telecom.com.ve@gmail.com
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){        
         $count_notification = (new User)->count_noficaciones_user();        
         return view('User.users',compact('count_notification'));
     }
@@ -24,11 +23,23 @@ class UserController extends Controller
     public function getUsers(Request $request){
         try{
             if ($request->ajax()) {
-                $data =  (new User)->getUsersList_DataTable();            
-                return datatables()->of($data)                    
-                ->addColumn('edit', '<a href="#" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> Edit</a>')
-                ->addColumn('view', '<a href="#" class="btn btn-xs btn-primary"><i class="fa fa-street-view"></i> View</a>')
-                ->addColumn('del', '<a href="#" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Del</a>')
+                $data =  (new User)->getUsersList_DataTable();                
+                return datatables()->of($data)
+                ->editColumn('confirmed_at', function($data){
+                    return $data->confirmed_at;
+                })
+                ->editColumn('avatar', function($data){                    
+                    return '<img src="'.url('/storage/avatars/'.$data->avatar).'" class="img-circle" alt="User Image">';
+                })
+                ->addColumn('edit', function ($data) {
+                    return '<a href="'.route('users.edit', $data->id).'" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>' .trans('message.botones.edit').'</a>';
+                })
+                ->addColumn('view', function ($data) {
+                    return '<a href="'.route('users.show', $data->id).'" class="btn btn-xs btn-primary"><i class="fa fa-street-view"></i>' .trans('message.botones.view').'</a>';
+                })
+                ->addColumn('del', function ($data) {
+                    return '<a href="" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>' .trans('message.botones.delete').'</a>';
+                })                
                 ->rawColumns(['edit','view','del'])->toJson();  
             }
         }catch(Throwable $e){
@@ -42,8 +53,7 @@ class UserController extends Controller
         return view('User.profile',compact('count_notification','user'));
     }
 
-    public function update_avatar(Request $request, $id)
-    {
+    public function update_avatar(Request $request, $id){
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();
         $user_Update = User::find( $id);        
@@ -80,8 +90,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         //
     }
 
@@ -91,8 +100,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         //
     }
 
@@ -102,10 +110,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    public function show($id){
+        return 'VISTA EN CONSTRUCCIÓN .....';    }
 
     /**
      * Show the form for editing the specified resource.
@@ -113,9 +119,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+        return 'EDITAR EN CONSTRUCCIÓN .....';
     }
 
     /**
@@ -125,8 +130,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();
         $user_Update = User::find( $id);        
@@ -140,9 +144,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+        return 'ELIMINAR EN CONSTRUCCIÓN .....';    
     }
 
     public function usuarioRol(Request $request){

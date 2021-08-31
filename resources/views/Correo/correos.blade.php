@@ -19,7 +19,7 @@
     <div class="card-body">
         <div style="text-align:center;">
             <h1 class="mb-4">{{ trans('message.mensajes_alert.implementar') }}</h1>
-        </div>
+        </div>        
     </div>
 </div>
 </div>

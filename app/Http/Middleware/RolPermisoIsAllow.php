@@ -22,6 +22,7 @@ class RolPermisoIsAllow
             return $next($request);    
         }        
         alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje'));
-        return redirect('/dashboard');
+        //return redirect('/dashboard');
+        return redirect()->back();
     }
 }

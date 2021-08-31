@@ -33,9 +33,9 @@
                                 <th>{{ trans('message.datadatable_user.mail') }}</th>
                                 <th>{{ trans('message.datadatable_user.condicion') }}</th>
                                 <th>{{ trans('message.datadatable_user.confirmo') }}</th>
-                                <th>Edit</th>
-                                <th>View</th>
-                                <th>Del</th>
+                                <th>{{ trans('message.botones.edit') }}</th>
+                                <th>{{ trans('message.botones.view') }}</th>
+                                <th>{{ trans('message.botones.delete') }}</th>
                             </tr>
                         </thead>
                     <tbody>
@@ -67,9 +67,9 @@
             {data: 'email', name: 'email'},
             {data: 'activo', name: 'activo'},
             {data: 'confirmed_at', name: 'confirmed_at'},
-            {data: 'edit', name: 'edit'},
-            {data: 'view', name: 'view'},
-            {data: 'del', name: 'del'},
+            {data: 'edit', name: 'edit', orderable: false, searchable: false},
+            {data: 'view', name: 'view', orderable: false, searchable: false},
+            {data: 'del', name: 'del', orderable: false, searchable: false},
         ],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página",

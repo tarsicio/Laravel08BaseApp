@@ -150,7 +150,7 @@ return [
     'home'                    => [
         'sistema'             => 'BASE SYSTEM LARAVEL 8',
         'titulo_01'           => 'Management of Users, Rols, Permission and Notifications',
-        'titulo_02'           => 'Functional 100% and PWA Laravel 8',
+        'titulo_02'           => 'Functional 100% and PWA',
         'realizado'           => 'Made by:',
         'mail'                => 'EMail: '
     ],
@@ -181,5 +181,15 @@ return [
         'creando'             => 'Creating Permissions',
         'creando_permisos'    => 'Wait a moment please ...',
         'implementar'         => 'PENDING TO IMPLEMENT, INVITE A COFFEE',
+    ],
+    'botones'                 => [
+        'delete'              => 'Delete',
+        'update'              => 'Update',
+        'edit'                => 'Edit',
+        'add'                 => 'Create',
+        'view'                => 'View',
+        'print'               => 'Print',
+        'download'            => 'Download',
+        'upload'              => 'Upload', 
     ],
 ];
