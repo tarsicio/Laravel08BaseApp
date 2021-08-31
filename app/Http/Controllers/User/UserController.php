@@ -27,10 +27,7 @@ class UserController extends Controller
                 return datatables()->of($data)
                 ->editColumn('confirmed_at', function($data){
                     return $data->confirmed_at;
-                })
-                ->editColumn('avatar', function($data){                    
-                    return '<img src="'.url('/storage/avatars/'.$data->avatar).'" class="img-circle" alt="User Image">';
-                })
+                })                
                 ->addColumn('edit', function ($data) {
                     return '<a href="'.route('users.edit', $data->id).'" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>' .trans('message.botones.edit').'</a>';
                 })
@@ -91,7 +88,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        //
+        return 'CREATE EN CONSTRUCCIÓN .....';
     }
 
     /**

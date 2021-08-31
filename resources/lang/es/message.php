@@ -133,6 +133,7 @@ return [
     'entering'                => 'Entrando...',
     'registered'              => 'Usuario registrado!',
     'users'                   => 'Usuarios',
+    'new_user'                => 'Nuevo Usuario',
     'perfil_user'             => 'Perfil Usuarios', 
     'update_profile'          => 'Actualizar perfil usuario',
     'profile'                 => ' Perfil',   

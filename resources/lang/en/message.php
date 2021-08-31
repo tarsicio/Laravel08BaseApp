@@ -136,6 +136,7 @@ return [
     'entering'                => 'Entering...',
     'registered'              => 'User Registered!',
     'users'                   => 'Users',
+    'new_user'                => 'New User',
     'perfil_user'             => 'User Profile',
     'update_profile'          => 'Update Profile Image',
     'profile'                 => 'S Profile',  

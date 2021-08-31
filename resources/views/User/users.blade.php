@@ -9,7 +9,10 @@
 @endsection
 
 @section('contentheader_title')
-    <h2 class="mb-4">{{ trans('message.users') }}</h2>
+    <div><h2 class="mb-4">{{ trans('message.users') }}</h2></div>    
+    <div>
+        <a href="{{ route('users.create') }}" id="new_user" class="btn btn-sm btn-primary">{{ trans('message.new_user') }}</a>
+    </div>
 @endsection
 
 @section('link_css_datatable')
@@ -20,7 +23,9 @@
 
 @endsection
 
+    
 @section('main-content')
+
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">            
@@ -63,7 +68,12 @@
         columns: [             
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'avatar',name: 'avatar'},
+            {
+                data: 'avatar',name: 'avatar',
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;"><img src="{{ url('storage/avatars/') }}/'+data+'" class="img-circle" alt="User Image" style="width:30px; height:30px;"></div>';
+                }
+            },
             {data: 'email', name: 'email'},
             {data: 'activo', name: 'activo'},
             {data: 'confirmed_at', name: 'confirmed_at'},
@@ -81,7 +91,7 @@
             "paginate": {
                 "next": "Siguiente",
                 "previous": "Anterior",
-            }
+            }            
         }       
     });    
   });
