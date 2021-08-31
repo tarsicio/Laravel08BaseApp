@@ -25,7 +25,11 @@ class UserController extends Controller
         try{
             if ($request->ajax()) {
                 $data =  (new User)->getUsersList_DataTable();            
-                return datatables()->of($data)->toJson();        
+                return datatables()->of($data)                    
+                ->addColumn('edit', '<a href="#" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> Edit</a>')
+                ->addColumn('view', '<a href="#" class="btn btn-xs btn-primary"><i class="fa fa-street-view"></i> View</a>')
+                ->addColumn('del', '<a href="#" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Del</a>')
+                ->rawColumns(['edit','view','del'])->toJson();  
             }
         }catch(Throwable $e){
             echo "Captured Throwable: " . $e->getMessage(), "\n";

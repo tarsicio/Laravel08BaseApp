@@ -32,7 +32,10 @@
                                 <th>Avatar</th>
                                 <th>{{ trans('message.datadatable_user.mail') }}</th>
                                 <th>{{ trans('message.datadatable_user.condicion') }}</th>
-                                <th>{{ trans('message.datadatable_user.confirmo') }}</th>                                
+                                <th>{{ trans('message.datadatable_user.confirmo') }}</th>
+                                <th>Edit</th>
+                                <th>View</th>
+                                <th>Del</th>
                             </tr>
                         </thead>
                     <tbody>
@@ -60,15 +63,13 @@
         columns: [             
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
-            {
-                data: 'avatar',name: 'avatar'
-                //"render": function(data, type, row) {
-                  //  return '<img src="'+url()+'/storage/avatars/'+data+'" class="img-circle" style="height:35px;width:35px;"/>';
-                //}
-            },
+            {data: 'avatar',name: 'avatar'},
             {data: 'email', name: 'email'},
             {data: 'activo', name: 'activo'},
-            {data: 'confirmed_at', name: 'confirmed_at'},            
+            {data: 'confirmed_at', name: 'confirmed_at'},
+            {data: 'edit', name: 'edit'},
+            {data: 'view', name: 'view'},
+            {data: 'del', name: 'del'},
         ],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página",
