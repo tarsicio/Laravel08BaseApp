@@ -13,6 +13,11 @@
     <div>
         <a href="{{ route('users.create') }}" id="new_user" class="btn btn-sm btn-primary">{{ trans('message.new_user') }}</a>
     </div>
+    <div style="text-align:center;">
+        <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm glyphicon glyphicon-print" role="button" aria-disabled="true"> {{ trans('message.botones.print') }}</a>
+        <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm glyphicon glyphicon-cloud-download disabled" role="button" aria-disabled="true"> {{ trans('message.botones.download') }}</a>
+        <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm glyphicon glyphicon-cloud-upload disabled" role="button" aria-disabled="true"> {{ trans('message.botones.upload') }}</a>
+    </div>
 @endsection
 
 @section('link_css_datatable')
@@ -66,7 +71,12 @@
         autoWidth : false,        
         ajax: "{{ route('users.list') }}",        
         columns: [             
-            {data: 'id', name: 'id'},
+            {
+                data: 'id', name: 'id',
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;"><b>'+data+'</b></div>';
+                }
+            },
             {data: 'name', name: 'name'},
             {
                 data: 'avatar',name: 'avatar',
@@ -75,8 +85,26 @@
                 }
             },
             {data: 'email', name: 'email'},
-            {data: 'activo', name: 'activo'},
-            {data: 'confirmed_at', name: 'confirmed_at'},
+            {
+                data: 'activo', name: 'activo',
+                "render": function ( data, type, row ) {
+                    if(data == 'DENY'){
+                        return '<div style="text-align:center; color:red;"><b>'+data+'</b></div>';
+                    }else{
+                        return '<div style="text-align:center; color:green;"><b>'+data+'</b></div>';
+                    }                    
+                }
+            },
+            {
+                data: 'confirmed_at', name: 'confirmed_at',
+                "render": function ( data, type, row ) {
+                    if(data == 'PENDIENTE'){
+                        return '<div style="text-align:center; color:blue;"><b>'+data+'</b></div>';
+                    }else{
+                        return '<div style="text-align:center;">'+data+'</div>';
+                    }                    
+                }
+            },
             {data: 'edit', name: 'edit', orderable: false, searchable: false},
             {data: 'view', name: 'view', orderable: false, searchable: false},
             {data: 'del', name: 'del', orderable: false, searchable: false},

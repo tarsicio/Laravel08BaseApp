@@ -26,7 +26,11 @@ class UserController extends Controller
                 $data =  (new User)->getUsersList_DataTable();                
                 return datatables()->of($data)
                 ->editColumn('confirmed_at', function($data){
-                    return $data->confirmed_at;
+                    if($data->confirmed_at == null){
+                        return  $data->confirmed_at = 'PENDIENTE';
+                    }else{
+                        return date('d-m-Y', strtotime($data->confirmed_at));
+                    }                
                 })                
                 ->addColumn('edit', function ($data) {
                     return '<a href="'.route('users.edit', $data->id).'" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>' .trans('message.botones.edit').'</a>';
