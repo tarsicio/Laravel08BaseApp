@@ -3,7 +3,7 @@
 */
 // CHART PARA LOS Usuario por Rol
 jQuery.ajax({
-  url: "/user/usuarioRol",
+  url: "/users/usuarioRol",
   type: 'GET',
   error: function() {
   },
@@ -67,7 +67,7 @@ jQuery.ajax({
 * CHART PARA LAS NOTIFICACIONES POR USUARIOS
 */
 jQuery.ajax({
-  url: "/user/notificationsUser",
+  url: "/users/notificationsUser",
   type: 'GET',
   error: function() {
   },

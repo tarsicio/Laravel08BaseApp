@@ -2,13 +2,13 @@
 
 <section>
     <div style="text-align: center;">
-        <h1><b>Acceso Denegado...</b></h1>
+        <h1><b>{{ trans('message.mensajes_alert.denegado') }}</b></h1>
     </div>
     <div style="text-align: center;">
-        <h1>Consulte con su Administrador de Sistemas.</h1>
+        <h1>{{ trans('message.mensajes_alert.mensaje') }}</h1>
     </div>    
     <div style="text-align: center;">
-        <h1>Gracias.</h1>
+        <h1>{{ trans('message.mensajes_alert.gracias') }}.</h1>
     </div>
 </section>
     <!-- Fixed navbar -->

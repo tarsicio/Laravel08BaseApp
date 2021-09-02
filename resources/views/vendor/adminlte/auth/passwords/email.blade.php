@@ -22,7 +22,7 @@
 
         @if (count($errors) > 0)
             <div class="alert alert-danger">
-                <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
+                <strong>Whoops!</strong> {{ trans('message.someproblems') }}<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -37,7 +37,7 @@
             <email-reset-password-form></email-reset-password-form>
 
             <a href="{{ url('/login') }}">Log in</a><br>
-            <a href="{{ url('/register') }}" class="text-center">{{ trans('adminlte_lang::message.registermember') }}</a>
+            <a href="{{ url('/register') }}" class="text-center">{{ trans('message.registermember') }}</a>
 
         </div><!-- /.login-box-body -->
 

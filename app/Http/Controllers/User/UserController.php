@@ -1,5 +1,8 @@
 <?php
-
+/**
+* Realizado por @author Tarsicio Carrizales Agosto 2021
+* Correo: telecom.com.ve@gmail.com
+*/
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
@@ -25,21 +28,41 @@ class UserController extends Controller
             if ($request->ajax()) {
                 $data =  (new User)->getUsersList_DataTable();                
                 return datatables()->of($data)
+                ->editColumn('activo', function($data){
+                    if($data->activo == 'DENY'){
+                        $data->activo = trans('message.permisos_rol.deny');
+                        return $data->activo;
+                    }else{
+                        $data->activo = trans('message.permisos_rol.allow');
+                        return $data->activo;
+                    }                
+                })
                 ->editColumn('confirmed_at', function($data){
                     if($data->confirmed_at == null){
-                        return  $data->confirmed_at = 'PENDIENTE';
+                        return  $data->confirmed_at = trans('message.permisos_rol.confirmado');
                     }else{
                         return date('d-m-Y', strtotime($data->confirmed_at));
                     }                
                 })                
                 ->addColumn('edit', function ($data) {
-                    return '<a href="'.route('users.edit', $data->id).'" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>' .trans('message.botones.edit').'</a>';
+                    $user = Auth::user();                    
+                    if($user->id != 1 && $data->id == 1){
+                        $edit ='<a href="'.route('users.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-warning disabled" style="color:black;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                    }else{
+                        $edit ='<a href="'.route('users.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-warning" style="color:black;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                    }
+                    return $edit;
                 })
                 ->addColumn('view', function ($data) {
-                    return '<a href="'.route('users.show', $data->id).'" class="btn btn-xs btn-primary"><i class="fa fa-street-view"></i>' .trans('message.botones.view').'</a>';
+                    return '<a href="'.route('users.show', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary" style="color:black;"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
                 })
                 ->addColumn('del', function ($data) {
-                    return '<a href="" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>' .trans('message.botones.delete').'</a>';
+                    if($data->id == 1){
+                        $del = '<a href="'.route('users.destroy', $data->id).'" id="delete_'.$data->id.'" class="btn btn-xs btn-danger disabled" style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></a>';
+                    }else{
+                        $del ='<a href="'.route('users.destroy', $data->id).'" id="delete_'.$data->id.'" class="btn btn-xs btn-danger"style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></a>';
+                    }
+                    return $del;
                 })                
                 ->rawColumns(['edit','view','del'])->toJson();  
             }
@@ -53,11 +76,16 @@ class UserController extends Controller
         $user = Auth::user();        
         return view('User.profile',compact('count_notification','user'));
     }
+    
+    public function usersPrint(){
+        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
+        return redirect()->back();
+    }    
 
     public function update_avatar(Request $request, $id){
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();
-        $user_Update = User::find( $id);        
+        $user_Update = User::find($id);        
         // Se actualizan todos los datos solicitados por el Cliente
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');            
@@ -66,7 +94,7 @@ class UserController extends Controller
             ->save( public_path('/storage/avatars/' . $filename ) );            
             $user_Update->avatar = $filename;
             $user_Update->save();
-            alert()->success('Usuario Actualizado','El usuario '.$user->name. ' actualizado correctamente');
+            alert()->success(trans('message.mensajes_alert.user_update'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_02'));
         }        
         return redirect('/dashboard');
     }
@@ -92,7 +120,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        return 'CREATE EN CONSTRUCCIÓN .....';
+        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
+        return redirect()->back();
     }
 
     /**
@@ -112,7 +141,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-        return 'VISTA EN CONSTRUCCIÓN .....';    }
+        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
+        return redirect()->back();
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -121,7 +152,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        return 'EDITAR EN CONSTRUCCIÓN .....';
+        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
+        return redirect()->back();
     }
 
     /**
@@ -135,7 +167,7 @@ class UserController extends Controller
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();
         $user_Update = User::find( $id);        
-            alert()->success('Usuario Actualizado','El usuario '.$user->name. ' actualizado correctamente');
+            alert()->success(trans('message.mensajes_alert.user_update'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_02'));
         return view('User.users',compact('count_notification','user'));
     }
 
@@ -145,8 +177,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
-        return 'ELIMINAR EN CONSTRUCCIÓN .....';    
+    public function destroy(Request $request,$id){
+        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
+        return redirect()->back();
     }
 
     public function usuarioRol(Request $request){

@@ -9,15 +9,17 @@
 @endsection
 
 @section('contentheader_title')
-    <div><h2 class="mb-4">{{ trans('message.users') }}</h2></div>    
-    <div>
-        <a href="{{ route('users.create') }}" id="new_user" class="btn btn-sm btn-primary">{{ trans('message.new_user') }}</a>
-    </div>
-    <div style="text-align:center;">
-        <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm glyphicon glyphicon-print" role="button" aria-disabled="true"> {{ trans('message.botones.print') }}</a>
-        <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm glyphicon glyphicon-cloud-download disabled" role="button" aria-disabled="true"> {{ trans('message.botones.download') }}</a>
-        <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm glyphicon glyphicon-cloud-upload disabled" role="button" aria-disabled="true"> {{ trans('message.botones.upload') }}</a>
-    </div>
+<!-- Componente Button Para todas las Ventanas de los Módulos, no Borrar.--> 
+@component('components.button',['titulo_modulo' => trans('message.users'),
+                                'router_modulo_create' => route('users.create'),
+                                'id_new_modulo' => 'new_user',
+                                'boton_crear' => trans('message.new_user'),
+                                'route_print' => route('users.usersPrint'),
+                                'route_download' => route('users.create'),
+                                'route_upload' => route('users.create')])
+Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
+@endcomponent   
+    
 @endsection
 
 @section('link_css_datatable')
@@ -88,9 +90,9 @@
             {
                 data: 'activo', name: 'activo',
                 "render": function ( data, type, row ) {
-                    if(data == 'DENY'){
+                    if(data == 'DENY' || data == 'DENEGADO'){                        
                         return '<div style="text-align:center; color:red;"><b>'+data+'</b></div>';
-                    }else{
+                    }else{                        
                         return '<div style="text-align:center; color:green;"><b>'+data+'</b></div>';
                     }                    
                 }
@@ -98,7 +100,7 @@
             {
                 data: 'confirmed_at', name: 'confirmed_at',
                 "render": function ( data, type, row ) {
-                    if(data == 'PENDIENTE'){
+                    if(data == 'PENDIENTE' || data == 'PENDING'){
                         return '<div style="text-align:center; color:blue;"><b>'+data+'</b></div>';
                     }else{
                         return '<div style="text-align:center;">'+data+'</div>';

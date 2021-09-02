@@ -67,12 +67,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users/{user}/show', 'User\UserController@show')->name('users.show')->middleware('permiso:user,view');
     Route::get('/users/{user}/edit', 'User\UserController@edit')->name('users.edit')->middleware('permiso:user,edit');
     Route::post('/users/{user}', 'User\UserController@update')->name('users.update')->middleware('permiso:user,update');
-    Route::post('/users/{user}', 'User\UserController@destroy')->name('users.destroy')->middleware('permiso:user,delete');
+    Route::get('/users/{user}/delete', 'User\UserController@destroy')->name('users.destroy')->middleware('permiso:user,delete');
     Route::get('/users/list', 'User\UserController@getUsers')->name('users.list')->middleware('permiso:user,view');
-    Route::get('/user/profile', 'User\UserController@profile')->name('user.profile')->middleware('permiso:user,view');
-    Route::post('/user/profile/{id}', 'User\UserController@update_avatar')->name('user.profile')->middleware('permiso:user,update');
-    Route::get('/user/usuarioRol', 'User\UserController@usuarioRol')->name('user.usuarioRol');
-    Route::get('/user/notificationsUser', 'User\UserController@notificationsUser')->name('user.notificationsUser');
+    Route::get('/users/profile', 'User\UserController@profile')->name('users.profile')->middleware('permiso:user,view');
+    Route::post('/users/profile/{id}', 'User\UserController@update_avatar')->name('users.profile')->middleware('permiso:user,update');
+    Route::get('/users/usuarioRol', 'User\UserController@usuarioRol')->name('users.usuarioRol');
+    Route::get('/users/notificationsUser', 'User\UserController@notificationsUser')->name('users.notificationsUser');
+    Route::get('/users/print', 'User\UserController@usersPrint')->name('users.usersPrint')->middleware('permiso:user,print');
     /*
     * Fin de las Rutas de Usuarios, para todas las operaciones
     */

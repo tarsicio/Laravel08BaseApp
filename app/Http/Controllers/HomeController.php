@@ -51,7 +51,7 @@ class HomeController extends Controller
         $user_deny_allow = auth()->user()->activo; 
         if($user_deny_allow == 'DENY'){
             auth()->logout();
-            alert()->warning('Acceso denegado','Consulte con su Administrador de Sistemas');
+            alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje'));
             return redirect('/deny');            
         }else if(is_null($confirmation_code) && isset($confirmed_at)){
             $count_notification = (new User)->count_noficaciones_user();
@@ -62,7 +62,7 @@ class HomeController extends Controller
                                                   'total_roles','user_total_Deny'));
         }else{
             auth()->logout();
-            alert()->info('Verifique su Correo','Confirme el código enviado a su correo para utilizar el sistema');            
+            alert()->info(trans('message.mensajes_alert.view_mail'),trans('message.mensajes_alert.view_mail_02'));
             return redirect('/check_your_mail');
         }
     }

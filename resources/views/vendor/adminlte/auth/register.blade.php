@@ -15,7 +15,7 @@
 
             @if (count($errors) > 0)
                 <div class="alert alert-danger">
-                    <strong>Whoops!</strong> {{ trans('adminlte_lang::message.someproblems') }}<br><br>
+                    <strong>Whoops!</strong> {{ trans('message.someproblems') }}<br><br>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -24,13 +24,13 @@
                 </div>
             @endif
             <div class="register-box-body">
-                <p class="login-box-msg">{{ trans('adminlte_lang::message.registermember') }}</p>
+                <p class="login-box-msg">{{ trans('message.registermember') }}</p>
 
                 <register-form></register-form>
 
                 @include('adminlte::auth.partials.social_login')
 
-                <a href="{{ url('/login') }}" class="text-center">{{ trans('adminlte_lang::message.membership') }}</a>
+                <a href="{{ url('/login') }}" class="text-center">{{ trans('message.membership') }}</a>
             </div><!-- /.form-box -->
         </div><!-- /.register-box -->
     </div>
