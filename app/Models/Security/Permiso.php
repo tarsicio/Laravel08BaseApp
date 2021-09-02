@@ -34,32 +34,32 @@ class Permiso extends Model
     * Realizado por @author Tarsicio Carrizales 
     * Correo: telecom.com.ve@gmail.com
     */
-    public function userAccess($modulo,$status,$user_rols_id){
+    public function userAccess($modulo,$accion,$user_rols_id){
         $permiso = 'DENY';                
-        switch ($status) {
+        switch ($accion) {
             case 'view':            
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);                
+                $permiso = $this->permisoReturn($accion,$user_rols_id,$modulo,$permiso);                
                 break;
             case 'add':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
+                $permiso = $this->permisoReturn($accion,$user_rols_id,$modulo,$permiso);
                 break;
             case 'edit':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
+                $permiso = $this->permisoReturn($accion,$user_rols_id,$modulo,$permiso);
                 break;
             case 'update':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
+                $permiso = $this->permisoReturn($accion,$user_rols_id,$modulo,$permiso);
                 break;    
             case 'delete':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
+                $permiso = $this->permisoReturn($accion,$user_rols_id,$modulo,$permiso);
                 break;
                 case 'print':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
+                $permiso = $this->permisoReturn($accion,$user_rols_id,$modulo,$permiso);
                 break;
             case 'download':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
+                $permiso = $this->permisoReturn($accion,$user_rols_id,$modulo,$permiso);
                 break;    
             case 'upload':
-                $permiso = $this->permisoReturn($status,$user_rols_id,$modulo,$permiso);
+                $permiso = $this->permisoReturn($accion,$user_rols_id,$modulo,$permiso);
                 break;
         }            
         return $permiso;
@@ -69,17 +69,16 @@ class Permiso extends Model
     * Realizado por @author Tarsicio Carrizales 
     * Correo: telecom.com.ve@gmail.com
     */
-    public function permisoReturn($status,$user_rols_id,$modulo,$permiso){                
+    public function permisoReturn($accion,$user_rols_id,$modulo,$permiso){                
         try {
             $permisos = DB::table('permisos')
                     ->join('modulos', 'modulos.id', '=', 'permisos.modulos_id')
-                    ->select('permisos.'.$status)                                
+                    ->select('permisos.'.$accion)                                
                     ->where('permisos.rols_id',$user_rols_id)
-                    ->where('modulos.name',$modulo)
-                    ->where('modulos.activo','ALLOW')->get();                     
+                    ->where('modulos.name',$modulo)->get();                    
                     if(!$permisos->isEmpty()){
                         foreach($permisos as $permiso_02){
-                            switch ($status) {
+                            switch ($accion) {
                                 case 'view':            
                                     $permiso = $permiso_02->view;
                                     break;
@@ -135,8 +134,7 @@ class Permiso extends Model
                         'permisos.print',
                         'permisos.download',
                         'permisos.upload')                                
-                    ->where('permisos.rols_id',$user_rols_id)                    
-                    ->where('modulos.activo','ALLOW')->get();                                         
+                    ->where('permisos.rols_id',$user_rols_id)->get();
         }catch(Throwable $e){
             $permisos = [];
             return $permisos;

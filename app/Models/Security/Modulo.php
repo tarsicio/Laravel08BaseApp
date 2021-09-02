@@ -15,7 +15,7 @@ class Modulo extends Model
 
     protected $fillable = [
         'name',
-        'activo',        
+        'decription',        
     ];
 
     /**
@@ -39,7 +39,7 @@ class Modulo extends Model
     * Correo: telecom.com.ve@gmail.com
     */
     public function getModulosList_DataTable(){        
-        return DB::table('modulos')->select('id','name','activo')->get();
+        return DB::table('modulos')->select('id','name','description')->get();
     }
 
 }

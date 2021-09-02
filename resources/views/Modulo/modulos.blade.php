@@ -16,7 +16,8 @@
                                 'boton_crear' => trans('message.menu_modulo'),
                                 'route_print' => route('users.usersPrint'),
                                 'route_download' => route('users.create'),
-                                'route_upload' => route('users.create')])
+                                'route_upload' => route('users.create'),
+                                'tooltip' => trans('message.tooltip.new_module')])
 Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 @endcomponent
 @endsection
@@ -37,7 +38,7 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
                 <tr>
                     <th>ID</th>
                     <th>{{ trans('message.datadatable_user.nombre') }}</th>                    
-                    <th>{{ trans('message.datadatable_user.condicion') }}</th>                    
+                    <th>{{ trans('message.description') }}</th>                    
                 </tr>
             </thead>
             <tbody>
@@ -66,7 +67,7 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
         columns: [             
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},            
-            {data: 'activo', name: 'activo'},
+            {data: 'description', name: 'description'},
         ],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página",

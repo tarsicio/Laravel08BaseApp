@@ -79,7 +79,10 @@ class User extends Authenticatable
     * Correo: telecom.com.ve@gmail.com
     */
     public function getUsersList_DataTable(){        
-        return DB::table('users')->select('id','name','avatar','email','activo','confirmed_at')->get();
+        return DB::table('users')
+                ->join('rols', 'users.rols_id', '=', 'rols.id')
+                ->select('users.id','users.name','rols.name AS rol','users.avatar',
+                    'users.email','users.activo','users.confirmed_at')->get();
     }
 
     /**
@@ -91,7 +94,6 @@ class User extends Authenticatable
             ->join('rols', 'users.rols_id', '=', 'rols.id')
             ->select('users.rols_id AS ID_ROLS',
                     'rols.name AS NAME_ROLS',DB::raw('COUNT(users.rols_id) AS TOTAL_USERS'))
-            ->where('rols.activo','ALLOW')                    
             ->groupBy('users.rols_id')
             ->orderByDesc('TOTAL_USERS')->limit(10)->get();
     }
@@ -137,9 +139,7 @@ class User extends Authenticatable
     */
     public function totalRoles(){
         $totalRoles = DB::table('rols')            
-                            ->select(DB::raw('COUNT(rols.id) AS TOTAL_ALLOW'))
-                            ->where('rols.activo','ALLOW')                    
-                            ->groupBy('rols.activo')->get();
+                            ->select(DB::raw('COUNT(rols.id) AS TOTAL_ALLOW'))->get();
             if(!$totalRoles->isEmpty()){
                 foreach($totalRoles as $totalRole){
                    $total = $totalRole->TOTAL_ALLOW;

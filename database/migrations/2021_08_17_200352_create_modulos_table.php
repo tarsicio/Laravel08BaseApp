@@ -16,7 +16,7 @@ class CreateModulosTable extends Migration
         Schema::create('modulos', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique()->nullable()->default(null);
-            $table->enum('activo', ['ALLOW','DENY'])->nullable()->default('ALLOW');            
+            $table->string('description')->nullable()->default(null);            
             $table->timestamps();
         });
     }

@@ -36,7 +36,7 @@
                         {!! Form::select('name', $roles, $rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id']) !!}                                            
                         </div>
                         <hr>
-                        {!! Form::submit(trans('message.mensajes_alert.submit_01'),['class'=> 'form-control btn btn-primary']) !!}
+                        {!! Form::submit(trans('message.mensajes_alert.submit_01'),['class'=> 'form-control btn btn-primary','title' => trans('message.tooltip.procesa_rol'),'data-toggle' => 'tooltip']) !!}
                     </div>                
                 {!!  Form::close() !!}                
             </div>
@@ -52,9 +52,11 @@
         <table class="table table-bordered permiso_all">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th style="text-align:center;">ID</th>
                     <th>{{ trans('message.datadatable_user.nombre') }}</th>                    
-                    <th>{{ trans('message.datadatable_user.condicion') }}</th>                    
+                    <th style="text-align:center;">{{ trans('message.description') }}</th>
+                    <th style="text-align:center;">{{ trans('message.botones.edit') }}</th>
+                    <th style="text-align:center;">{{ trans('message.botones.view') }}</th>                    
                 </tr>
             </thead>
             <tbody>
@@ -85,9 +87,26 @@
         autoWidth : false,        
         ajax: "{{ route('permisos.list') }}",        
         columns: [             
-            {data: 'id', name: 'id'},
+            {
+                data: 'id', name: 'id',
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;"><b>'+data+'</b></div>';
+                }
+            },
             {data: 'name', name: 'name'},            
-            {data: 'activo', name: 'activo'},
+            {data: 'description', name: 'description'},
+            {
+                data: 'edit', name: 'edit', orderable: false, searchable: false,
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;">'+data+'</div>';
+                }
+            },
+            {
+                data: 'view', name: 'view', orderable: false, searchable: false,                
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;">'+data+'</div>';
+                }
+            },
         ],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página",

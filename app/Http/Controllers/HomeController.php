@@ -49,7 +49,7 @@ class HomeController extends Controller
         $confirmation_code = auth()->user()->confirmation_code;
         $confirmed_at = auth()->user()->confirmed_at;         
         $user_deny_allow = auth()->user()->activo; 
-        if($user_deny_allow == 'DENY'){
+        if($user_deny_allow == 'DENY' || auth()->user()->end_day > NOW()){
             auth()->logout();
             alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje'));
             return redirect('/deny');            

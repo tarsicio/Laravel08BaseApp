@@ -51,7 +51,7 @@ return [
     'createdby'               => 'Creado por',
     'seecode'                 => 'Ver código en',
     'online'                  => 'En Línea',
-    'home_1'                    => 'Inicio',
+    'home_1'                  => 'Inicio',
     'header'                  => 'ENCABEZAMIENTO',
     'anotherlink'             => 'Otro enlace',
     'multilevel'              => 'Multinivel',
@@ -189,7 +189,9 @@ return [
         'msg_02'              => ' actualizado correctamente', 
         'gracias'             => 'Gracias',
         'view_mail'           => 'Verifique su Correo',
-        'view_mail_02'        => 'Confirme el código enviado a su correo para utilizar el sistema',  
+        'view_mail_02'        => 'Confirme el código enviado a su correo para utilizar el sistema',
+        'permisos_creado'     => 'Permisos Creados',
+        'mensaje_permiso_new' => 'Se crearon todos los permisos como DENY, ajustelos',
     ],
     'botones'                 => [
         'delete'              => 'Eliminar',
@@ -200,5 +202,11 @@ return [
         'print'               => 'Imprimir',
         'download'            => 'Descargar',
         'upload'              => 'Subir', 
+    ],
+    'tooltip'                 =>[
+        'new_user'            => 'Permite crear un nuevo usuario',
+        'new_rol'             => 'Permite crear un nuevo rol',
+        'new_module'          => 'Permite crear un nuevo modulo',
+        'procesa_rol'         => 'Permite procesar el rol, y crea los permisos si estos no existen',
     ],
 ];

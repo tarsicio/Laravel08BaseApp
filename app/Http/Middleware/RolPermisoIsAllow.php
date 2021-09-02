@@ -1,5 +1,8 @@
 <?php
-
+/**
+* Realizado por @author Tarsicio Carrizales Agosto 2021
+* Correo: telecom.com.ve@gmail.com
+*/
 namespace App\Http\Middleware;
 
 use Closure;
@@ -14,15 +17,16 @@ class RolPermisoIsAllow
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed
+     *  Realizado por @author Tarsicio Carrizales Agosto 2021
+     * Correo: telecom.com.ve@gmail.com
      */
-    public function handle(Request $request, Closure $next, $modulo = null, $status = null)
+    public function handle(Request $request, Closure $next, $modulo = null, $accion = null)
     {
-        $allow = (new Permiso)->userAccess($modulo,$status,$request->user()->rols_id);        
+        $allow = (new Permiso)->userAccess($modulo,$accion,$request->user()->rols_id);        
         if (!is_null($request->user()->rols_id) && $allow == 'ALLOW') {            
             return $next($request);    
         }        
-        alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje'));
-        //return redirect('/dashboard');
+        alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje'));        
         return redirect()->back();
     }
 }

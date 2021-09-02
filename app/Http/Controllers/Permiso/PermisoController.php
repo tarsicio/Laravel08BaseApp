@@ -39,7 +39,20 @@ class PermisoController extends Controller
         try{
             if ($request->ajax()) {
                 $data =  (new Modulo)->getModulosList_DataTable();                
-                return datatables()->of($data)->toJson();        
+                return datatables()->of($data)
+                ->addColumn('edit', function ($data) {
+                    $rols_id = Auth::user()->rols_id;
+                    if($rols_id != 1){
+                        $edit ='<a href="'.route('users.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-warning disabled" style="color:black;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                    }else{
+                        $edit ='<a href="'.route('users.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-warning" style="color:black;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                    }
+                    return $edit;
+                })
+                ->addColumn('view', function ($data) {
+                    return '<a href="'.route('users.show', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary" style="color:black;"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
+                })
+                ->rawColumns(['edit','view'])->toJson();
             }
         }catch(Throwable $e){
             echo "Captured Throwable: " . $e->getMessage(), "\n";
@@ -92,7 +105,7 @@ class PermisoController extends Controller
                 $bolean = (new InsertRecord)->generarPermisosModuloRol($modulo->id,$rols_id);
             }
             $permisos = (new Permiso)->datos_Permiso($rols_id);
-            alert()->success(trans('Permisos Creados'),trans('Se crearon todos los permisos como DENY, ajustelos'));
+            alert()->success(trans('message.mensajes_alert.permisos_creado'),trans('message.mensajes_alert.mensaje_permiso_new'));
         }        
         $nombre_rol = (new Rol)->get_nombre_rol($rols_id);
         //return redirect()->route('Permiso.permisos', ['$count_notification' => count_notification,'$permisos' => permisos,'$roles' => roles,'$nombre_rol' => nombre_rol,'$rols_id' => rols_id]);

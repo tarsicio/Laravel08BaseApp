@@ -15,7 +15,7 @@ class Rol extends Model
 
     protected $fillable = [
         'name',
-        'activo',        
+        'decription',        
     ];
 
     /**
@@ -39,8 +39,7 @@ class Rol extends Model
     * Correo: telecom.com.ve@gmail.com
     */
     public function datos_roles(){
-        return DB::table('rols')->select('id','name')->orderBy('id')
-        ->where('activo','ALLOW')->pluck('name', 'id')->toArray();        
+        return DB::table('rols')->select('id','name')->orderBy('id')->pluck('name', 'id')->toArray();        
     }
 
     /**
@@ -50,8 +49,7 @@ class Rol extends Model
     public function get_nombre_rol($user_rols_id){
         try{
             $nombre = "";
-            $nombres = DB::table('rols')->select('name')
-                    ->where('activo','ALLOW')
+            $nombres = DB::table('rols')->select('name')                    
                     ->where('id',$user_rols_id)->get();
                     if(!$nombres->isEmpty()){
                         foreach($nombres as $nombre_01){
@@ -69,6 +67,6 @@ class Rol extends Model
     * Correo: telecom.com.ve@gmail.com
     */
     public function getRolsList_DataTable(){        
-        return DB::table('rols')->select('id','name','activo')->get();
+        return DB::table('rols')->select('id','name','description')->get();
     }    
 } // END CLASS

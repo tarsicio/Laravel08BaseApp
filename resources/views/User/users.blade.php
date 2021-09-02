@@ -16,7 +16,8 @@
                                 'boton_crear' => trans('message.new_user'),
                                 'route_print' => route('users.usersPrint'),
                                 'route_download' => route('users.create'),
-                                'route_upload' => route('users.create')])
+                                'route_upload' => route('users.create'),
+                                'tooltip' => trans('message.tooltip.new_user')])
 Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 @endcomponent   
     
@@ -41,13 +42,14 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
                             <tr>
                                 <th>ID</th>
                                 <th>{{ trans('message.datadatable_user.nombre') }}</th>
-                                <th>Avatar</th>
+                                <th>ROL</th>
+                                <th style="text-align:center;">Avatar</th>
                                 <th>{{ trans('message.datadatable_user.mail') }}</th>
-                                <th>{{ trans('message.datadatable_user.condicion') }}</th>
-                                <th>{{ trans('message.datadatable_user.confirmo') }}</th>
-                                <th>{{ trans('message.botones.edit') }}</th>
-                                <th>{{ trans('message.botones.view') }}</th>
-                                <th>{{ trans('message.botones.delete') }}</th>
+                                <th style="text-align:center;">{{ trans('message.datadatable_user.condicion') }}</th>
+                                <th style="text-align:center;">{{ trans('message.datadatable_user.confirmo') }}</th>
+                                <th style="text-align:center;">{{ trans('message.botones.edit') }}</th>
+                                <th style="text-align:center;">{{ trans('message.botones.view') }}</th>
+                                <th style="text-align:center;">{{ trans('message.botones.delete') }}</th>
                             </tr>
                         </thead>
                     <tbody>
@@ -80,6 +82,7 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
                 }
             },
             {data: 'name', name: 'name'},
+            {data: 'rol', name: 'rol'},
             {
                 data: 'avatar',name: 'avatar',
                 "render": function ( data, type, row ) {                    
@@ -107,9 +110,24 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
                     }                    
                 }
             },
-            {data: 'edit', name: 'edit', orderable: false, searchable: false},
-            {data: 'view', name: 'view', orderable: false, searchable: false},
-            {data: 'del', name: 'del', orderable: false, searchable: false},
+            {
+                data: 'edit', name: 'edit', orderable: false, searchable: false,
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;">'+data+'</div>';
+                }
+            },
+            {
+                data: 'view', name: 'view', orderable: false, searchable: false,                
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;">'+data+'</div>';
+                }
+            },
+            {
+                data: 'del', name: 'del', orderable: false, searchable: false,                
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;">'+data+'</div>';
+                }
+            },
         ],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página",
