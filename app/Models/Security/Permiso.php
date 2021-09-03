@@ -158,5 +158,37 @@ class Permiso extends Model
         }
         return $updateSQL;
     }
+
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
+    public function get_Permisos_Rol_Modulos($modulo_id,$rol_id){
+        try {
+            $permisos = DB::table('permisos')
+                    ->join('modulos','modulos.id', '=', 'permisos.modulos_id')
+                    ->join('rols','rols.id', '=', 'permisos.rols_id')
+                    ->select('permisos.id',
+                        'permisos.modulos_id',
+                        'permisos.rols_id',
+                        'modulos.name AS NAME_MODULO',
+                        'rols.name AS NAME_ROL',
+                        'permisos.delete',
+                        'permisos.update',
+                        'permisos.edit',
+                        'permisos.delete',
+                        'permisos.add',
+                        'permisos.view',
+                        'permisos.print',
+                        'permisos.download',
+                        'permisos.upload')                                
+                    ->where('permisos.rols_id',$rol_id)
+                    ->where('permisos.modulos_id',$modulo_id)->get();
+        }catch(Throwable $e){
+            $permisos = [];
+            return $permisos;
+        }
+        return $permisos;
+    }
     
 }

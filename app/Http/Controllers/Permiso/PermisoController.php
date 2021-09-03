@@ -43,14 +43,14 @@ class PermisoController extends Controller
                 ->addColumn('edit', function ($data) {
                     $rols_id = Auth::user()->rols_id;
                     if($rols_id != 1){
-                        $edit ='<a href="'.route('users.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-warning disabled" style="color:black;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                        $edit ='<a href="#" id="edit_'.$data->id.'" class=" editar_permiso btn btn-xs btn-warning disabled" style="color:black;" data-toggle="modal" data-backdrop="static" data-target="#edit_permisos" onClick="update_permisos('.$data->id.')"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
                     }else{
-                        $edit ='<a href="'.route('users.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-warning" style="color:black;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                        $edit ='<a href="#" id="edit_'.$data->id.'" class=" editar_permiso btn btn-xs btn-warning" style="color:black;" data-toggle="modal" data-backdrop="static" data-target="#edit_permisos"cupdate_permisosupdate_permisos onClick="update_permisos('.$data->id.')"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
                     }
                     return $edit;
                 })
                 ->addColumn('view', function ($data) {
-                    return '<a href="'.route('users.show', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary" style="color:black;"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
+                    return '<a href="#" id="view_'.$data->id.'" class="ver_permiso btn btn-xs btn-primary" style="color:black;" data-toggle="modal" data-backdrop="static" data-target="#view_permisos" onClick="mostrar_permisos('.$data->id.')"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
                 })
                 ->rawColumns(['edit','view'])->toJson();
             }
@@ -148,4 +148,16 @@ class PermisoController extends Controller
     {
         return response()->json($id);
     }
+
+    /**     
+     * @author Tarsicio Carrizales telecom.com.ve@gmail.com 
+     */
+    public function getPermisos(Request $request, $modulo_id,$rol_id)
+    {
+        if($request->ajax()) {
+            $resultado = (new Permiso)->get_Permisos_Rol_Modulos($modulo_id,$rol_id);
+            return response()->json($resultado);        
+        }
+    }
+
 }

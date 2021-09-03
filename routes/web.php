@@ -89,6 +89,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/permisos/{permiso}','Permiso\PermisoController@show')->name('permisos.show')->middleware('permiso:permiso,view');
     Route::get('/permisos/{permiso}/edit','Permiso\PermisoController@edit')->name('permisos.edit')->middleware('permiso:permiso,edit');
     Route::post('/permisos/{accion}/{cambio}/{id}/{modulos_id}/{rols_id}','Permiso\PermisoController@update')->name('permisos.update')->middleware('permiso:permiso,update');
+    Route::get('/permisos/{modulo_id}/{rol_id}','Permiso\PermisoController@getPermisos')->name('permisos.getPermisos')->middleware('permiso:permiso,view');
     Route::post('/permisos/{permiso}/delete','Permiso\PermisoController@destroy')->name('permisos.destroy')->middleware('permiso:permiso,delete');    
     /*
     * Fin de las Rutas de Permiso, para todas las operaciones

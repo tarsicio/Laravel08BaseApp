@@ -43,9 +43,9 @@
         </div>
     </div>
 </div>
-<div style="text-align:center">
+<div style="text-align:center">    
     <label style="color:black;">{{ trans('message.permisos_rol.msg_rol') }}&nbsp;</label>
-    <label id="nombre_rol" style="color:blue;">{{ $nombre_rol}}</label>  
+    <label id="nombre_rol" name="{{$rols_id}}" style="color:blue;">{{ $nombre_rol}}</label>  
 </div>
 <div class="card" id="mostar_ocultar_permisos">
     <div class="card-body">            
@@ -68,15 +68,87 @@
 @else
   @php alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje')); @endphp
 @endif
+
+<!-- VENTANA MODAL PARA VER LOS PERMISOS ASIGNADO A UN ROL - MODULO (SOLO LECTURA) -->
+
+<div class="modal fade" id="view_permisos">
+  <div class="modal-dialog modal-lg modal-dialog-centered" style="width: 70% !important;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span>[x]</span>
+        </button>
+        <div class="row">
+          <div class="col-md-12">
+            
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 style="text-align:center;" id="title_permiso">Visualizar permisos del Rol ROOT</h4>
+        
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div id="mostrar_permisos_modulo_rol" class="col-md-12">
+            <!-- NO BORRAR AQU SE PRESENTAN LOS DATOS DE LOS PERMISO SOLICITADOS -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal">
+          <span>CLOSE</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VENTANA MODAL PARA EDITAR LOS PERMISOS ASIGNADO A UN ROL - MODULO (UPDATE PERMISOS DENY OR ALLOW) -->
+
+<div class="modal fade" id="edit_permisos">
+  <div class="modal-dialog modal-lg modal-dialog-centered" style="width: 70% !important;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span>[x]</span>
+        </button>
+        <div class="row">
+          <div class="col-md-12">
+            
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 style="text-align:center;" id="title_permiso">EDITAR permisos del Rol ROOT</h4>        
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div id="mostrar_permisos_modulo_rol_update" class="col-md-12">
+            <!-- NO BORRAR AQU SE PRESENTAN LOS DATOS DE LOS PERMISO SOLICITADOS A MODIFICAR -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal">
+          <span>CLOSE</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 @section('script_datatable')
-<script src="{{ url ('/js_permiso/control_roles.js') }}" type="text/javascript"></script>   
+<script src="{{ url ('/js_permiso/control_roles.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/jquery.dataTables.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/dataTables.responsive.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/responsive.bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/dataTables.buttons.min.js') }}" type="text/javascript"></script>
+<script src="{{ url ('/js_permiso/view_permisos.js') }}" type="text/javascript"></script>   
+<script src="{{ url ('/js_permiso/update_permisos.js') }}" type="text/javascript"></script>   
 <script type="text/javascript">
   $(function () {
     
