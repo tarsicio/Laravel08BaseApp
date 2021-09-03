@@ -22,8 +22,7 @@ class RolPermisoIsAllow
      */
     public function handle(Request $request, Closure $next, $modulo = null, $accion = null)
     {
-        $allow = (new Permiso)->userAccess($modulo,$accion,$request->user()->rols_id);
-        dd(url());        
+        $allow = (new Permiso)->userAccess($modulo,$accion,$request->user()->rols_id);        
         if (!is_null($request->user()->rols_id) && $allow == 'ALLOW') {            
             return $next($request);    
         }        
