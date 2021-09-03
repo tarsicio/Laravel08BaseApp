@@ -26,8 +26,7 @@
     <div class="col-lg-12 col-xs-12">             
         <div class="card">
             <div class="card-body">                
-                {!! Form::open(array('url'=>'/permisos/'.$rols_id,'method'=>'POST','id' => 'form_permiso_id')) !!}
-                {!! Form::token(); !!}
+                {!! Form::open(array('url'=>'/permisos/'.$rols_id,'method'=>'POST','id' => 'form_permiso_id')) !!}                
                     <div class="form-group">
                         <div style="text-align:left;">
                             {!! Form::label('name',trans('message.permisos_rol.roles'), ['class' => 'control-label']) !!}
@@ -69,74 +68,23 @@
   @php alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje')); @endphp
 @endif
 
-<!-- VENTANA MODAL PARA VER LOS PERMISOS ASIGNADO A UN ROL - MODULO (SOLO LECTURA) -->
+<!-- Componente, Ventana Modal para Ver los Permisos.--> 
+@component('components.ventana_modal',['id_modal' => 'view_permisos',
+                                'windows_title' => trans('message.windows_modal.view_title_permiso'),
+                                'id_body_modal' => 'mostrar_permisos_modulo_rol',
+                                'modal_footer_close' => trans('message.windows_modal.close'),
+                                'size_windows' => '50%'])
+Componente, Ventana Modal para Ver los Permisos
+@endcomponent
 
-<div class="modal fade" id="view_permisos">
-  <div class="modal-dialog modal-lg modal-dialog-centered" style="width: 70% !important;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
-          <span>[x]</span>
-        </button>
-        <div class="row">
-          <div class="col-md-12">
-            
-          </div>
-        </div>
-      </div>
-      <div>
-        <h4 style="text-align:center;" id="title_permiso">Visualizar permisos del Rol ROOT</h4>
-        
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div id="mostrar_permisos_modulo_rol" class="col-md-12">
-            <!-- NO BORRAR AQU SE PRESENTAN LOS DATOS DE LOS PERMISO SOLICITADOS -->
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="close" data-dismiss="modal">
-          <span>CLOSE</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- VENTANA MODAL PARA EDITAR LOS PERMISOS ASIGNADO A UN ROL - MODULO (UPDATE PERMISOS DENY OR ALLOW) -->
-
-<div class="modal fade" id="edit_permisos">
-  <div class="modal-dialog modal-lg modal-dialog-centered" style="width: 70% !important;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
-          <span>[x]</span>
-        </button>
-        <div class="row">
-          <div class="col-md-12">
-            
-          </div>
-        </div>
-      </div>
-      <div>
-        <h4 style="text-align:center;" id="title_permiso">EDITAR permisos del Rol ROOT</h4>        
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div id="mostrar_permisos_modulo_rol_update" class="col-md-12">
-            <!-- NO BORRAR AQU SE PRESENTAN LOS DATOS DE LOS PERMISO SOLICITADOS A MODIFICAR -->
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="close" data-dismiss="modal">
-          <span>CLOSE</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- Componente, Ventana Modal para Editar los Permisos.--> 
+@component('components.ventana_modal',['id_modal' => 'edit_permisos',
+                                'windows_title' => trans('message.windows_modal.edit_title_permiso'),
+                                'id_body_modal' => 'mostrar_permisos_modulo_rol_update',
+                                'modal_footer_close' => trans('message.windows_modal.close'),
+                                'size_windows' => '70%'])
+Componente, Ventana Modal para Editar los Permisos
+@endcomponent
 
 @endsection
 
@@ -196,4 +144,3 @@
   });
 </script>
 @endsection
-

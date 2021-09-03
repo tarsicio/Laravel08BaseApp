@@ -203,10 +203,15 @@ return [
         'download'            => 'Descargar',
         'upload'              => 'Subir', 
     ],
-    'tooltip'                 =>[
+    'tooltip'                 => [
         'new_user'            => 'Permite crear un nuevo usuario',
         'new_rol'             => 'Permite crear un nuevo rol',
         'new_module'          => 'Permite crear un nuevo modulo',
         'procesa_rol'         => 'Permite procesar el rol, y crea los permisos si estos no existen',
+    ],
+    'windows_modal'           => [
+        'close'               => 'CERRAR',
+        'view_title_permiso'  => 'VISUALIZAR PERMISOS',
+        'edit_title_permiso'  => 'EDITAR PERMISO',
     ],
 ];
