@@ -11,12 +11,12 @@
 @section('contentheader_title')    
     <!-- Componente Button Para todas las Ventanas de los Módulos, no Borrar.--> 
 @component('components.button',['titulo_modulo' => trans('message.menu_rol'),
-                                'router_modulo_create' => route('users.create'),
+                                'router_modulo_create' => route('rols.create'),
                                 'id_new_modulo' => 'new_rols',
                                 'boton_crear' => trans('message.menu_rol'),
-                                'route_print' => route('users.usersPrint'),
-                                'route_download' => route('users.create'),
-                                'route_upload' => route('users.create'),
+                                'route_print' => route('rols.rolsPrint'),
+                                'route_download' => route('rols.create'),
+                                'route_upload' => route('rols.create'),
                                 'tooltip' => trans('message.tooltip.new_rol')])
 Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 @endcomponent

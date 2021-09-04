@@ -75,8 +75,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/users/{user}', 'User\UserController@update')->name('users.update')->middleware('permiso:user,update');
     Route::get('/users/{user}/delete', 'User\UserController@destroy')->name('users.destroy')->middleware('permiso:user,delete');
     Route::get('/users/list', 'User\UserController@getUsers')->name('users.list')->middleware('permiso:user,view');
-    Route::get('/users/profile', 'User\UserController@profile')->name('users.profile')->middleware('permiso:user,view');
-    Route::post('/users/profile/{id}', 'User\UserController@update_avatar')->name('users.profile')->middleware('permiso:user,update');
+    Route::get('/users/profile', 'User\UserController@profile')->name('users.profile');
+    Route::post('/users/profile/{id}', 'User\UserController@update_avatar')->name('users.profile');
     Route::get('/users/usuarioRol', 'User\UserController@usuarioRol')->name('users.usuarioRol');
     Route::get('/users/notificationsUser', 'User\UserController@notificationsUser')->name('users.notificationsUser');
     Route::get('/users/print', 'User\UserController@usersPrint')->name('users.usersPrint')->middleware('permiso:user,print');
@@ -96,7 +96,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/permisos/{permiso}/edit','Permiso\PermisoController@edit')->name('permisos.edit')->middleware('permiso:permiso,edit');
     Route::post('/permisos/{accion}/{cambio}/{id}/{modulos_id}/{rols_id}','Permiso\PermisoController@update')->name('permisos.update')->middleware('permiso:permiso,update');
     Route::get('/permisos/{modulo_id}/{rol_id}','Permiso\PermisoController@getPermisos')->name('permisos.getPermisos')->middleware('permiso:permiso,view');
-    Route::post('/permisos/{permiso}/delete','Permiso\PermisoController@destroy')->name('permisos.destroy')->middleware('permiso:permiso,delete');    
+    Route::post('/permisos/{permiso}/delete','Permiso\PermisoController@destroy')->name('permisos.destroy')->middleware('permiso:permiso,delete');
+    Route::get('/permisos/print', 'Permiso\PermisoController@permisoPrint')->name('permisos.permisoPrint')->middleware('permiso:permiso,print');    
     /*
     * Fin de las Rutas de Permiso, para todas las operaciones
     */
@@ -112,7 +113,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/rols/{rol}/edit', 'Rol\RolController@edit')->name('rols.edit')->middleware('permiso:rol,edit');
     Route::post('/rols/{rol}', 'Rol\RolController@update')->name('rols.update')->middleware('permiso:rol,update');
     Route::get('/rols/{rol}/delete', 'Rol\RolController@destroy')->name('rols.destroy')->middleware('permiso:rol,delete');
-    Route::get('/rols/list', 'Rol\RolController@getRols')->name('rols.list')->middleware('permiso:rol,view');        
+    Route::get('/rols/list', 'Rol\RolController@getRols')->name('rols.list')->middleware('permiso:rol,view');
+    Route::get('/rols/print', 'Rol\RolController@rolsPrint')->name('rols.rolsPrint')->middleware('permiso:rol,print');        
     /*
     * Fin de las Rutas de Usuarios, para todas las operaciones
     */
@@ -128,7 +130,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/modulos/{modulo}/edit', 'Modulo\ModuloController@edit')->name('modulos.edit')->middleware('permiso:modulo,edit');
     Route::post('/modulos/{modulo}', 'Modulo\ModuloController@update')->name('modulos.update')->middleware('permiso:modulo,update');
     Route::get('/modulos/{modulo}/delete', 'Modulo\ModuloController@destroy')->name('modulos.destroy')->middleware('permiso:modulo,delete');
-    Route::get('/modulos/list', 'Modulo\ModuloController@getModulos')->name('modulos.list')->middleware('permiso:modulo,view');        
+    Route::get('/modulos/list', 'Modulo\ModuloController@getModulos')->name('modulos.list')->middleware('permiso:modulo,view');
+    Route::get('/modulos/print', 'Modulo\ModuloController@modulosPrint')->name('modulos.modulosPrint')->middleware('permiso:modulo,print');               
     /*
     * Fin de las Rutas de Usuarios, para todas las operaciones
     */

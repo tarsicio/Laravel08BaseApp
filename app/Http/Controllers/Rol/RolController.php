@@ -134,4 +134,9 @@ class RolController extends Controller
         alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
         return redirect()->back();
     }
+
+    public function rolsPrint(){
+        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
+        return redirect()->back();
+    }
 }
