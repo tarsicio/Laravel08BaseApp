@@ -38,7 +38,10 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
                 <tr>
                     <th>ID</th>
                     <th>{{ trans('message.datadatable_user.nombre') }}</th>                    
-                    <th>{{ trans('message.description') }}</th>                    
+                    <th>{{ trans('message.description') }}</th>
+                    <th style="text-align:center;">{{ trans('message.botones.edit') }}</th>
+                    <th style="text-align:center;">{{ trans('message.botones.view') }}</th>
+                    <th style="text-align:center;">{{ trans('message.botones.delete') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,6 +71,24 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},            
             {data: 'description', name: 'description'},
+            {
+                data: 'edit', name: 'edit', orderable: false, searchable: false,
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;">'+data+'</div>';
+                }
+            },
+            {
+                data: 'view', name: 'view', orderable: false, searchable: false,                
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;">'+data+'</div>';
+                }
+            },
+            {
+                data: 'del', name: 'del', orderable: false, searchable: false,                
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;">'+data+'</div>';
+                }
+            },
         ],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página",

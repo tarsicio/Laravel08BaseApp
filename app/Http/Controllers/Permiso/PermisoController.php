@@ -45,7 +45,7 @@ class PermisoController extends Controller
                     if($rols_id != 1){
                         $edit ='<a href="" id="edit_'.$data->id.'" class=" editar_permiso btn btn-xs btn-warning disabled" style="color:black;" data-toggle="modal" data-backdrop="static" data-target="#edit_permisos" onclick="update_permisos('.$data->id.')"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
                     }else{
-                        $edit ='<a href="" id="edit_'.$data->id.'" class=" editar_permiso btn btn-xs btn-warning" style="color:black;" data-toggle="modal" data-backdrop="static" data-target="#edit_permisos"cupdate_permisosupdate_permisos onclick="update_permisos('.$data->id.')"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                        $edit ='<a href="" id="edit_'.$data->id.'" class=" editar_permiso btn btn-xs btn-warning" style="color:black;" data-toggle="modal" data-backdrop="static" data-target="#edit_permisos" onclick="update_permisos('.$data->id.')"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
                     }
                     return $edit;
                 })

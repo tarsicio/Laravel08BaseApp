@@ -31,7 +31,20 @@ class NotificationController extends Controller
         try{
             if ($request->ajax()) {
                 $data =  (new User)->getNotificationsList_DataTable();            
-                return datatables()->of($data)->toJson();        
+                return datatables()->of($data)
+                ->editColumn('data', function($data){
+                    return $data->data;
+                })
+                ->editColumn('read_at', function($data){
+                    return '<a href="'.route('notificaciones.setNotifications', $data->id).'" id="read_'.$data->id.'" class="btn btn-xs btn-success" style="color:black;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.read').'</b></a>';
+                })
+                ->editColumn('created_at', function($data){
+                    if($data->created_at == null){
+                        return  $data->created_at = 'DATE NULL';
+                    }else{
+                        return date('d-m-Y', strtotime($data->created_at));
+                    }                
+                })->rawColumns(['data','read_at'])->toJson();        
             }
         }catch(Throwable $e){
             echo "Captured Throwable: " . $e->getMessage(), "\n";
@@ -39,68 +52,12 @@ class NotificationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    * Realizado por @author Tarsicio Carrizales Agosto 2021
+    * Correo: telecom.com.ve@gmail.com
+    */
+    public function setNotifications($id){                
+        $set_read_at = (new User)->setRead_at($id);            
+        return redirect()->back();
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

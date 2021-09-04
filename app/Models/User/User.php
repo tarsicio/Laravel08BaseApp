@@ -184,4 +184,15 @@ class User extends Authenticatable
                     ->orderByDesc('created_at')->get();
     } 
 
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    * El usuario esta marcando como leido la Notificación.
+    */
+    public function setRead_at($id){
+        return  DB::table('notifications')
+                    ->where('id',$id)                        
+                    ->update(['read_at' => NOW()]);
+    }    
+
 }// Fin del Modelo User

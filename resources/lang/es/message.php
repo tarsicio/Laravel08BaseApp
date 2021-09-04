@@ -174,6 +174,7 @@ return [
         'condicion'           => 'Condición',
         'confirmo'            => 'Confirmado',
         'fecha'               => 'Fecha',
+        'leido'             => 'Marcar leido'
     ],
     'mensajes_alert'          => [
         'denegado'            => 'Acceso Denegado',
@@ -201,7 +202,8 @@ return [
         'view'                => 'Ver',
         'print'               => 'Imprimir',
         'download'            => 'Descargar',
-        'upload'              => 'Subir', 
+        'upload'              => 'Subir',
+        'read'                => 'Leido',
     ],
     'tooltip'                 => [
         'new_user'            => 'Permite crear un nuevo usuario',

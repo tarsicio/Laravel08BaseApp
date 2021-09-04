@@ -28,8 +28,8 @@
                 <tr>
                     <th>ID</th>
                     <th>{{ trans('message.permisos_rol.mensaje') }}</th>
-                    <th>Leido ?</th>
-                    <th>{{ trans('message.datadatable_user.fecha') }}</th>
+                    <th style="width:90px;">{{ trans('message.datadatable_user.leido') }}</th>
+                    <th style="width:70px;">{{ trans('message.datadatable_user.fecha') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,9 +56,21 @@
         autoWidth : false,        
         ajax: "{{ route('notificaciones.list') }}",        
         columns: [             
-            {data: 'id', name: 'id'},
-            {data: 'data', name: 'data'},            
-            {data: 'read_at', name: 'read_at'},
+            {
+                data: 'id', name: 'id',
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;"><b>'+data+'</b></div>';
+                }
+            },
+            {
+                data: 'data', name: 'data'
+            },
+            {
+                data: 'read_at', name: 'read_at',
+                "render": function ( data, type, row ) {                    
+                    return '<div style="text-align:center;">'+data+'</div>';
+                }
+            },
             {data: 'created_at', name: 'created_at'},
         ],
         "language": {

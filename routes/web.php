@@ -37,6 +37,12 @@ Route::get('/offline', function () {
     return view('laravelpwa::offline');
 });
 
+/**
+ * Se creó un middleware de nombre middleware('permiso:user,view') el cual verifica antes de 
+ * acceder al recurso solicitado si el usuario tiene permiso de ver dicho recurso.
+ * Este middleware es parte de la seguridad de la aplicación en conjunto cn los permisos
+ * asignados a cada rol. 
+ * /
  // *********************************************************************************************************
     /*
     * Grupo Middleware para Autenticar y verifcar que tiene Permiso asociado a su Rol
@@ -50,9 +56,9 @@ Route::group(['middleware' => 'auth'], function () {
     /*
     * Rutas de Usuarios, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
     */
-    Route::get('/notificaciones', 'Notification\NotificationController@index')->name('notificaciones.index')->middleware('permiso:notification,view');
-    Route::get('/notificaciones/{notificacion}/show', 'Notification\NotificationController@show')->name('notificaciones.show')->middleware('permiso:notification,view');
-    Route::get('/notificaciones/list', 'Notification\NotificationController@getNotifications')->name('notificaciones.list')->middleware('permiso:notification,view');
+    Route::get('/notificaciones', 'Notification\NotificationController@index')->name('notificaciones.index');
+    Route::get('/notificaciones/list', 'Notification\NotificationController@getNotifications')->name('notificaciones.list');
+    Route::get('/notificaciones/read/{id}', 'Notification\NotificationController@setNotifications')->name('notificaciones.setNotifications');
     /*
     * Fin de las Rutas de Usuarios, para todas las operaciones
     */
@@ -105,7 +111,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/rols/{rol}/show', 'Rol\RolController@show')->name('rols.show')->middleware('permiso:rol,view');
     Route::get('/rols/{rol}/edit', 'Rol\RolController@edit')->name('rols.edit')->middleware('permiso:rol,edit');
     Route::post('/rols/{rol}', 'Rol\RolController@update')->name('rols.update')->middleware('permiso:rol,update');
-    Route::post('/rols/{rol}', 'Rol\RolController@destroy')->name('rols.destroy')->middleware('permiso:rol,delete');
+    Route::get('/rols/{rol}/delete', 'Rol\RolController@destroy')->name('rols.destroy')->middleware('permiso:rol,delete');
     Route::get('/rols/list', 'Rol\RolController@getRols')->name('rols.list')->middleware('permiso:rol,view');        
     /*
     * Fin de las Rutas de Usuarios, para todas las operaciones
@@ -121,7 +127,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/modulos/{modulo}/show', 'Modulo\ModuloController@show')->name('modulos.show')->middleware('permiso:modulo,view');
     Route::get('/modulos/{modulo}/edit', 'Modulo\ModuloController@edit')->name('modulos.edit')->middleware('permiso:modulo,edit');
     Route::post('/modulos/{modulo}', 'Modulo\ModuloController@update')->name('modulos.update')->middleware('permiso:modulo,update');
-    Route::post('/modulos/{modulo}', 'Modulo\ModuloController@destroy')->name('modulos.destroy')->middleware('permiso:modulo,delete');
+    Route::get('/modulos/{modulo}/delete', 'Modulo\ModuloController@destroy')->name('modulos.destroy')->middleware('permiso:modulo,delete');
     Route::get('/modulos/list', 'Modulo\ModuloController@getModulos')->name('modulos.list')->middleware('permiso:modulo,view');        
     /*
     * Fin de las Rutas de Usuarios, para todas las operaciones

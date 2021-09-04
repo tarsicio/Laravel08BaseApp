@@ -176,7 +176,8 @@ return [
         'mail'                => 'Email',
         'condicion'           => 'Condition',
         'confirmo'            => 'Confirmed',
-        'fecha'               => 'Date',   
+        'fecha'               => 'Date',
+        'leido'             => 'Read mark'   
     ],
     'mensajes_alert'          => [
         'denegado'            => 'Deny Access',
@@ -204,7 +205,8 @@ return [
         'view'                => 'View',
         'print'               => 'Print',
         'download'            => 'Download',
-        'upload'              => 'Upload', 
+        'upload'              => 'Upload',
+        'read'                => 'Read', 
     ],
     'tooltip'                 => [
         'new_user'            => 'Permite crear un nuevo usuario',
