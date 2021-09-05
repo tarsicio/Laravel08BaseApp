@@ -5,6 +5,7 @@
         <button type="button" class="close" data-dismiss="modal">
           <span>[x]</span>
         </button>
+        <h3 style="text-align:center;" id="title_permiso">{{$windows_title}}</h3>
         <div class="row">
           <div class="col-md-12">
             <!-- Aquí se puede poner un Button del lado derecho,  de requerir en el futuro, por ejemplo -->
@@ -12,7 +13,7 @@
         </div>
       </div>
       <div>
-        <h3 style="text-align:center;" id="title_permiso">{{$windows_title}}</h3>        
+        <!-- Vacio, cualquier cosa. -->
       </div>
       <div class="modal-body">
         <div id="{{$id_body_modal}}" class="row">          

@@ -193,6 +193,8 @@ return [
         'view_mail_02'        => 'Confirme el código enviado a su correo para utilizar el sistema',
         'permisos_creado'     => 'Permisos Creados',
         'mensaje_permiso_new' => 'Se crearon todos los permisos como DENY, ajustelos',
+        'url_alterada'        => 'URL ALTERADA',
+        'url_mensaje'         => 'La url fue alterada, los valores no son validos, consulte a su Administrador',
     ],
     'botones'                 => [
         'delete'              => 'Eliminar',

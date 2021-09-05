@@ -26,7 +26,8 @@
     <div class="col-lg-12 col-xs-12">             
         <div class="card">
             <div class="card-body">                
-                {!! Form::open(array('url'=>'/permisos/'.$rols_id,'method'=>'POST','id' => 'form_permiso_id')) !!}                
+                {!! Form::open(array('route' => array('permisos.index','name='.$rols_id),
+                'method'=>'GET','id' => 'form_permiso_id')) !!}                
                     <div class="form-group">
                         <div style="text-align:left;">
                             {!! Form::label('name',trans('message.permisos_rol.roles'), ['class' => 'control-label']) !!}
@@ -86,6 +87,34 @@ Componente, Ventana Modal para Ver los Permisos
 Componente, Ventana Modal para Editar los Permisos
 @endcomponent
 
+<div class="container">
+    <div class="user">
+        <div class="modal" id="edit_permisos1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" style="text-align: center">Gestionar permisos del ID:  Perfil:  </h4>
+                    </div>
+                    <div class="modal-body">
+                        <a href='#' id='select-all'>Select all (No implementado) / </a>
+                        <a href='#' id='deselect-all'>Deselect all (No implementado)</a>
+                        <select id="select-permisos" multiple="multiple">
+                           @if(isset($permisos))
+                               @foreach($permisos as $permiso)                               
+                                  <option value="{{ $permiso->id }}">{{ $permiso->delete }}</option>
+                               @endforeach
+                            @endif
+                         </select>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" onclick="javascript:location.reload();" data-dismiss="modal" class="btn">Cerrar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('script_datatable')

@@ -21,13 +21,40 @@ class PermisoController extends Controller
      * @author Tarsicio Carrizales telecom.com.ve@gmail.com
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {        
-        $count_notification = (new User)->count_noficaciones_user();
-        $rols_id = Auth::user()->rols_id;        
-        $roles = (new Rol)->datos_roles();        
-        $nombre_rol = (new Rol)->get_nombre_rol($rols_id);        
-        return view('Permiso.permisos',compact('count_notification','roles','nombre_rol','rols_id'));
+        if($request->name == null){$rols_id = Auth::user()->rols_id;}else{$rols_id = $request->name;}        
+        $buscar = (new Rol)->find($rols_id); 
+        if($buscar == null){
+            $rols_id = 1;
+            alert()->info(trans('message.mensajes_alert.url_alterada'),
+                trans('message.mensajes_alert.url_mensaje'));
+        }
+        $count_notification = (new User)->count_noficaciones_user();        
+        $permisos = (new Permiso)->datos_Permiso($rols_id);
+        $roles = (new Rol)->datos_roles();
+        $nombre_rol = (new Rol)->get_nombre_rol($rols_id);
+        $total_registros = $permisos->count();
+        if($total_registros == 0){            
+            alert()->info(trans('message.mensajes_alert.creando'),
+                trans('message.mensajes_alert.creando_permisos'));
+            /**
+             * success
+             * error
+             * warning
+             * info
+             * question 
+             */
+            $modulos = (new Modulo)->datos_modulos();
+            foreach($modulos as $modulo){
+                $bolean = (new InsertRecord)->generarPermisosModuloRol($modulo->id,$rols_id);
+            }
+            //$permisos = (new Permiso)->datos_Permiso($rols_id);
+            alert()->success(trans('message.mensajes_alert.permisos_creado'),trans('message.mensajes_alert.mensaje_permiso_new'));
+        }                
+        return view('Permiso.permisos',
+            compact('count_notification','permisos',
+                    'roles','nombre_rol','rols_id'));        
     }
 
     /**
@@ -87,29 +114,10 @@ class PermisoController extends Controller
      */
     public function show(Request $request,$rols_id)
     {        
-        $count_notification = (new User)->count_noficaciones_user();        
-        $permisos = (new Permiso)->datos_Permiso($rols_id);
-        $roles = (new Rol)->datos_roles();
-        $total_registros = $permisos->count();        
-        if($total_registros == 0){            
-            alert()->info(trans('message.mensajes_alert.creando'),trans('message.mensajes_alert.creando_permisos'));
-            /**
-             * success
-             * error
-             * warning
-             * info
-             * question 
-             */
-            $modulos = (new Modulo)->datos_modulos();
-            foreach($modulos as $modulo){
-                $bolean = (new InsertRecord)->generarPermisosModuloRol($modulo->id,$rols_id);
-            }
-            $permisos = (new Permiso)->datos_Permiso($rols_id);
-            alert()->success(trans('message.mensajes_alert.permisos_creado'),trans('message.mensajes_alert.mensaje_permiso_new'));
-        }        
-        $nombre_rol = (new Rol)->get_nombre_rol($rols_id);
-        //return redirect()->route('Permiso.permisos', ['$count_notification' => count_notification,'$permisos' => permisos,'$roles' => roles,'$nombre_rol' => nombre_rol,'$rols_id' => rols_id]);
-        return view('Permiso.permisos',compact('count_notification','permisos','roles','nombre_rol','rols_id'));
+        
+        return view('Permiso.permisos',
+            compact('count_notification','permisos',
+                    'roles','nombre_rol','rols_id'));
     }
 
     /**
