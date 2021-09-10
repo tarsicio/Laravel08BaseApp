@@ -26,7 +26,7 @@ class RolPermisoIsAllow
         if (!is_null($request->user()->rols_id) && $allow == 'ALLOW') {            
             return $next($request);    
         }        
-        alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje'));        
-        return redirect()->back();
+        alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje'));
+        return redirect('/dashboard');
     }
 }

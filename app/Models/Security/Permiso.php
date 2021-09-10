@@ -146,18 +146,40 @@ class Permiso extends Model
     * Realizado por @author Tarsicio Carrizales 
     * Correo: telecom.com.ve@gmail.com
     */
-    public function updatePermiso($accion,$cambio,$id,$modulos_id,$rols_id){        
+    public function setUpdatePermiso($id,$accion,$allow_deny){        
         try{        
         $updateSQL = DB::table('permisos')
-                        ->where('id',$id)
-                        ->where('modulos_id',$modulos_id)
-                        ->where('rols_id',$rols_id)
-                        ->update([$accion => $cambio,'updated_at' => NOW()]);                        
+                        ->where('id',$id)                        
+                        ->update([$accion => $allow_deny,
+                            'updated_at' => NOW()]);                        
         }catch(Throwable $e){            
             return $updateSQL = $e;
         }
         return $updateSQL;
     }
+
+    /**
+    * Realizado por @author Tarsicio Carrizales 
+    * Correo: telecom.com.ve@gmail.com
+    */
+    public function setUpdateAllPermisos($id,$allow_deny){        
+        try{        
+        $updateSQL = DB::table('permisos')
+                        ->where('id',$id)                        
+                        ->update(['delete' => $allow_deny,
+                            'update' => $allow_deny,
+                            'edit' => $allow_deny,
+                            'add' => $allow_deny,
+                            'view' => $allow_deny,
+                            'print' => $allow_deny,
+                            'download' => $allow_deny,
+                            'upload' => $allow_deny,
+                            'updated_at' => NOW()]);                        
+        }catch(Throwable $e){            
+            return $updateSQL = $e;
+        }
+        return $updateSQL;
+    }    
 
     /**
     * Realizado por @author Tarsicio Carrizales 

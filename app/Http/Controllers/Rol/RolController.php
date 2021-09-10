@@ -38,7 +38,7 @@ class RolController extends Controller
                 return datatables()->of($data)
                 ->addColumn('edit', function ($data) {
                     $user = Auth::user();                    
-                    if($user->id != 1){
+                    if($data->name == 'ROOT'){
                         $edit ='<a href="'.route('rols.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-warning disabled" style="color:black;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
                     }else{
                         $edit ='<a href="'.route('rols.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-warning" style="color:black;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
@@ -50,7 +50,7 @@ class RolController extends Controller
                 })
                 ->addColumn('del', function ($data) {
                     $user = Auth::user();                    
-                    if($user->id != 1){
+                    if($data->name == 'ROOT'){
                         $del = '<a href="'.route('rols.destroy', $data->id).'" id="delete_'.$data->id.'" class="btn btn-xs btn-danger disabled" style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></a>';
                     }else{
                         $del ='<a href="'.route('rols.destroy', $data->id).'" id="delete_'.$data->id.'" class="btn btn-xs btn-danger"style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></a>';

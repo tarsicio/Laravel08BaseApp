@@ -6,14 +6,11 @@
 function mostrar_permisos(id){  
     var rol_id = $("#nombre_rol").attr('name');
     var modulo_id = id;
-    console.log('ROL ' + rol_id);
-    console.log('MODULO ' + modulo_id);
     var html = '';
     var contador = 1;    
     $.get('permisos/' + modulo_id + '/' + rol_id, 
         {_token:$('meta[name="csrf-token"]').attr('content')},function(data){                  
-        jQuery.each(data, function(index, value) {
-            console.log(data);
+        jQuery.each(data, function(index, value) {            
             html = '<div style="text-align:center;"><h4>Permiso para el Rol:</h4><span style="color:blue;"><b>'+value.NAME_ROL+'</b></span><h4> Del módulo:</h4><span style="color:blue;"><b>'+value.NAME_MODULO+'</b></span></h4></div>';
             html += '<hr>';
             //////////////////////////////////// DELETE  //////////////////////////////////////

@@ -67,6 +67,7 @@
 </div>
 @else
   @php alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje')); @endphp
+  <h1 style="text-align:center;">Área dedicada al rol ROOT</h1>
 @endif
 
 <!-- Componente, Ventana Modal para Ver los Permisos.--> 
@@ -83,38 +84,9 @@ Componente, Ventana Modal para Ver los Permisos
                                 'windows_title' => trans('message.windows_modal.edit_title_permiso'),
                                 'id_body_modal' => 'mostrar_permisos_modulo_rol_update',
                                 'modal_footer_close' => trans('message.windows_modal.close'),
-                                'size_windows' => '70%'])
+                                'size_windows' => '50%'])
 Componente, Ventana Modal para Editar los Permisos
 @endcomponent
-
-<div class="container">
-    <div class="user">
-        <div class="modal" id="edit_permisos1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" style="text-align: center">Gestionar permisos del ID:  Perfil:  </h4>
-                    </div>
-                    <div class="modal-body">
-                        <a href='#' id='select-all'>Select all (No implementado) / </a>
-                        <a href='#' id='deselect-all'>Deselect all (No implementado)</a>
-                        <select id="select-permisos" multiple="multiple">
-                           @if(isset($permisos))
-                               @foreach($permisos as $permiso)                               
-                                  <option value="{{ $permiso->id }}">{{ $permiso->delete }}</option>
-                               @endforeach
-                            @endif
-                         </select>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" onclick="javascript:location.reload();" data-dismiss="modal" class="btn">Cerrar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 
 @section('script_datatable')

@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User\User;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
+
 /**
  * Class HomeController
  * @package App\Http\Controllers
@@ -45,11 +47,13 @@ class HomeController extends Controller
     /**
     * Realizado por @author Tarsicio Carrizales
     */
-    public function dashboard(){
+    public function dashboard(){        
         $confirmation_code = auth()->user()->confirmation_code;
         $confirmed_at = auth()->user()->confirmed_at;         
-        $user_deny_allow = auth()->user()->activo; 
-        if($user_deny_allow == 'DENY' || auth()->user()->end_day > NOW()){
+        $user_deny_allow = auth()->user()->activo;
+        //$fecha_end = date('d-m-Y', strtotime(auth()->user()->end_day));
+        //$now = date('d-m-Y', strtotime(NOW()));        
+        if($user_deny_allow == 'DENY'){
             auth()->logout();
             alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje'));
             return redirect('/deny');            

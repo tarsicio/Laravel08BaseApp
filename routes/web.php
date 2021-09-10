@@ -88,16 +88,38 @@ Route::group(['middleware' => 'auth'], function () {
     /*
     * Rutas de Permiso, para todas las operaciones, con el Middleware (permiso) Integrado, para cada caso.
     */
-    Route::get('/permisos', 'Permiso\PermisoController@index')->name('permisos.index')->middleware('permiso:permiso,view');
-    Route::get('/permisos/list', 'Permiso\PermisoController@getModulos')->name('permisos.list')->middleware('permiso:permiso,view');
-    Route::get('/permisos/create', 'Permiso\PermisoController@create')->name('permisos.create')->middleware('permiso:permiso,add');
-    Route::post('/permisos','Permiso\PermisoController@store')->name('permisos.store')->middleware('permiso:permiso,add');
-    Route::post('/permisos/{permiso}','Permiso\PermisoController@show')->name('permisos.show')->middleware('permiso:permiso,view');
-    Route::get('/permisos/{permiso}/edit','Permiso\PermisoController@edit')->name('permisos.edit')->middleware('permiso:permiso,edit');
-    Route::post('/permisos/{accion}/{cambio}/{id}/{modulos_id}/{rols_id}','Permiso\PermisoController@update')->name('permisos.update')->middleware('permiso:permiso,update');
-    Route::get('/permisos/{modulo_id}/{rol_id}','Permiso\PermisoController@getPermisos')->name('permisos.getPermisos')->middleware('permiso:permiso,view');
-    Route::post('/permisos/{permiso}/delete','Permiso\PermisoController@destroy')->name('permisos.destroy')->middleware('permiso:permiso,delete');
-    Route::get('/permisos/print', 'Permiso\PermisoController@permisoPrint')->name('permisos.permisoPrint')->middleware('permiso:permiso,print');    
+    Route::get('/permisos', 'Permiso\PermisoController@index')
+    ->name('permisos.index')->middleware('permiso:permiso,view');
+
+    Route::get('/permisos/list', 'Permiso\PermisoController@getModulos')
+    ->name('permisos.list')->middleware('permiso:permiso,view');
+
+    Route::get('/permisos/create', 'Permiso\PermisoController@create')
+    ->name('permisos.create')->middleware('permiso:permiso,add');
+
+    Route::post('/permisos','Permiso\PermisoController@store')
+    ->name('permisos.store')->middleware('permiso:permiso,add');
+
+    Route::post('/permisos/{permiso}','Permiso\PermisoController@show')
+    ->name('permisos.show')->middleware('permiso:permiso,view');
+
+    Route::get('/permisos/{permiso}/edit','Permiso\PermisoController@edit')
+    ->name('permisos.edit')->middleware('permiso:permiso,edit');
+
+    Route::post('/permisos/{id}/{accion}/{allow_deny}','Permiso\PermisoController@update')
+    ->name('permisos.update')->middleware('permiso:permiso,update');
+
+    Route::post('/permisos/{id}/{allow_deny}','Permiso\PermisoController@updateAllPermisos')
+    ->name('permisos.updateAllPermisos');
+
+    Route::get('/permisos/{modulo_id}/{rol_id}','Permiso\PermisoController@getPermisos')
+    ->name('permisos.getPermisos')->middleware('permiso:permiso,view');
+
+    Route::post('/permisos/{permiso}/delete','Permiso\PermisoController@destroy')
+    ->name('permisos.destroy')->middleware('permiso:permiso,delete');
+
+    Route::get('/permisos/print', 'Permiso\PermisoController@permisoPrint')
+    ->name('permisos.permisoPrint')->middleware('permiso:permiso,print');    
     /*
     * Fin de las Rutas de Permiso, para todas las operaciones
     */

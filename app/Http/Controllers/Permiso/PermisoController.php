@@ -14,15 +14,13 @@ use App\Models\Security\Permiso;
 use Auth;
 use App\Models\Security\CreateRecordPermiso AS InsertRecord;
 
-class PermisoController extends Controller
-{
+class PermisoController extends Controller{
     /**
      * Display a listing of the resource.
      * @author Tarsicio Carrizales telecom.com.ve@gmail.com
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {        
+    public function index(Request $request){        
         if($request->name == null){$rols_id = Auth::user()->rols_id;}else{$rols_id = $request->name;}        
         $buscar = (new Rol)->find($rols_id); 
         if($buscar == null){
@@ -62,7 +60,7 @@ class PermisoController extends Controller
      * @author Tarsicio Carrizales telecom.com.ve@gmail.com
      * @return \Illuminate\Http\Response
      */
-    public function getModulos(Request $request){        
+    public function getModulos(Request $request){    
         try{
             if ($request->ajax()) {
                 $data =  (new Modulo)->getModulosList_DataTable();                
@@ -90,8 +88,7 @@ class PermisoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         //
     }
 
@@ -101,8 +98,7 @@ class PermisoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         //
     }
 
@@ -112,8 +108,7 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$rols_id)
-    {        
+    public function show(Request $request,$rols_id){        
         
         return view('Permiso.permisos',
             compact('count_notification','permisos',
@@ -126,8 +121,7 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
         //
     }
 
@@ -138,10 +132,9 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $accion,$cambio,$id,$modulos_id,$rols_id)
-    {
+    public function update(Request $request, $id,$accion,$allow_deny){        
         if($request->ajax()) {
-            $resultado = (new Permiso)->updatePermiso($accion,$cambio,$id,$modulos_id,$rols_id);            
+            $resultado = (new Permiso)->setUpdatePermiso($id,$accion,$allow_deny);
             return response()->json($resultado);        
         }
     }
@@ -152,20 +145,28 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         return response()->json($id);
     }
 
     /**     
      * @author Tarsicio Carrizales telecom.com.ve@gmail.com 
      */
-    public function getPermisos(Request $request, $modulo_id,$rol_id)
-    {
+    public function getPermisos(Request $request, $modulo_id,$rol_id){
         if($request->ajax()) {
             $resultado = (new Permiso)->get_Permisos_Rol_Modulos($modulo_id,$rol_id);
             return response()->json($resultado);        
         }
+    }
+
+    /**     
+     * @author Tarsicio Carrizales telecom.com.ve@gmail.com 
+     */
+    public function updateAllPermisos(Request $request, $id,$allow_deny){        
+        if($request->ajax()) {
+            $resultado = (new Permiso)->setUpdateAllPermisos($id,$allow_deny);            
+            return response()->json($resultado);        
+        }        
     }
 
 }
