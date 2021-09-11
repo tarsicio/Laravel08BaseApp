@@ -8,9 +8,14 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User\User;
+use App\Http\Requests\User\StoreUser;
+use App\Http\Requests\User\UpdateUser;
 use App\Models\Security\Rol;
 use Auth;
 use Dompdf\Dompdf;
+use App\Notifications\WelcomeUser;
+use App\Notifications\RegisterConfirm;
+use App\Notifications\NotificarEventos;
 
 class UserController extends Controller
 {
@@ -61,7 +66,7 @@ class UserController extends Controller
                     if($data->id == 1){
                         $del = '<a href="'.route('users.destroy', $data->id).'" id="delete_'.$data->id.'" class="btn btn-xs btn-danger disabled" style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></a>';
                     }else{
-                        $del ='<a href="'.route('users.destroy', $data->id).'" id="delete_'.$data->id.'" class="btn btn-xs btn-danger"style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></a>';
+                        $del ='<a href="'.route('users.destroy', $data->id).'" id="delete_'.$data->id.'" class="btn btn-xs btn-danger "style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></a>';
                     }
                     return $del;
                 })                
@@ -133,25 +138,29 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
-    //dd($request->avatar);
-    /**"avatar" => "tarsicio.jpg"
-      "name" => "Tarsicio Carrizales"
-      "email" => "tarsicio_c@gmail.com"
-      "password" => "123456"
-      "activo" => "ALLOW"
-      "rols_id" => "1"
-      "init_day" => null
-      "end_day" => null        */
-        $user = new User(['avatar' => $request->avatar,
+    public function store(StoreUser $request){        
+        $user = new User([
+                        'avatar' => $request->avatar,
                         'name' => $request->name,
-                        'email' => $request->email,
-                        'password' => $request->password,
+                        'email' => $request->email,                        
+                        'password' => \Hash::make($request->password),
                         'activo' => $request->activo,
                         'rols_id' => $request->rols_id,
                         'init_day' => $request->init_day,
-                        'end_day' => $request->end_day]);
-        $user->save();  
+                        'end_day' => $request->end_day,
+                        'confirmation_code' => \Str::random(25),
+                        'remember_token' => \Str::random(100),
+                        'created_at' => \Carbon\Carbon::now(),
+                        'updated_at' => \Carbon\Carbon::now(),
+                        ]);
+        $user->save();
+        $user->notify(new WelcomeUser);
+        $user->notify(new RegisterConfirm);
+        $notificacion = [
+            'title' => 'Bienvenido a nuestro sistema base HORUS Venezuela',
+            'body' => 'Les doy las gracias por utilizar nuestro sistema base para Laravel 8, Atentamente Tarsicio Carrizales telecom.com.ve@gmail.com, | 2021'
+        ]; 
+        $user->notify(new NotificarEventos($notificacion));     
         $count_notification = (new User)->count_noficaciones_user();
         alert()->success(trans('message.mensajes_alert.user_create'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_03'));
         return view('User.users',compact('count_notification'));
@@ -186,7 +195,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(UpdateUser $request, $id){
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();
         $user_Update = User::find( $id);
@@ -203,9 +212,8 @@ class UserController extends Controller
     public function destroy(Request $request,$id){        
         $user_delete = User::find($id);
         $nombre = $user_delete->name;
-        $respuesta = alert()->question('Desea Borrar el registro de '.$nombre ,false);
-        //User::destroy($id);        
-        //alert()->success(trans('message.mensajes_alert.user_delete'),trans('message.mensajes_alert.msg_01').$nombre. trans('message.mensajes_alert.msg_04')); 
+        User::destroy($id);        
+        alert()->success(trans('message.mensajes_alert.user_delete'),trans('message.mensajes_alert.msg_01').$nombre. trans('message.mensajes_alert.msg_04')); 
         return redirect('/users');
     }
 

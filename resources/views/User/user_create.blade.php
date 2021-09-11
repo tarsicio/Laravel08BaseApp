@@ -22,6 +22,15 @@
     <div class="card">
         <div class="card-body">
             <div class="col-lg-12 col-xs-12">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                    <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                    </ul>
+                    </div>
+                @endif
                 {!! Form::open(array('route' => array('users.store'),
                 'method'=>'POST','id' => 'form_users_id')) !!}
                 <div class="form-group">
