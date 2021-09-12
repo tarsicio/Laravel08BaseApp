@@ -31,8 +31,7 @@ class ModuloController extends Controller
             if ($request->ajax()) {
                 $data =  (new Modulo)->getModulosList_DataTable();            
                 return datatables()->of($data)
-                ->addColumn('edit', function ($data) {
-                    $user = Auth::user();                    
+                ->addColumn('edit', function ($data) {                                       
                     if($data->name == 'user' || $data->name == 'notification' || $data->name == 'modulo' || $data->name == 'permiso' || $data->name == 'rol'){
                         $edit ='<a href="'.route('modulos.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-warning disabled" style="color:black;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
                     }else{
@@ -43,8 +42,7 @@ class ModuloController extends Controller
                 ->addColumn('view', function ($data) {
                     return '<a href="'.route('modulos.show', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary" style="color:black;"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
                 })
-                ->addColumn('del', function ($data) {
-                    $user = Auth::user();                    
+                ->addColumn('del', function ($data) {                                    
                     if($data->name == 'user' || $data->name == 'notification' || $data->name == 'modulo' || $data->name == 'permiso' || $data->name == 'rol'){
                         $del = '<a href="'.route('modulos.destroy', $data->id).'" id="delete_'.$data->id.'" class="btn btn-xs btn-danger disabled" style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></a>';
                     }else{

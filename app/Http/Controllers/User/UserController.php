@@ -138,32 +138,44 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreUser $request){        
-        $user = new User([
-                        'avatar' => $request->avatar,
-                        'name' => $request->name,
-                        'email' => $request->email,                        
-                        'password' => \Hash::make($request->password),
-                        'activo' => $request->activo,
-                        'rols_id' => $request->rols_id,
-                        'init_day' => $request->init_day,
-                        'end_day' => $request->end_day,
-                        'confirmation_code' => \Str::random(25),
-                        'remember_token' => \Str::random(100),
-                        'created_at' => \Carbon\Carbon::now(),
-                        'updated_at' => \Carbon\Carbon::now(),
-                        ]);
-        $user->save();
-        $user->notify(new WelcomeUser);
-        $user->notify(new RegisterConfirm);
-        $notificacion = [
-            'title' => 'Bienvenido a nuestro sistema base HORUS Venezuela',
-            'body' => 'Les doy las gracias por utilizar nuestro sistema base para Laravel 8, Atentamente Tarsicio Carrizales telecom.com.ve@gmail.com, | 2021'
-        ]; 
-        $user->notify(new NotificarEventos($notificacion));     
-        $count_notification = (new User)->count_noficaciones_user();
-        alert()->success(trans('message.mensajes_alert.user_create'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_03'));
-        return view('User.users',compact('count_notification'));
+    public function store(StoreUser $request){
+        $avatar = '';
+        $filename = '';
+        if(!$request->hasFile('avatar')){        
+            $avatar = 'default.jpg';
+        }else{            
+            $avatar = $request->file('avatar');            
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();            
+            \Image::make($avatar)->resize(300, 300)
+            ->save( public_path('/storage/avatars/' . $filename ) );            
+            $avatar = $filename;
+        }
+            $user = new User([
+                            'avatar' => $avatar,
+                            'name' => $request->name,
+                            'email' => $request->email,                        
+                            'password' => \Hash::make($request->password),
+                            'activo' => $request->activo,
+                            'rols_id' => $request->rols_id,
+                            'init_day' => $request->init_day,
+                            'end_day' => $request->end_day,
+                            'confirmation_code' => \Str::random(25),
+                            'remember_token' => \Str::random(100),
+                            'created_at' => \Carbon\Carbon::now(),
+                            'updated_at' => \Carbon\Carbon::now(),
+                            ]);
+            $user->save();
+            $when = \Carbon\Carbon::now()->addMinutes(1);
+            $user->notify((new WelcomeUser)->delay($when));
+            $user->notify((new RegisterConfirm)->delay($when));
+            $notificacion = [
+                'title' => 'Bienvenido a nuestro sistema base HORUS Venezuela',
+                'body' => 'Les doy las gracias por utilizar nuestro sistema base para Laravel 8, Atentamente, Tarsicio Carrizales telecom.com.ve@gmail.com, | 2021'
+            ]; 
+            $user->notify(new NotificarEventos($notificacion));     
+            $count_notification = (new User)->count_noficaciones_user();
+            alert()->success(trans('message.mensajes_alert.user_create'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_03'));
+            return view('User.users',compact('count_notification'));
     }        
 
     /**

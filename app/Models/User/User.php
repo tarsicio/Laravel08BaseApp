@@ -25,7 +25,7 @@ class User extends Authenticatable
     protected $fillable = [
         'rols_id',
         'name',        
-        'foto',
+        'avatar',
         'email',
         'password',
         'activo',
@@ -183,9 +183,7 @@ class User extends Authenticatable
                     ->select('id',DB::raw('CONCAT(JSON_UNQUOTE(JSON_EXTRACT(Notifications.data, "$.title")), ", ",JSON_UNQUOTE(JSON_EXTRACT(Notifications.data, "$.body"))) AS data'),'read_at','created_at')                    
                     ->orderByDesc('created_at')->get();
     } 
-/**
- * ->select('id','CONCAT(JSON_UNQUOTE(JSON_EXTRACT(Notifications.data, '$.title')) , ' ',JSON_UNQUOTE(JSON_EXTRACT(Notifications.data, '$.body'))) AS data','read_at','created_at')                    
- */
+
     /**
     * Realizado por @author Tarsicio Carrizales 
     * Correo: telecom.com.ve@gmail.com

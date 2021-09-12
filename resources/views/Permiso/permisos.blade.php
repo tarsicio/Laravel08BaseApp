@@ -99,8 +99,7 @@ Componente, Ventana Modal para Editar los Permisos
 <script src="{{ url ('/js_permiso/view_permisos.js') }}" type="text/javascript"></script>   
 <script src="{{ url ('/js_permiso/update_permisos.js') }}" type="text/javascript"></script>   
 <script type="text/javascript">
-  $(function () {
-    
+  $(function () {    
     var table = $('.permiso_all').DataTable({
         processing: true,
         serverSide: true,

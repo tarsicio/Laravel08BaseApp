@@ -32,11 +32,11 @@
                     </div>
                 @endif
                 {!! Form::open(array('route' => array('users.store'),
-                'method'=>'POST','id' => 'form_users_id')) !!}
+                'method'=>'POST','id' => 'form_users_id','enctype' =>'multipart/form-data')) !!}
                 <div class="form-group">
                 <div style="float: right;">
-                    {!! Form::label('avatar',trans('message.users_action.avatar_user'), ['class' => 'control-label']) !!}                            
-                    {!! Form::file('avatar',['class' => 'form-control','id' => 'avatar_user']) !!}
+                    {!! Form::label('avatar',trans('message.users_action.avatar_user'), ['class' => 'control-label']) !!}
+                    {!! Form::file('avatar',['class' => 'form-control','id' => 'avatar_user','name' => 'avatar']) !!}
                 </div>
                 <div class="col-lg-6 col-xs-6">                    
                         <div style="text-align:left;">

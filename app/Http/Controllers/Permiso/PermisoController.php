@@ -21,13 +21,20 @@ class PermisoController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){        
-        if($request->name == null){$rols_id = Auth::user()->rols_id;}else{$rols_id = $request->name;}        
+        if($request->name == null){
+            $rols_id = Auth::user()->rols_id;
+        }else{
+            $rols_id = $request->name;
+        }        
         $buscar = (new Rol)->find($rols_id); 
         if($buscar == null){
             $rols_id = 1;
             alert()->info(trans('message.mensajes_alert.url_alterada'),
                 trans('message.mensajes_alert.url_mensaje'));
         }
+        $int = (int)$rols_id;        
+        session(['rols_id' => $int]);
+        //dd(session('rols_id'));        
         $count_notification = (new User)->count_noficaciones_user();        
         $permisos = (new Permiso)->datos_Permiso($rols_id);
         $roles = (new Rol)->datos_roles();
@@ -66,8 +73,8 @@ class PermisoController extends Controller{
                 $data =  (new Modulo)->getModulosList_DataTable();                
                 return datatables()->of($data)
                 ->addColumn('edit', function ($data) {
-                    $rols_id = Auth::user()->rols_id;
-                    if($rols_id != 1){
+                    $rols_id = Auth::user()->rols_id;                    
+                    if(session('rols_id') == 1){
                         $edit ='<a href="" id="edit_'.$data->id.'" class=" editar_permiso btn btn-xs btn-warning disabled" style="color:black;" data-toggle="modal" data-backdrop="static" data-target="#edit_permisos" onclick="update_permisos('.$data->id.')"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
                     }else{
                         $edit ='<a href="" id="edit_'.$data->id.'" class=" editar_permiso btn btn-xs btn-warning" style="color:black;" data-toggle="modal" data-backdrop="static" data-target="#edit_permisos" onclick="update_permisos('.$data->id.')"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';

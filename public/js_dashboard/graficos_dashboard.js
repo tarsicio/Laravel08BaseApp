@@ -78,7 +78,7 @@ jQuery.ajax({
     jQuery.each(data, function(index, value) {      
       array_NAME_USER.push(value.USER_NAME);
       array_TOTAL_NOTIFICATIONS.push(value.TOTAL_NOTIFICATIONS);      
-    });
+    });    
     var ctx = document.getElementById('notificationsUser').getContext('2d');
     var notificationsUser = new Chart(ctx, {
       type: 'bar',

@@ -27,11 +27,11 @@ class NotificationController extends Controller
         return view('Notificacion.notificaciones',compact('count_notification'));
     }
 
-    public function getNotifications(Request $request){
+    public function getNotifications(Request $request){        
         try{
-            if ($request->ajax()) {
+            if ($request->ajax()) {                
                 $data =  (new User)->getNotificationsList_DataTable();            
-                return datatables()->of($data)
+                return datatables()->of($data)                
                 ->editColumn('data', function($data){
                     return $data->data;
                 })

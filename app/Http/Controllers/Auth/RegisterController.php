@@ -91,7 +91,7 @@ class RegisterController extends Controller{
         $user->notify(new RegisterConfirm);
         $notificacion = [
             'title' => 'Bienvenido a nuestro sistema base HORUS Venezuela',
-            'body' => 'Les doy las gracias por utilizar nuestro sistema base para Laravel 8, Atentamente Tarsicio Carrizales telecom.com.ve@gmail.com, | 2021'
+            'body' => 'Les doy las gracias por utilizar nuestro sistema base para Laravel 8, Atentamente, Tarsicio Carrizales telecom.com.ve@gmail.com, | 2021'
         ]; 
         $user->notify(new NotificarEventos($notificacion));   
         return $user;
