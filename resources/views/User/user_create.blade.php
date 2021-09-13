@@ -53,7 +53,7 @@
                         </div>
                         <div style="text-align:left;">
                             {!! Form::label('activo',trans('message.users_action.activo'), ['class' => 'control-label']) !!}
-                            {!! Form::select('activo',['ALLOW' => 'ALLOW','DENY' => 'DENY'],'ALLOW',['class' => 'form-control','id' => 'activo_user']) !!}
+                            {!! Form::select('activo',['DENY' => 'DENY'],'DENY',['class' => 'form-control','id' => 'activo_user']) !!}
                         </div>
                         <div style="text-align:left;">
                             {!! Form::label('rols_id',trans('message.permisos_rol.roles'), ['class' => 'control-label']) !!}

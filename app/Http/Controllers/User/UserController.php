@@ -139,9 +139,19 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreUser $request){
+        /**
+         * Verificamos que el servidor este conectado a internet
+         * para que pueda enviar los correo y notificaciones de 
+         * bienvenida, y no nos de error. si no tiene conexión a Internet
+         * no se se podrá guarda el nuevo usuario
+         */
+        $response = null;
+        system("ping -c 1 google.com", $response);
         $avatar = '';
         $filename = '';
-        if(!$request->hasFile('avatar')){        
+        $count_notification = (new User)->count_noficaciones_user();
+        if($response == 0){
+            if(!$request->hasFile('avatar')){        
             $avatar = 'default.jpg';
         }else{            
             $avatar = $request->file('avatar');            
@@ -155,7 +165,7 @@ class UserController extends Controller
                             'name' => $request->name,
                             'email' => $request->email,                        
                             'password' => \Hash::make($request->password),
-                            'activo' => $request->activo,
+                            'activo' => 'DENY',
                             'rols_id' => $request->rols_id,
                             'init_day' => $request->init_day,
                             'end_day' => $request->end_day,
@@ -164,18 +174,20 @@ class UserController extends Controller
                             'created_at' => \Carbon\Carbon::now(),
                             'updated_at' => \Carbon\Carbon::now(),
                             ]);
-            $user->save();
-            $when = \Carbon\Carbon::now()->addMinutes(1);
-            $user->notify((new WelcomeUser)->delay($when));
-            $user->notify((new RegisterConfirm)->delay($when));
+            $user->save();            
             $notificacion = [
                 'title' => 'Bienvenido a nuestro sistema base HORUS Venezuela',
                 'body' => 'Les doy las gracias por utilizar nuestro sistema base para Laravel 8, Atentamente, Tarsicio Carrizales telecom.com.ve@gmail.com, | 2021'
             ]; 
-            $user->notify(new NotificarEventos($notificacion));     
-            $count_notification = (new User)->count_noficaciones_user();
+            $user->notify(new NotificarEventos($notificacion));
+            $when = \Carbon\Carbon::now()->addMinutes(1);
+            $user->notify((new WelcomeUser)->delay($when));
+            $user->notify((new RegisterConfirm)->delay($when));                        
             alert()->success(trans('message.mensajes_alert.user_create'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_03'));
-            return view('User.users',compact('count_notification'));
+        }else{ 
+            alert()->error(trans('message.mensajes_alert.sin_interner'), trans('message.mensajes_alert.no_guardo'));
+        }        
+        return view('User.users',compact('count_notification'));
     }        
 
     /**

@@ -199,6 +199,8 @@ return [
         'mensaje_permiso_new' => 'Se crearon todos los permisos como DENY, ajustelos',
         'url_alterada'        => 'URL ALTERADA',
         'url_mensaje'         => 'La url fue alterada, los valores no son validos, consulte a su Administrador',
+        'sin_interner'        => 'Sin Conexión a Internet',
+        'no_guardo'           => 'No se creo el nuevo usuario, verifique su conexión a Internet',
     ],
     'botones'                 => [
         'delete'              => 'Eliminar',

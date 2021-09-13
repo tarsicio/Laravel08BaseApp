@@ -31,10 +31,9 @@ class PermisoController extends Controller{
             $rols_id = 1;
             alert()->info(trans('message.mensajes_alert.url_alterada'),
                 trans('message.mensajes_alert.url_mensaje'));
-        }
+        }        
         $int = (int)$rols_id;        
         session(['rols_id' => $int]);
-        //dd(session('rols_id'));        
         $count_notification = (new User)->count_noficaciones_user();        
         $permisos = (new Permiso)->datos_Permiso($rols_id);
         $roles = (new Rol)->datos_roles();
