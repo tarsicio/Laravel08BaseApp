@@ -18,8 +18,8 @@
         <div class="card-body">               
             <div class="container">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <img src="{{ url('/storage/avatars/'.$user->avatar) }}" style="width:150px; height:150px; float:left; border-radius:50%; margin-right:25px;">
+                    <div class="col-lg-6 col-xs-6">
+                        <img src="{{ url('/storage/avatars/'.$user->avatar) }}" style="width:150px; height:200px; float:left; border-radius:50%; margin-right:25px;">
                         <h2>{{ $user->name }}'{{ trans('message.profile') }}</h2>
                         <form enctype="multipart/form-data" action="{{ url('/users/profile/'.$user->id) }}" method="POST">
                             <label>{{ trans('message.update_profile') }}</label>

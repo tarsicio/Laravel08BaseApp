@@ -1,5 +1,8 @@
 <?php
-
+/**
+* Realizado por @author Tarsicio Carrizales Agosto 2021
+* Correo: telecom.com.ve@gmail.com
+*/
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;

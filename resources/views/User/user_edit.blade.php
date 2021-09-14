@@ -37,7 +37,7 @@
                 <table style="float: right;">
                     <tr>
                         <td>
-                            <div id="preview"></div>
+                            <div id="preview"><img src="{{ url('/storage/avatars/'.$user_edit->avatar) }}" style="width:150px; height:200px; border-radius:50%; margin-right:25px;"></div>
                         </td>
                     </tr>
                     <tr>
@@ -52,36 +52,36 @@
                 <div class="col-lg-6 col-xs-6">                    
                         <div style="text-align:left;">
                             {!! Form::label('name',trans('message.users_action.nombre'), ['class' => 'control-label']) !!}
-                             {!! Form::text('name',old('name'),['placeholder' => trans('message.users_action.nombre'),'class' => 'form-control','id' => 'name_user']) !!}
+                             {!! Form::text('name',$user_edit->name,['placeholder' => trans('message.users_action.nombre'),'class' => 'form-control','id' => 'name_user']) !!}
                         </div>                        
                         <div style="text-align:left;">
                             {!! Form::label('email',trans('message.users_action.email_user'), ['class' => 'control-label']) !!}
-                            {!! Form::email('email',old('email'),['placeholder' => trans('message.users_action.mail_ejemplo'),'class' => 'form-control','id' => 'email_user']) !!}
+                            {!! Form::email('email',$user_edit->email,['placeholder' => trans('message.users_action.mail_ejemplo'),'class' => 'form-control','id' => 'email_user']) !!}
                         </div>
                         <div style="text-align:left;">
                             {!! Form::label('password',trans('message.users_action.password'), ['class' => 'control-label']) !!}
-                            {!! Form::password('password',['placeholder' => trans('message.users_action.password_ejemplo'),'class' => 'form-control','id' => 'password_user']) !!}
+                            {!! Form::password('password',['placeholder' => trans('message.users_action.password_ejemplo'),'class' => 'form-control','id' => 'password_user','value' => $user_edit->password]) !!}
                             <span class="fa fa-fw fa-eye password-icon show-password" style="float: right; position: relative; margin: -25px 10px 0 0; cursor: pointer;"></span>
                         </div>
                         <div style="text-align:left;">
                             {!! Form::label('activo',trans('message.users_action.activo'), ['class' => 'control-label']) !!}
-                            {!! Form::select('activo',['DENY' => 'DENY'],'DENY',['class' => 'form-control','id' => 'activo_user']) !!}
+                            {!! Form::select('activo',['DENY' => 'DENY','ALLOW' => 'ALLOW'],$user_edit->activo,['class' => 'form-control','id' => 'activo_user']) !!}
                         </div>
                         <div style="text-align:left;">
                             {!! Form::label('rols_id',trans('message.permisos_rol.roles'), ['class' => 'control-label']) !!}
-                            {!! Form::select('rols_id', $roles, old('rols_id'), ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id']) !!}
+                            {!! Form::select('rols_id', $roles, $user_edit->rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id']) !!}
                         </div>
                         <div style="text-align:left;">
                             {!! Form::label('init_day',trans('message.users_action.fecha_inicio'), ['class' => 'control-label']) !!}
-                            {!! Form::date('init_day',null,['class' => 'form-control','id' => 'init_day']) !!}
+                            {!! Form::date('init_day',$user_edit->init_day,['class' => 'form-control','id' => 'init_day']) !!}
                         </div>
                         <div style="text-align:left;">
                             {!! Form::label('end_day',trans('message.users_action.fecha_fin'), ['class' => 'control-label']) !!}
-                            {!! Form::date('end_day',null,['class' => 'form-control','id' => 'end_day']) !!}
+                            {!! Form::date('end_day',$user_edit->end_day,['class' => 'form-control','id' => 'end_day']) !!}
                         </div>                        
                 </div>        
                 <hr>
-                        {!! Form::submit(trans('message.users_action.new_user'),['class'=> 'form-control btn btn-primary','title' => trans('message.users_action.new_user'),'data-toggle' => 'tooltip']) !!}                     
+                        {!! Form::submit(trans('message.users_action.update_user'),['class'=> 'form-control btn btn-primary','title' => trans('message.users_action.update_user'),'data-toggle' => 'tooltip']) !!}                     
                 </div>      
                 {!!  Form::close() !!}
             </div>             

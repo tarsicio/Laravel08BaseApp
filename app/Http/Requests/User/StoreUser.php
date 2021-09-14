@@ -1,5 +1,8 @@
 <?php
-
+/**
+* Realizado por @author Tarsicio Carrizales Agosto 2021
+* Correo: telecom.com.ve@gmail.com
+*/
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -24,11 +27,13 @@ class StoreUser extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'min:8|max:40|required|string',
-            'email' => 'required|email|max:50|unique:users',
+            'name'     => 'min:8|max:40|required|string',
+            'email'    => 'required|email|max:50|unique:users',
             'password' => 'required|min:8|max:15',
-            'activo' => 'required',
-            'rols_id' => 'required'
+            'activo'   => 'required',
+            'rols_id'  => 'required',
+            'init_day'  => 'required',
+            'end_day'  => 'required|after_or_equal:init_day'            
         ];        
     }
 }

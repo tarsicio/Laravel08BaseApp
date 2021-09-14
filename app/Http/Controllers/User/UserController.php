@@ -91,10 +91,17 @@ class UserController extends Controller
     public function update_avatar(Request $request, $id){
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();
-        $user_Update = User::find($id);        
-        // Se actualizan todos los datos solicitados por el Cliente
-        if($request->hasFile('avatar')){
-            $avatar = $request->file('avatar');            
+        $user_Update = User::find($id);
+        $avatar_viejo = $user_Update->avatar;        
+        /** Se actualizan todos los datos solicitados por el Cliente 
+         *  y eliminamos del Storage/avatars, el archivo de imagen
+         * para que no se llene de imagenes, que no se utilizaran la carpeta
+         */
+        if($request->hasFile('avatar')){            
+            if($avatar_viejo != 'default.jpg'){
+                unlink(public_path('/storage/avatars/'.$avatar_viejo));
+            }  
+            $avatar = $request->file('avatar');          
             $filename = time() . '.' . $avatar->getClientOriginalExtension();            
             \Image::make($avatar)->resize(300, 300)
             ->save( public_path('/storage/avatars/' . $filename ) );            
@@ -165,7 +172,7 @@ class UserController extends Controller
                             'name' => $request->name,
                             'email' => $request->email,                        
                             'password' => \Hash::make($request->password),
-                            'activo' => 'DENY',
+                            'activo' => $request->activo,
                             'rols_id' => $request->rols_id,
                             'init_day' => $request->init_day,
                             'end_day' => $request->end_day,
@@ -176,8 +183,8 @@ class UserController extends Controller
                             ]);
             $user->save();            
             $notificacion = [
-                'title' => 'Bienvenido a nuestro sistema base HORUS Venezuela',
-                'body' => 'Les doy las gracias por utilizar nuestro sistema base para Laravel 8, Atentamente, Tarsicio Carrizales telecom.com.ve@gmail.com, | 2021'
+                'title' => trans('message.msg_notification.title'),
+                'body' => trans('message.msg_notification.body')
             ]; 
             $user->notify(new NotificarEventos($notificacion));
             $when = \Carbon\Carbon::now()->addMinutes(1);
@@ -208,8 +215,11 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();
+        $user_edit = User::find($id);
+        $titulo_modulo = trans('message.users_action.edit_user');
+        $count_notification = (new User)->count_noficaciones_user();
+        $roles = (new Rol)->datos_roles();        
+        return view('User.user_edit',compact('count_notification','titulo_modulo','roles','user_edit'));
     }
 
     /**
@@ -236,7 +246,10 @@ class UserController extends Controller
     public function destroy(Request $request,$id){        
         $user_delete = User::find($id);
         $nombre = $user_delete->name;
-        User::destroy($id);        
+        User::destroy($id);
+        if($user_delete->avatar != 'default.jpg'){
+            unlink(public_path('/storage/avatars/'.$user_delete->avatar));
+        }        
         alert()->success(trans('message.mensajes_alert.user_delete'),trans('message.mensajes_alert.msg_01').$nombre. trans('message.mensajes_alert.msg_04')); 
         return redirect('/users');
     }

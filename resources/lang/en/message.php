@@ -228,6 +228,8 @@ return [
     ],
     'users_action'            => [
         'new_user'            => 'USER CREATE',
+        'edit_user'           => 'USER EDIT',
+        'update_user'         => 'USER UPDATE',
         'avatar_user'         => 'AVATAR',
         'nombre'              => 'FULL NAME',
         'email_user'          => 'EMAIL',
@@ -237,5 +239,9 @@ return [
         'activo'              => 'ACTIVE CONDITION',
         'fecha_inicio'        => 'INIT DATE',
         'fecha_fin'           => 'END DATE',
+    ],
+    'msg_notification'        => [
+        'title'               => 'Bienvenido a nuestro sistema base HORUS Venezuela',
+        'body'                => 'Les doy las gracias por utilizar nuestro sistema base para Laravel 8, Atentamente, Tarsicio Carrizales telecom.com.ve@gmail.com, | 2021',
     ],
 ];
