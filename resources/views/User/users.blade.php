@@ -59,14 +59,6 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
     </div>
 </div>
 
-<!-- Componente, Ventana Modal para Visualizar al usuario seleccionado.--> 
-@component('components.ventana_modal',['id_modal' => 'view_users',
-                                'windows_title' => trans('message.windows_modal.view_users'),
-                                'id_body_modal' => 'mostrar_users',
-                                'modal_footer_close' => trans('message.windows_modal.close'),
-                                'size_windows' => '70%'])
-Componente, Ventana Modal para Ver los Usuarios
-@endcomponent
 @endsection
 @section('script_datatable')
 <script src="{{ url ('/js_datatable/jquery.dataTables.min.js') }}" type="text/javascript"></script>
