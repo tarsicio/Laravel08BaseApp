@@ -1,4 +1,4 @@
-<?php
+    <?php
 /**
 * Realizado por @author Tarsicio Carrizales Agosto 2021
 * Correo: telecom.com.ve@gmail.com
@@ -70,7 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users', 'User\UserController@index')->name('users.index')->middleware('permiso:user,view');
     Route::get('/users/create', 'User\UserController@create')->name('users.create')->middleware('permiso:user,add');
     Route::post('/users', 'User\UserController@store')->name('users.store')->middleware('permiso:user,add');
-    Route::get('/users/{user}/show', 'User\UserController@show')->name('users.show')->middleware('permiso:user,view');
+    Route::get('/users/{user}/view', 'User\UserController@view')->name('users.view')->middleware('permiso:user,view');
     Route::get('/users/{user}/edit', 'User\UserController@edit')->name('users.edit')->middleware('permiso:user,edit');
     Route::post('/users/{user}', 'User\UserController@update')->name('users.update')->middleware('permiso:user,update');
     Route::get('/users/{user}/delete', 'User\UserController@destroy')->name('users.destroy')->middleware('permiso:user,delete');

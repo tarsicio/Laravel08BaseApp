@@ -11,6 +11,9 @@
 @section('contentheader_title')
 <div>
     <h2 class="mb-4">{{ $titulo_modulo}}</h2>
+    @component('components.boton_back',['ruta' => route('users.index') ])
+        Botón de retorno
+    @endcomponent   
 </div>
     
 @endsection

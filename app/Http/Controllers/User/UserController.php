@@ -60,7 +60,7 @@ class UserController extends Controller
                     return $edit;
                 })
                 ->addColumn('view', function ($data) {
-                    return '<a href="'.route('users.show', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary" style="color:black;"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
+                    return '<a href="'.route('users.view', $data->id).'" id="view_'.$data->id.'" class="btn btn-xs btn-primary" style="color:black;"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
                 })
                 ->addColumn('del', function ($data) {
                     if($data->id == 1){
@@ -84,18 +84,14 @@ class UserController extends Controller
     }
     
     public function usersPrint(){
-        // instantiate and use the dompdf class
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml('hello world');
 
-        // (Optional) Setup the paper size and orientation
+        //generate some PDFs!
+        $html = 'Tarsicio Carrizales telecom.com.ve@gmail.com';
+        $dompdf = new DOMPDF();  //if you use namespaces you may use new \DOMPDF()
+        $dompdf->loadHtml($html);
         $dompdf->setPaper('latter', 'portrait');
-
-        // Render the HTML as PDF
         $dompdf->render();
-
-        // Output the generated PDF to Browser
-        $dompdf->stream('user.pdf');
+        $dompdf->stream("users.pdf", array("Attachment"=>1));        
         alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
         return redirect()->back();
     }    
@@ -207,9 +203,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id){
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();
+    public function view($id){
+        $user_View =  (new User)->ver_User($id);
+        //dd($user_View);
+        $count_notification = (new User)->count_noficaciones_user();
+        $titulo_modulo = trans('message.users_action.edit_user');
+        return view('User.show',compact('count_notification','titulo_modulo','user_View'));
     }
 
     /**
@@ -239,12 +238,12 @@ class UserController extends Controller
         $user_Update = User::find( $id);
         $avatar_viejo = $user_Update->avatar;        
         if($id == 1){            
-            $user_Update->password = $request->password;            
+            $user_Update->password = \Hash::make($request->password);
             $this->update_image($request,$avatar_viejo,$user_Update);
             $user_Update->save();
         }else{
             $user_Update->name = $request->name;
-            $user_Update->password = $request->password;
+            $user_Update->password = \Hash::make($request->password);
             $user_Update->activo = $request->activo;
             $user_Update->rols_id = $request->rols_id;
             $user_Update->init_day = $request->init_day;

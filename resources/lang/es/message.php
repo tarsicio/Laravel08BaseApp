@@ -223,11 +223,13 @@ return [
         'close'               => 'CERRAR',
         'view_title_permiso'  => 'VISUALIZAR PERMISOS',
         'edit_title_permiso'  => 'EDITAR PERMISO',
+        'view_users'          => 'VISUALIZAR USUARIO',
     ],
     'users_action'            => [
         'new_user'            => 'CREAR USUARIO',
         'edit_user'           => 'EDITAR USUARIO',
         'update_user'         => 'ACTUALIZAR USUARIO',
+        'show_user'           => 'VISUALIZAR USUARIO',
         'avatar_user'         => 'AVATAR',
         'nombre'              => 'NOMBRE COMPLETO',
         'email_user'          => 'CORREO ELECTRONICO',

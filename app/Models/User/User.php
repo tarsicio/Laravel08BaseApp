@@ -187,12 +187,19 @@ class User extends Authenticatable
     /**
     * Realizado por @author Tarsicio Carrizales 
     * Correo: telecom.com.ve@gmail.com
-    * El usuario esta marcando como leido la Notificación.
+    * El usuario esta marcando como leida la Notificación.
     */
     public function setRead_at($id){
         return  DB::table('notifications')
                     ->where('id',$id)                        
                     ->update(['read_at' => NOW()]);
     }    
+
+    public function ver_User($id){
+        return DB::table('users')
+            ->join('rols', 'users.rols_id', '=', 'rols.id')
+            ->select('users.id AS ID','users.name AS NAME','users.email AS MAIL','users.avatar AS AVATAR','users.activo AS ACTIVO','rols.name AS ROLS_NAME','users.init_day AS FECHA_INICIO','users.end_day AS FECHA_FIN')
+            ->where('users.id',$id)->get();
+    }
 
 }// Fin del Modelo User

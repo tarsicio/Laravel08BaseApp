@@ -223,13 +223,15 @@ return [
     ],
     'windows_modal'           => [
         'close'               => 'CLOSE',
-        'view_title_permiso'  => 'VIEW PERMISSIONS',
-        'edit_title_permiso'  => 'EDIT PERMISSIONS',   
+        'view_title_permiso'  => 'PERMISSIONS VIEW',
+        'edit_title_permiso'  => 'PERMISSIONS EDIT',
+        'view_users'          => 'USER VIEW',   
     ],
     'users_action'            => [
         'new_user'            => 'USER CREATE',
         'edit_user'           => 'USER EDIT',
         'update_user'         => 'USER UPDATE',
+        'show_user'           => 'USER VIEW',
         'avatar_user'         => 'AVATAR',
         'nombre'              => 'FULL NAME',
         'email_user'          => 'EMAIL',
