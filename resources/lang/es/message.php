@@ -216,7 +216,7 @@ return [
     'tooltip'                 => [
         'new_user'            => 'Permite crear un nuevo usuario',
         'new_rol'             => 'Permite crear un nuevo rol',
-        'new_module'          => 'Permite crear un nuevo modulo',
+        'new_module'          => 'Permite crear un nuevo módulo',
         'procesa_rol'         => 'Permite procesar el rol, y crea los permisos si estos no existen',
     ],
     'windows_modal'           => [
@@ -233,7 +233,7 @@ return [
         'email_user'          => 'CORREO ELECTRONICO',
         'mail_ejemplo'        => 'user@ejemplo.com',
         'password'            => 'CLAVE',
-        'password_ejemplo'    => '12345678',
+        'password_ejemplo'    => '',
         'activo'              => 'CONDICIÓN ACTIVO',
         'fecha_inicio'        => 'FECHA INICIO',
         'fecha_fin'           => 'FECHA FIN',

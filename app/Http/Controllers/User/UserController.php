@@ -52,7 +52,7 @@ class UserController extends Controller
                 })                
                 ->addColumn('edit', function ($data) {
                     $user = Auth::user();                    
-                    if($user->id != 1 && $data->id == 1){
+                    if(($user->id != 1 && $data->id == 1)|| $data->confirmed_at == null){
                         $edit ='<a href="'.route('users.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-warning disabled" style="color:black;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
                     }else{
                         $edit ='<a href="'.route('users.edit', $data->id).'" id="edit_'.$data->id.'" class="btn btn-xs btn-warning" style="color:black;"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
@@ -84,6 +84,18 @@ class UserController extends Controller
     }
     
     public function usersPrint(){
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml('hello world');
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('latter', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream('user.pdf');
         alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
         return redirect()->back();
     }    
@@ -92,24 +104,11 @@ class UserController extends Controller
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();
         $user_Update = User::find($id);
-        $avatar_viejo = $user_Update->avatar;        
-        /** Se actualizan todos los datos solicitados por el Cliente 
-         *  y eliminamos del Storage/avatars, el archivo de imagen
-         * para que no se llene de imagenes, que no se utilizaran la carpeta
-         */
-        if($request->hasFile('avatar')){            
-            if($avatar_viejo != 'default.jpg'){
-                unlink(public_path('/storage/avatars/'.$avatar_viejo));
-            }  
-            $avatar = $request->file('avatar');          
-            $filename = time() . '.' . $avatar->getClientOriginalExtension();            
-            \Image::make($avatar)->resize(300, 300)
-            ->save( public_path('/storage/avatars/' . $filename ) );            
-            $user_Update->avatar = $filename;
-            $user_Update->save();
-            alert()->success(trans('message.mensajes_alert.user_update'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_02'));
-        }        
-        return redirect('/dashboard');
+        $avatar_viejo = $user_Update->avatar; 
+        $this->update_image($request,$avatar_viejo,$user_Update);               
+        $user_Update->save();
+        alert()->success(trans('message.mensajes_alert.user_update'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_02'));        
+        return redirect('/users');
     }
 
     public function print(){
@@ -151,22 +150,27 @@ class UserController extends Controller
          * para que pueda enviar los correo y notificaciones de 
          * bienvenida, y no nos de error. si no tiene conexión a Internet
          * no se se podrá guarda el nuevo usuario
-         */
-        $response = null;
-        system("ping -c 1 google.com", $response);
+         */        
+        // Target URL
+        try{
+            $url = "https://www.google.com";
+            $headers = get_headers($url);
+        }catch(Throwable $e){
+            $headers[0] = 'error'; 
+        }
         $avatar = '';
         $filename = '';
         $count_notification = (new User)->count_noficaciones_user();
-        if($response == 0){
+        if($headers[0] == 'HTTP/1.0 200 OK'){
             if(!$request->hasFile('avatar')){        
-            $avatar = 'default.jpg';
-        }else{            
-            $avatar = $request->file('avatar');            
-            $filename = time() . '.' . $avatar->getClientOriginalExtension();            
-            \Image::make($avatar)->resize(300, 300)
-            ->save( public_path('/storage/avatars/' . $filename ) );            
-            $avatar = $filename;
-        }
+                $avatar = 'default.jpg';
+            }else{            
+                $avatar = $request->file('avatar');            
+                $filename = time() . '.' . $avatar->getClientOriginalExtension();            
+                \Image::make($avatar)->resize(300, 300)
+                ->save( public_path('/storage/avatars/' . $filename ) );            
+                $avatar = $filename;
+            }
             $user = new User([
                             'avatar' => $avatar,
                             'name' => $request->name,
@@ -229,14 +233,44 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUser $request, $id){
+    public function update(UpdateUser $request, $id){        
         $count_notification = (new User)->count_noficaciones_user();
-        $user = Auth::user();
+        $user = Auth::user();        
         $user_Update = User::find( $id);
+        $avatar_viejo = $user_Update->avatar;        
+        if($id == 1){            
+            $user_Update->password = $request->password;            
+            $this->update_image($request,$avatar_viejo,$user_Update);
+            $user_Update->save();
+        }else{
+            $user_Update->name = $request->name;
+            $user_Update->password = $request->password;
+            $user_Update->activo = $request->activo;
+            $user_Update->rols_id = $request->rols_id;
+            $user_Update->init_day = $request->init_day;
+            $user_Update->end_day = $request->end_day;
+            $this->update_image($request,$avatar_viejo,$user_Update);
+            $user_Update->save();
+        }
             alert()->success(trans('message.mensajes_alert.user_update'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_02'));
-        return view('User.users',compact('count_notification','user'));
+        return redirect('/users');
     }
 
+    private function update_image($request,$avatar_viejo,&$user_Update){
+        /** Se actualizan todos los datos solicitados por el Cliente 
+        *  y eliminamos del Storage/avatars, el archivo indicado.
+        */
+        if($request->hasFile('avatar')){
+            if($avatar_viejo != 'default.jpg'){
+                unlink(public_path('/storage/avatars/'.$avatar_viejo));
+            }  
+            $avatar = $request->file('avatar');          
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();            
+            \Image::make($avatar)->resize(300, 300)
+            ->save( public_path('/storage/avatars/' . $filename ) );            
+            $user_Update->avatar = $filename;                
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *

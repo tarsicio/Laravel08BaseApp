@@ -78,10 +78,12 @@ class RegisterController extends Controller{
      */
     protected function create(array $data){
         $fields = [
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => bcrypt($data['password']),
+            'name'              => $data['name'],
+            'email'             => $data['email'],
+            'password'          => bcrypt($data['password']),
             'confirmation_code' => \Str::random(25),
+            'init_day'          => \Carbon\Carbon::now(),
+            'end_day'           => \Carbon\Carbon::now()->addMonth(6),
         ];
         if (config('auth.providers.users.field', 'email') === 'username' && isset($data['username'])) {
             $fields['username'] = $data['username'];
