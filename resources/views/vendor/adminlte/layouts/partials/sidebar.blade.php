@@ -8,7 +8,7 @@
         @if (! Auth::guest())
             <div class="user-panel">
                 <div class="pull-left image">
-                  <!--  <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image" /> -->
+                  <!--  <img src="{{-- Gravatar::get($user->email) --}}" class="img-circle" alt="User Image" /> -->
                     @if (Auth::user()->avatar == 'default.jpg' || is_null(Auth::user()->avatar))
                         <img src="{{ url('/storage/avatars/default.jpg') }}" class="img-circle" alt="User Image"/>
                     @else
