@@ -31,7 +31,7 @@ class NotificationController extends Controller
         try{
             if ($request->ajax()) {                
                 $data =  (new User)->getNotificationsList_DataTable();            
-                return datatables()->of($data)                
+                return datatables()->of($data)
                 ->editColumn('data', function($data){
                     return $data->data;
                 })

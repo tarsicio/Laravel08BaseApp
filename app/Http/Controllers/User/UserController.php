@@ -149,15 +149,17 @@ class UserController extends Controller
          */        
         // Target URL
         try{
-            $url = "https://www.google.com";
-            $headers = get_headers($url);
-        }catch(Throwable $e){
-            $headers[0] = 'error'; 
+            $count_notification = (new User)->count_noficaciones_user();            
+            $Host="8.8.8.8";
+            $ping = exec("ping -c 4 " . $Host, $output, $result);
+            //dd($result);
+        }catch(Exception $e){
+            alert()->error(trans('message.mensajes_alert.sin_interner').'TARSICIO', trans('message.mensajes_alert.no_guardo'));
+            return view('User.users',compact('count_notification'));
         }
         $avatar = '';
-        $filename = '';
-        $count_notification = (new User)->count_noficaciones_user();
-        if($headers[0] == 'HTTP/1.0 200 OK'){
+        $filename = '';        
+        if($result == 0){
             if(!$request->hasFile('avatar')){        
                 $avatar = 'default.jpg';
             }else{            

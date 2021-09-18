@@ -43,8 +43,7 @@ class NotificarEventos extends Notification
      * @return \Illuminate\Notifications\Messages\MailMessage
      * Realizado por @author Tarsicio Carrizales
      */
-    public function toMail($notifiable)
-    {
+    public function toMail($notifiable){
         return (new MailMessage)
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
@@ -58,8 +57,7 @@ class NotificarEventos extends Notification
      * @return array
      * Realizado por @author Tarsicio Carrizales
      */
-    public function toArray($notifiable)
-    {
+    public function toArray($notifiable){
         return [
             'title' => $this->notificacion['title'],
             'body' => $this->notificacion['body']

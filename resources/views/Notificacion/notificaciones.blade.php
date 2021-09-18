@@ -25,8 +25,7 @@
     <div class="card-body">            
         <table class="table table-bordered notificaciones_all">
             <thead>
-                <tr>
-                    <th>ID</th>
+                <tr>                    
                     <th>{{ trans('message.permisos_rol.mensaje') }}</th>
                     <th style="width:90px;">{{ trans('message.datadatable_user.leido') }}</th>
                     <th style="width:70px;">{{ trans('message.datadatable_user.fecha') }}</th>
@@ -47,21 +46,14 @@
 <script src="{{ url ('/js_datatable/responsive.bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/dataTables.buttons.min.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
-  $(function () {
-    
+  $(function () {    
     var table = $('.notificaciones_all').DataTable({
         processing: true,
         serverSide: true,
         responsive: true,
         autoWidth : false,        
-        ajax: "{{ route('notificaciones.list') }}",        
-        columns: [             
-            {
-                data: 'id', name: 'id',
-                "render": function ( data, type, row ) {                    
-                    return '<div style="text-align:center;"><b>'+data+'</b></div>';
-                }
-            },
+        ajax: "{{ route('notificaciones.list') }}",
+        columns: [
             {
                 data: 'data', name: 'data'
             },
