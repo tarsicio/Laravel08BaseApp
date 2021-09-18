@@ -208,7 +208,12 @@ return [
         'rol_delete'         => 'Delete Rol',
         'msg_rol_01'         => 'the rol ',
         'msg_no_delete'      => ' was not deleted, has related data',
-        'rol_no_delete'      => 'The role was not Eliminated',      
+        'rol_no_delete'      => 'The role was not Eliminated',
+        'modulo_update'       => 'Update module',
+        'modulo_create'       => 'Create module',
+        'modulo_delete'       => 'Delete module',
+        'msg_modulo_01'       => 'the module ',        
+        'modulo_no_delete'    => 'El módulo no fue Eliminado',      
     ],
     'botones'                 => [
         'delete'              => 'Delete',
@@ -248,13 +253,21 @@ return [
         'fecha_inicio'        => 'INIT DATE',
         'fecha_fin'           => 'END DATE',
     ],
-    'rols_action'            => [
+    'rols_action'             => [
         'new_rols'            => 'ROL CREATE',
         'edit_rols'           => 'ROL EDIT',
         'update_rols'         => 'ROL UPDATE',
         'show_rols'           => 'ROL VIEW',        
         'nombre'              => 'ROL NAME',
-        'description'         => 'ROL DESCRITION',
+        'description'         => 'ROL DESCRITION',        
+    ],
+    'modulo_action'           => [
+        'new_modulo'          => 'MODULE CREATE',
+        'edit_modulo'         => 'MODULE EDIT',
+        'update_modulo'       => 'MODULE UPDATE',
+        'show_modulo'         => 'MODULE VIEW',        
+        'nombre'              => 'MODULE NAME',
+        'description'         => 'MODULE DESCRITION',
     ],
     'msg_notification'        => [
         'title'               => 'Welcome to our base system HORUS Venezuela',

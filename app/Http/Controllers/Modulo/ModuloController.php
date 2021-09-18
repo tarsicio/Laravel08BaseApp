@@ -7,6 +7,8 @@ namespace App\Http\Controllers\Modulo;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Modulo\StoreModulo;
+use App\Http\Requests\Modulo\UpdateModulo;
 use App\Models\User\User;
 use App\Models\Security\Modulo;
 use App\Models\Security\Rol;
@@ -62,10 +64,11 @@ class ModuloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();    }
+    public function create(){
+        $count_notification = (new User)->count_noficaciones_user();
+        $titulo_modulo = trans('message.modulo_action.new_modulo');        
+        return view('Modulo.modulo_create',compact('count_notification','titulo_modulo'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -73,10 +76,18 @@ class ModuloController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();    }
+    public function store(StoreModulo $request){
+        $count_notification = (new User)->count_noficaciones_user();
+        $modulo = new Modulo([                            
+                        'name' => strtolower($request->name),
+                        'description' => $request->description,
+                        'created_at' => \Carbon\Carbon::now(),
+                        'updated_at' => \Carbon\Carbon::now(),
+                    ]);
+        $modulo->save();
+        alert()->success(trans('message.mensajes_alert.modulo_create'),trans('message.mensajes_alert.msg_modulo_01').$modulo->name. trans('message.mensajes_alert.msg_03'));
+        return view('Modulo.modulos',compact('count_notification'));
+    }
 
     /**
      * Display the specified resource.
@@ -84,10 +95,12 @@ class ModuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();    }
+    public function show($id){
+        $modulo = Modulo::find($id);
+        $count_notification = (new User)->count_noficaciones_user();
+        $titulo_modulo = trans('message.modulo_action.show_modulo');
+        return view('Modulo.modulo_show',compact('count_notification','titulo_modulo','modulo'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -95,10 +108,12 @@ class ModuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();    }
+    public function edit($id){
+        $modulo = Modulo::find($id);
+        $count_notification = (new User)->count_noficaciones_user();
+        $titulo_modulo = trans('message.modulo_action.edit_modulo');
+        return view('Modulo.modulo_edit',compact('count_notification','titulo_modulo','modulo'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -107,10 +122,14 @@ class ModuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();    }
+    public function update(UpdateModulo $request, $id){
+        $modulo_Update = Modulo::find($id);
+        $modulo_Update->description = $request->description;
+        $modulo_Update->updated_at = \Carbon\Carbon::now();
+        $modulo_Update->save();
+        alert()->success(trans('message.mensajes_alert.modulo_update'),trans('message.mensajes_alert.msg_modulo_01').$modulo_Update->name. trans('message.mensajes_alert.msg_02'));
+        return redirect('/modulos');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -118,10 +137,19 @@ class ModuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();    }
+    public function destroy($id){
+        $modulo_Delete = Modulo::find($id);        
+        $nombre_modulo = $modulo_Delete->name;        
+        $no_Asociado = (new Modulo)->buscarTablasAsociados($id);
+        //dd($no_Asociado);
+        if(!$no_Asociado){
+            Modulo::destroy($id);
+            alert()->success(trans('message.mensajes_alert.modulo_delete'),trans('message.mensajes_alert.msg_modulo_01').$nombre_modulo. trans('message.mensajes_alert.msg_04')); 
+        }else{
+            alert()->error(trans('message.mensajes_alert.modulo_no_delete'),trans('message.mensajes_alert.msg_modulo_01').$nombre_modulo. trans('message.mensajes_alert.msg_no_delete')); 
+        }        
+        return redirect('/modulos');
+    }
 
     public function modulosPrint(){
         alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));

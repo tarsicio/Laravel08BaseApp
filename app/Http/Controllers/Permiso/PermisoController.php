@@ -52,9 +52,19 @@ class PermisoController extends Controller{
             $modulos = (new Modulo)->datos_modulos();
             foreach($modulos as $modulo){
                 $bolean = (new InsertRecord)->generarPermisosModuloRol($modulo->id,$rols_id);
-            }
-            //$permisos = (new Permiso)->datos_Permiso($rols_id);
+            }            
             alert()->success(trans('message.mensajes_alert.permisos_creado'),trans('message.mensajes_alert.mensaje_permiso_new'));
+        }
+        /**
+        * Si se genera un nuevo módulo, al pasar por esta sección será verificado
+        * y de no existir se creará, de acuerdo a la normativa establecida.
+        * */
+        $modulos = (new Modulo)->datos_modulos();
+        foreach($modulos as $modulo){
+            $existe = (new permiso)->existe_Permiso($modulo->id,$rols_id);
+            if(!$existe){
+                $bolean = (new InsertRecord)->generarPermisosModuloRol($modulo->id,$rols_id);
+            }                
         }                
         return view('Permiso.permisos',
             compact('count_notification','permisos',

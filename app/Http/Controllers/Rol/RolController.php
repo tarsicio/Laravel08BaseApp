@@ -132,6 +132,7 @@ class RolController extends Controller
     public function update(UpdateRol $request, $id){
         $rol_Update = Rol::find($id);
         $rol_Update->description = $request->description;
+        $rol_Update->updated_at = \Carbon\Carbon::now();
         $rol_Update->save();
         alert()->success(trans('message.mensajes_alert.rol_update'),trans('message.mensajes_alert.msg_rol_01').$rol_Update->name. trans('message.mensajes_alert.msg_02'));
         return redirect('/rols');

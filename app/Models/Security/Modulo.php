@@ -15,7 +15,7 @@ class Modulo extends Model
 
     protected $fillable = [
         'name',
-        'decription',        
+        'description',        
     ];
 
     /**
@@ -40,6 +40,15 @@ class Modulo extends Model
     */
     public function getModulosList_DataTable(){        
         return DB::table('modulos')->select('id','name','description')->get();
+    }
+
+    public function buscarTablasAsociados($id){        
+        $count_permisos = DB::table('permisos')->where('modulos_id', $id)->count();        
+        if($count_permisos == 0){
+            return false;    
+        }else{
+            return true;
+        }        
     }
 
 }

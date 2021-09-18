@@ -211,5 +211,16 @@ class Permiso extends Model
         }
         return $permisos;
     }
+
+    public function existe_Permiso($modulo_id,$rol_id){
+        $count = DB::table('permisos')
+                    ->where('permisos.rols_id',$rol_id)
+                    ->where('permisos.modulos_id',$modulo_id)->count();
+        if($count == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
     
 }

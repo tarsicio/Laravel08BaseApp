@@ -13,7 +13,25 @@ class CreateRecordPermiso
 {
     public function generarPermisosModuloRol($modulos_id,$rols_id){
         try{
-            \DB::table('permisos')->insert([
+            if($rols_id == 1){
+                \DB::table('permisos')->insert([
+            [
+                'modulos_id' => $modulos_id,                        
+                'rols_id'    => $rols_id,
+                'delete'     => 'ALLOW',
+                'update'     => 'ALLOW',
+                'edit'       => 'ALLOW',
+                'add'        => 'ALLOW',
+                'view'       => 'ALLOW',
+                'print'      => 'ALLOW',
+                'download'   => 'ALLOW',
+                'upload'     => 'ALLOW',
+                'created_at' => \Carbon\Carbon::now(),
+                'updated_at' => \Carbon\Carbon::now(),
+            ],
+        ]);
+            }else{
+                \DB::table('permisos')->insert([
             [
                 'modulos_id' => $modulos_id,                        
                 'rols_id'    => $rols_id,
@@ -29,6 +47,7 @@ class CreateRecordPermiso
                 'updated_at' => \Carbon\Carbon::now(),
             ],
         ]);
+            }            
         }catch(Throwable $e){
             //echo "Captured Throwable: " . $e->getMessage(), "\n";
             return false;

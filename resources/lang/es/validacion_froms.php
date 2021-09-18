@@ -31,4 +31,13 @@ return [
         'description_min' => 'El campo descripción debe tener mínimo 3 caracteres',
         'description_max' => 'El campo descripción debe tener máxino 80 caracteres',        
     ],
+    'modulo' => [
+        'name_required' => 'El campo Nombre es requerido',
+        'name_min' => 'El campo Nombre debe tener mínimo 3 caracteres',
+        'name_max' => 'El campo Nombre debe tener máxino 50 caracteres',
+        'name_unique' => 'El campo Nombre debe ser único, ya esta incluido en base de datos',
+        'description_required' => 'El campo descripción es requerido',
+        'description_min' => 'El campo descripción debe tener mínimo 3 caracteres',
+        'description_max' => 'El campo descripción debe tener máxino 80 caracteres',        
+    ],
 ];
