@@ -31,7 +31,7 @@ class UsersSeeder extends Seeder
                 'confirmation_code' => null,
                 'confirmed_at'      => \Carbon\Carbon::now(),
                 'created_at'        => \Carbon\Carbon::now(),
-                'updated_at'        => \Carbon\Carbon::now(),                
+                'updated_at'        => \Carbon\Carbon::now(),
             ],
             [
                 'rols_id'           => 2,

@@ -15,7 +15,7 @@ class Rol extends Model
 
     protected $fillable = [
         'name',
-        'decription',        
+        'description',        
     ];
 
     /**
@@ -68,5 +68,15 @@ class Rol extends Model
     */
     public function getRolsList_DataTable(){        
         return DB::table('rols')->select('id','name','description')->get();
-    }    
+    }
+
+    public function buscarTablasAsociados($id){
+        $count_users = DB::table('users')->where('rols_id', $id)->count();
+        $count_permisos = DB::table('permisos')->where('rols_id', $id)->count();        
+        if($count_users == 0 && $count_permisos == 0){
+            return false;    
+        }else{
+            return true;
+        }        
+    }  
 } // END CLASS

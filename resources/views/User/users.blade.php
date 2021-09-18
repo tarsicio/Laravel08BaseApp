@@ -28,7 +28,6 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
     <link href="{{ url ('/css_datatable/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url ('/css_datatable/responsive.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url ('/css_datatable/buttons.dataTables.min.css') }}" rel="stylesheet">
-
 @endsection
 
     

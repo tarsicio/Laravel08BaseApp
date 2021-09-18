@@ -7,6 +7,8 @@ namespace App\Http\Controllers\Rol;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Rol\StoreRol;
+use App\Http\Requests\Rol\UpdateRol;
 use App\Models\User\User;
 use App\Models\Security\Modulo;
 use App\Models\Security\Rol;
@@ -69,10 +71,10 @@ class RolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();
+    public function create(){
+        $count_notification = (new User)->count_noficaciones_user();
+        $titulo_modulo = trans('message.rols_action.new_rols');        
+        return view('Rol.rols_create',compact('count_notification','titulo_modulo'));
     }
 
     /**
@@ -81,9 +83,17 @@ class RolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(StoreRol $request){    
+        $count_notification = (new User)->count_noficaciones_user();
+        $rol = new Rol([                            
+                        'name' => strtoupper($request->name),
+                        'description' => $request->description,
+                        'created_at' => \Carbon\Carbon::now(),
+                        'updated_at' => \Carbon\Carbon::now(),
+                    ]);
+        $rol->save();
+        alert()->success(trans('message.mensajes_alert.rol_create'),trans('message.mensajes_alert.msg_rol_01').$rol->name. trans('message.mensajes_alert.msg_03'));
+        return view('Rol.rols',compact('count_notification'));
     }
 
     /**
@@ -92,10 +102,11 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();
+    public function show($id){
+        $rol = Rol::find($id);
+        $count_notification = (new User)->count_noficaciones_user();
+        $titulo_modulo = trans('message.rols_action.show_rols');
+        return view('Rol.rols_show',compact('count_notification','titulo_modulo','rol'));
     }
 
     /**
@@ -104,10 +115,11 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();
+    public function edit($id){
+        $rol = Rol::find($id);
+        $count_notification = (new User)->count_noficaciones_user();
+        $titulo_modulo = trans('message.rols_action.edit_rols');
+        return view('Rol.rols_edit',compact('count_notification','titulo_modulo','rol'));
     }
 
     /**
@@ -117,10 +129,12 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();
+    public function update(UpdateRol $request, $id){
+        $rol_Update = Rol::find($id);
+        $rol_Update->description = $request->description;
+        $rol_Update->save();
+        alert()->success(trans('message.mensajes_alert.rol_update'),trans('message.mensajes_alert.msg_rol_01').$rol_Update->name. trans('message.mensajes_alert.msg_02'));
+        return redirect('/rols');
     }
 
     /**
@@ -129,10 +143,18 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
-        return redirect()->back();
+    public function destroy($id){
+        $rol_Delete = Rol::find($id);        
+        $nombre_rol = $rol_Delete->name;        
+        $no_Asociado = (new Rol)->buscarTablasAsociados($id);
+        //dd($no_Asociado);
+        if(!$no_Asociado){
+            Rol::destroy($id);
+            alert()->success(trans('message.mensajes_alert.rol_delete'),trans('message.mensajes_alert.msg_rol_01').$nombre_rol. trans('message.mensajes_alert.msg_04')); 
+        }else{
+            alert()->error(trans('message.mensajes_alert.rol_no_delete'),trans('message.mensajes_alert.msg_rol_01').$nombre_rol. trans('message.mensajes_alert.msg_no_delete')); 
+        }        
+        return redirect('/rols');
     }
 
     public function rolsPrint(){

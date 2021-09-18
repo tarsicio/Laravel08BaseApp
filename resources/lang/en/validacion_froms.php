@@ -22,4 +22,13 @@ return [
         'end_day_required' => 'The End Date field is required',
         'end_day_after_or_equal' => 'The End Date field cannot be less than the Start Date field',
     ],
+    'rol' => [
+        'name_required' => 'The Name field is required',
+        'name_min' => 'The Name field must have a minimum of 3 characters',
+        'name_max' => 'The Name field must have a maximum of 50 characters',
+        'name_unique' => 'The Name field must be unique, it is already included in the database',
+        'description_required' => 'The Description field is required',
+        'description_min' => 'The Description field must have a minimum of 3 characters',
+        'description_max' => 'The Name field must have a maximum of 80 characters',        
+    ],
 ];

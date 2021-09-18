@@ -201,6 +201,12 @@ return [
         'url_mensaje'         => 'La url fue alterada, los valores no son validos, consulte a su Administrador',
         'sin_interner'        => 'Sin Conexión a Internet',
         'no_guardo'           => 'No se creo el nuevo usuario, verifique su conexión a Internet',
+        'rol_update'         => 'Rol Actualizado',
+        'rol_create'         => 'Rol Creado',
+        'rol_delete'         => 'Rol Eliminado',
+        'msg_rol_01'         => 'El rol ',
+        'msg_no_delete'      => ' no fue eliminado, tiene datos relacionados',
+        'rol_no_delete'      => 'El rol no fue Eliminado',
     ],
     'botones'                 => [
         'delete'              => 'Eliminar',
@@ -239,6 +245,14 @@ return [
         'activo'              => 'CONDICIÓN ACTIVO',
         'fecha_inicio'        => 'FECHA INICIO',
         'fecha_fin'           => 'FECHA FIN',
+    ],
+    'rols_action'            => [
+        'new_rols'            => 'CREAR ROL',
+        'edit_rols'           => 'EDITAR ROL',
+        'update_rols'         => 'ACTUALIZAR ROL',
+        'show_rols'           => 'VISUALIZAR ROL',        
+        'nombre'              => 'NOMBRE ROL',
+        'description'         => 'DESCRIPCIÓN ROLS',
     ],
     'msg_notification'        => [
         'title'               => 'Bienvenido a nuestro sistema base HORUS Venezuela',

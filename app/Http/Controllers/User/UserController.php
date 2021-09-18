@@ -84,7 +84,6 @@ class UserController extends Controller
     }
     
     public function usersPrint(){
-
         //generate some PDFs!
         $html = 'Tarsicio Carrizales telecom.com.ve@gmail.com';
         $dompdf = new DOMPDF();  //if you use namespaces you may use new \DOMPDF()
@@ -101,7 +100,8 @@ class UserController extends Controller
         $user = Auth::user();
         $user_Update = User::find($id);
         $avatar_viejo = $user_Update->avatar; 
-        $this->update_image($request,$avatar_viejo,$user_Update);               
+        $this->update_image($request,$avatar_viejo,$user_Update);
+        $user_Update->updated_at = \Carbon\Carbon::now();
         $user_Update->save();
         alert()->success(trans('message.mensajes_alert.user_update'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_02'));        
         return redirect('/users');
@@ -240,6 +240,7 @@ class UserController extends Controller
         if($id == 1){            
             $user_Update->password = \Hash::make($request->password);
             $this->update_image($request,$avatar_viejo,$user_Update);
+            $user_Update->updated_at = \Carbon\Carbon::now();
             $user_Update->save();
         }else{
             $user_Update->name = $request->name;
@@ -249,6 +250,7 @@ class UserController extends Controller
             $user_Update->init_day = $request->init_day;
             $user_Update->end_day = $request->end_day;
             $this->update_image($request,$avatar_viejo,$user_Update);
+            $user_Update->updated_at = \Carbon\Carbon::now();
             $user_Update->save();
         }
             alert()->success(trans('message.mensajes_alert.user_update'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_02'));

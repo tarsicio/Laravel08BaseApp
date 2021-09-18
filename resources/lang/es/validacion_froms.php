@@ -22,4 +22,13 @@ return [
         'end_day_required' => 'El campo Fecha Fin es requerido',
         'end_day_after_or_equal' => 'El campo Fecha Fin no puede ser menor al campo Fecha inicio',
     ],
+    'rol' => [
+        'name_required' => 'El campo Nombre es requerido',
+        'name_min' => 'El campo Nombre debe tener mínimo 3 caracteres',
+        'name_max' => 'El campo Nombre debe tener máxino 50 caracteres',
+        'name_unique' => 'El campo Nombre debe ser único, ya esta incluido en base de datos',
+        'description_required' => 'El campo descripción es requerido',
+        'description_min' => 'El campo descripción debe tener mínimo 3 caracteres',
+        'description_max' => 'El campo descripción debe tener máxino 80 caracteres',        
+    ],
 ];
