@@ -144,5 +144,4 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
     });    
   });
 </script>
-<script src="{{ url ('/js_delete/delete_confirm.js') }}" type="text/javascript"></script>
 @endsection  

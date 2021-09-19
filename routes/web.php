@@ -105,7 +105,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/permisos/{permiso}/edit','Permiso\PermisoController@edit')
     ->name('permisos.edit')->middleware('permiso:permiso,edit');
-
+// Parte importante para Actualizar los cambios realizados a los permisos .//////////////////
     Route::post('/permisos/{id}/{accion}/{allow_deny}','Permiso\PermisoController@update')
     ->name('permisos.update')->middleware('permiso:permiso,update');
 
@@ -114,7 +114,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/permisos/{modulo_id}/{rol_id}','Permiso\PermisoController@getPermisos')
     ->name('permisos.getPermisos')->middleware('permiso:permiso,view');
-
+// Parte importante para Actualizar los cambios realizados a los permisos .//////////////////
     Route::post('/permisos/{permiso}/delete','Permiso\PermisoController@destroy')
     ->name('permisos.destroy')->middleware('permiso:permiso,delete');
 

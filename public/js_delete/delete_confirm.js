@@ -1,9 +1,11 @@
-function delete_confirm(){
-    console.log('AQUI ESTOY');    
+$(function () {
+    $('.delete-confirm').on('click', function (event) {
+    console.log('TARSICIO');
+    event.preventDefault();
     const url = $(this).attr('href');
     swal({
-        title: 'Esta usted seguro?',
-        text: 'Este registro y sus detalle se borraran permanentemente!',
+        title: 'Are you sure?',
+        text: 'This record and it`s details will be permanantly deleted!',
         icon: 'warning',
         buttons: ["Cancel", "Yes!"],
     }).then(function(value) {
@@ -11,4 +13,5 @@ function delete_confirm(){
             window.location.href = url;
         }
     });
-}    
+});
+});
