@@ -16,6 +16,7 @@ use Dompdf\Dompdf;
 use App\Notifications\WelcomeUser;
 use App\Notifications\RegisterConfirm;
 use App\Notifications\NotificarEventos;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -206,10 +207,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function view($id){
-        $user_View =  (new User)->ver_User($id);
-        //dd($user_View);
+        $user_View =  (new User)->ver_User($id);                
         $count_notification = (new User)->count_noficaciones_user();
-        $titulo_modulo = trans('message.users_action.edit_user');
+        $titulo_modulo = trans('message.users_action.show_user');
         return view('User.show',compact('count_notification','titulo_modulo','user_View'));
     }
 
@@ -221,6 +221,11 @@ class UserController extends Controller
      */
     public function edit($id){
         $user_edit = User::find($id);
+        $init_day = Carbon::parse($user_edit->init_day)->format('m/d/Y');
+        $end_day = Carbon::parse($user_edit->end_day)->format('m/d/Y');
+        $user_edit->init_day = $init_day;
+        $user_edit->end_day = $end_day;
+        //dd($user_edit->end_day);
         $titulo_modulo = trans('message.users_action.edit_user');
         $count_notification = (new User)->count_noficaciones_user();
         $roles = (new Rol)->datos_roles();        

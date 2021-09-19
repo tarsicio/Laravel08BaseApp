@@ -1,17 +1,17 @@
-$(function () {
-    $('.delete-confirm').on('click', function (event) {
-    console.log('TARSICIO');
-    event.preventDefault();
-    const url = $(this).attr('href');
-    swal({
-        title: 'Are you sure?',
-        text: 'This record and it`s details will be permanantly deleted!',
-        icon: 'warning',
-        buttons: ["Cancel", "Yes!"],
-    }).then(function(value) {
-        if (value) {
-            window.location.href = url;
-        }
-    });
-});
-});
+$('.show_confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          event.preventDefault();
+          swal({
+              title: `Are you sure you want to delete this record?`,
+              text: "If you delete this, it will be gone forever.",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      });
