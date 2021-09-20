@@ -65,9 +65,9 @@ class UserController extends Controller
                 })
                 ->addColumn('del', function ($data) {
                     if($data->id == 1){
-                        $del = '<a href="'.route('users.destroy', $data->id).'" id="delete_'.$data->id.'" class="btn btn-xs btn-danger disabled" style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></a>';
+                        $del = '<form method="GET" action="'.route('users.destroy', $data->id).'" accept-charset="UTF-8" id="delete_'.$data->id.'"><button disabled type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;" onclick="return confirm(\'¿Está seguro de eliminar el registro ?\')"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></form>';
                     }else{
-                        $del ='<a href="'.route('users.destroy', $data->id).'" id="delete_'.$data->id.'" class="btn btn-xs btn-danger" style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></a>';
+                        $del='<form method="GET" action="'.route('users.destroy', $data->id).'" accept-charset="UTF-8" id="delete_'.$data->id.'"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;" onclick="return confirm(\'¿Está seguro de eliminar el registro ?\')"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></form>';                        
                     }
                     return $del;
                 })                
@@ -269,8 +269,9 @@ class UserController extends Controller
         *  y eliminamos del Storage/avatars, el archivo indicado.
         */
         if($request->hasFile('avatar')){
-            if($avatar_viejo != 'default.jpg'){
-                unlink(public_path('/storage/avatars/'.$avatar_viejo));
+            $esta = file_exists(public_path('/storage/avatars/'.$avatar_viejo));            
+            if($avatar_viejo != 'default.jpg' && $esta){                
+                unlink(public_path('/storage/avatars/'.$avatar_viejo));               
             }  
             $avatar = $request->file('avatar');          
             $filename = time() . '.' . $avatar->getClientOriginalExtension();            
@@ -289,7 +290,8 @@ class UserController extends Controller
         $user_delete = User::find($id);
         $nombre = $user_delete->name;
         User::destroy($id);
-        if($user_delete->avatar != 'default.jpg'){
+        $esta = file_exists(public_path('/storage/avatars/'.$user_delete->avatar));            
+        if($user_delete->avatar != 'default.jpg' && $esta){                            
             unlink(public_path('/storage/avatars/'.$user_delete->avatar));
         }        
         alert()->success(trans('message.mensajes_alert.user_delete'),trans('message.mensajes_alert.msg_01').$nombre. trans('message.mensajes_alert.msg_04')); 

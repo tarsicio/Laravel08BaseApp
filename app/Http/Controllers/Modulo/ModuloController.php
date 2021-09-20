@@ -46,9 +46,9 @@ class ModuloController extends Controller
                 })
                 ->addColumn('del', function ($data) {                                    
                     if($data->name == 'user' || $data->name == 'notification' || $data->name == 'modulo' || $data->name == 'permiso' || $data->name == 'rol'){
-                        $del = '<a href="'.route('modulos.destroy', $data->id).'" id="delete_'.$data->id.'" class="btn btn-xs btn-danger disabled" style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></a>';
+                        $del ='<form method="GET" action="'.route('modulos.destroy', $data->id).'" accept-charset="UTF-8" id="delete_'.$data->id.'"><button disabled type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;" onclick="return confirm(\'¿Está seguro de eliminar el registro ?\')"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></form>';
                     }else{
-                        $del ='<a href="'.route('modulos.destroy', $data->id).'" id="delete_'.$data->id.'" class="btn btn-xs btn-danger"style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></a>';
+                        $del ='<form method="GET" action="'.route('modulos.destroy', $data->id).'" accept-charset="UTF-8" id="delete_'.$data->id.'"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;" onclick="return confirm(\'¿Está seguro de eliminar el registro ?\')"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></form>';                        
                     }
                     return $del;
                 })                
