@@ -13,6 +13,9 @@
 
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="{{ url ('/css_datatable/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url ('/css_bootstrap/bootstrap-theme.min.css') }}" rel="stylesheet">
+    <link href="{{ url ('/css_datatable/responsive.bootstrap.min.css') }}" rel="stylesheet">
     
 </head>
 

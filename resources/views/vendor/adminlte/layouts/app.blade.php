@@ -60,9 +60,9 @@ desired effect
 @section('scripts')
     @include('adminlte::layouts.partials.scripts')
     <!-- El link_script.blade.php se utiliza para llevar el control con el DataTable-->
-    @include('adminlte::layouts.partials.link_script')    
+    @include('adminlte::layouts.partials.link_script') 
+    @include('sweetalert::alert')   
 @show
 
-@include('sweetalert::alert')
 </body>
 </html>

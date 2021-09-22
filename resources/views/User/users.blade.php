@@ -65,6 +65,7 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 <script src="{{ url ('/js_datatable/dataTables.responsive.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/responsive.bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/dataTables.buttons.min.js') }}" type="text/javascript"></script>
+<script src="{{ url ('/js_delete/sweetalert.min.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
   $(function () {
     

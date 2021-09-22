@@ -64,6 +64,7 @@ class PermisoController extends Controller{
             $existe = (new permiso)->existe_Permiso($modulo->id,$rols_id);
             if(!$existe){
                 $bolean = (new InsertRecord)->generarPermisosModuloRol($modulo->id,$rols_id);
+                toast(trans('message.mensajes_alert.new_permission') .$modulo->name,'success')->timerProgressBar();
             }                
         }                
         return view('Permiso.permisos',
@@ -150,7 +151,7 @@ class PermisoController extends Controller{
      */
     public function update(Request $request, $id,$accion,$allow_deny){        
         if($request->ajax()) {
-            $resultado = (new Permiso)->setUpdatePermiso($id,$accion,$allow_deny);
+            $resultado = (new Permiso)->setUpdatePermiso($id,$accion,$allow_deny);            
             return response()->json($resultado);        
         }
     }
