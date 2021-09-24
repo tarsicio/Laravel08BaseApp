@@ -1,17 +1,19 @@
-$('.show_confirm').click(function(event) {
-          var form =  $(this).closest("form");
-          var name = $(this).data("name");
-          event.preventDefault();
-          swal({
-              title: `Are you sure you want to delete this record?`,
-              text: "If you delete this, it will be gone forever.",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              form.submit();
+function deleteData(link) {
+    swal({
+        icon: 'warning',
+        title: 'Eliminar Registro?',
+        text: 'Realmente desea eliminar este registro',
+        buttons: ["No", "Yes"],
+        dangerMode: true,
+    })
+        .then(isClose => {
+            if (isClose) {
+                window.location = $(link).attr('action');
+            } else {
+                swal("Se cancelo eliminar el registro");
             }
-          });
-      });
+        });
+    }
+    $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+    $("#success-alert").slideUp(500);
+});

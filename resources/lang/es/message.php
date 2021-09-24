@@ -213,6 +213,7 @@ return [
         'msg_modulo_01'       => 'Módulo ',        
         'modulo_no_delete'    => 'El módulo no fue Eliminado',
         'new_permission'      => 'Se crearon permisos para el nuevo módulo: ',
+        'record_delete'       => 'Registro Eliminado Correctamente.',
     ],
     'botones'                 => [
         'delete'              => 'Eliminar',

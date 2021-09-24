@@ -32,7 +32,12 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 
     
 @section('main-content')
-
+@if($eliminado) 
+<div class="alert alert-success alert-dismissable" style="text-align: center;" id="success-alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong >{{ trans('message.mensajes_alert.record_delete') }}</strong>
+</div>
+@endif
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">            
@@ -145,4 +150,5 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
     });    
   });
 </script>
+<script src="{{ url ('/js_delete/delete_confirm.js') }}" type="text/javascript"></script>
 @endsection  

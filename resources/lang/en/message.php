@@ -214,7 +214,8 @@ return [
         'modulo_delete'       => 'Delete module',
         'msg_modulo_01'       => 'the module ',        
         'modulo_no_delete'    => 'El módulo no fue Eliminado',
-        'new_permission'      => 'Permissions were created for the new module: ',      
+        'new_permission'      => 'Permissions were created for the new module: ',
+        'record_delete'       => 'Correct Delete Record.',
     ],
     'botones'                 => [
         'delete'              => 'Delete',

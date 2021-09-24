@@ -26,8 +26,13 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){        
-        $count_notification = (new User)->count_noficaciones_user();        
-        return view('User.users',compact('count_notification'));
+        $count_notification = (new User)->count_noficaciones_user();
+        $eliminado = "";
+        if(session('eliminado') == true){
+            $eliminado = true;
+            session(['eliminado' => false]);
+        }
+        return view('User.users',compact('count_notification','eliminado'));
     }
 
     public function getUsers(Request $request){
@@ -65,10 +70,9 @@ class UserController extends Controller
                 })
                 ->addColumn('del', function ($data) {
                     if($data->id == 1){
-                        $del = '<form method="GET" action="'.route('users.destroy', $data->id).'" accept-charset="UTF-8" id="delete_'.$data->id.'"><button disabled type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;" onclick="return confirm(\'¿Está seguro de eliminar el registro ?\')"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></form>';
+                        $del ='<a href="javascript:void(0)" action="'.route('users.destroy', $data->id).'" onclick="deleteData(this)"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;" disabled><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b>';
                     }else{
-                        //$del ='<a  href="javascript:void(0)" action="'.route('users.destroy', $data->id).'" onclick="deleteData(this)"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b>';
-                        $del='<form method="GET" action="'.route('users.destroy', $data->id).'" accept-charset="UTF-8" id="delete_'.$data->id.'"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;" onclick="return confirm(\'¿Está seguro de eliminar el registro ?\')"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></form>';                        
+                        $del ='<a href="javascript:void(0)" action="'.route('users.destroy', $data->id).'" onclick="deleteData(this)"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b>';
                     }
                     return $del;
                 })                
@@ -294,8 +298,8 @@ class UserController extends Controller
         $esta = file_exists(public_path('/storage/avatars/'.$user_delete->avatar));            
         if($user_delete->avatar != 'default.jpg' && $esta){                            
             unlink(public_path('/storage/avatars/'.$user_delete->avatar));
-        }        
-        alert()->success(trans('message.mensajes_alert.user_delete'),trans('message.mensajes_alert.msg_01').$nombre. trans('message.mensajes_alert.msg_04')); 
+        }  
+        session(['eliminado' => true]);
         return redirect('/users');
     }
 

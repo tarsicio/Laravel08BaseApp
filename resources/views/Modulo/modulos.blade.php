@@ -30,6 +30,29 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 @endsection
     
 @section('main-content')
+@if($tipo_alert == 'Delete') 
+<div class="alert alert-success alert-dismissable" style="text-align: center;" id="success-alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong >{{ trans('message.mensajes_alert.record_delete') }}</strong>
+</div>
+@elseif($tipo_alert == 'Create')
+<div class="alert alert-success alert-dismissable" style="text-align: center;" id="success-alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong >{{ trans('message.mensajes_alert.msg_03') }}</strong>
+</div>
+@elseif($tipo_alert == 'Update')
+<div class="alert alert-success alert-dismissable" style="text-align: center;" id="success-alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong >{{ trans('message.mensajes_alert.msg_02') }}</strong>
+</div>
+@elseif($tipo_alert == 'Delete_02')
+ <div class="alert alert-error alert-dismissable" style="text-align: center;" id="success-alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong >{{ trans('message.mensajes_alert.msg_no_delete') }}</strong>
+</div>
+@else
+ <!-- NO HACE NADA -->
+@endif
 <div class="container-fluid">
 <div class="card" id="mostar_ocultar_permisos">
     <div class="card-body">            
@@ -58,6 +81,7 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 <script src="{{ url ('/js_datatable/dataTables.responsive.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/responsive.bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/dataTables.buttons.min.js') }}" type="text/javascript"></script>
+<script src="{{ url ('/js_delete/sweetalert.min.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
   $(function () {
     
@@ -105,5 +129,6 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
     });    
   });
 </script>
+<script src="{{ url ('/js_delete/delete_confirm.js') }}" type="text/javascript"></script>
 @endsection
 

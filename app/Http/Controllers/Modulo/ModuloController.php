@@ -24,8 +24,21 @@ class ModuloController extends Controller
      */
     public function index()
     {
-        $count_notification = (new User)->count_noficaciones_user();        
-        return view('Modulo.modulos',compact('count_notification'));
+        $count_notification = (new User)->count_noficaciones_user();
+        $tipo_alert = "";
+        if(session('delete') == true){
+            $tipo_alert = "Delete";
+            session(['delete' => false]);
+        }
+        if(session('delete_02') == true){
+            $tipo_alert = "Delete_02";
+            session(['delete_02' => false]);
+        }
+        if(session('update') == true ){
+            $tipo_alert = "Update";
+            session(['update' => false]);
+        }            
+        return view('Modulo.modulos',compact('count_notification','tipo_alert'));
     }
 
     public function getModulos(Request $request){
@@ -46,9 +59,9 @@ class ModuloController extends Controller
                 })
                 ->addColumn('del', function ($data) {                                    
                     if($data->name == 'user' || $data->name == 'notification' || $data->name == 'modulo' || $data->name == 'permiso' || $data->name == 'rol'){
-                        $del ='<form method="GET" action="'.route('modulos.destroy', $data->id).'" accept-charset="UTF-8" id="delete_'.$data->id.'"><button disabled type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;" onclick="return confirm(\'¿Está seguro de eliminar el registro ?\')"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></form>';
+                        $del ='<a href="javascript:void(0)" action="'.route('modulos.destroy', $data->id).'" onclick="deleteData(this)"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;" disabled><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b>';
                     }else{
-                        $del ='<form method="GET" action="'.route('modulos.destroy', $data->id).'" accept-charset="UTF-8" id="delete_'.$data->id.'"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;" onclick="return confirm(\'¿Está seguro de eliminar el registro ?\')"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b></form>';                        
+                        $del ='<a href="javascript:void(0)" action="'.route('modulos.destroy', $data->id).'" onclick="deleteData(this)"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b>';
                     }
                     return $del;
                 })                
@@ -84,9 +97,10 @@ class ModuloController extends Controller
                         'created_at' => \Carbon\Carbon::now(),
                         'updated_at' => \Carbon\Carbon::now(),
                     ]);
-        $modulo->save();
-        alert()->success(trans('message.mensajes_alert.modulo_create'),trans('message.mensajes_alert.msg_modulo_01').$modulo->name. trans('message.mensajes_alert.msg_03'));
-        return view('Modulo.modulos',compact('count_notification'));
+        $modulo->save();        
+        $tipo_alert = "Create";
+        //alert()->success(trans('message.mensajes_alert.modulo_create'),trans('message.mensajes_alert.msg_modulo_01').$modulo->name. trans('message.mensajes_alert.msg_03'));
+        return view('Modulo.modulos',compact('count_notification','tipo_alert'));
     }
 
     /**
@@ -127,7 +141,8 @@ class ModuloController extends Controller
         $modulo_Update->description = $request->description;
         $modulo_Update->updated_at = \Carbon\Carbon::now();
         $modulo_Update->save();
-        alert()->success(trans('message.mensajes_alert.modulo_update'),trans('message.mensajes_alert.msg_modulo_01').$modulo_Update->name. trans('message.mensajes_alert.msg_02'));
+        session(['update' => true]);
+        //alert()->success(trans('message.mensajes_alert.modulo_update'),trans('message.mensajes_alert.msg_modulo_01').$modulo_Update->name. trans('message.mensajes_alert.msg_02'));
         return redirect('/modulos');
     }
 
@@ -144,9 +159,11 @@ class ModuloController extends Controller
         //dd($no_Asociado);
         if(!$no_Asociado){
             Modulo::destroy($id);
-            alert()->success(trans('message.mensajes_alert.modulo_delete'),trans('message.mensajes_alert.msg_modulo_01').$nombre_modulo. trans('message.mensajes_alert.msg_04')); 
+            session(['delete' => true]);
+            //alert()->success(trans('message.mensajes_alert.modulo_delete'),trans('message.mensajes_alert.msg_modulo_01').$nombre_modulo. trans('message.mensajes_alert.msg_04')); 
         }else{
-            alert()->error(trans('message.mensajes_alert.modulo_no_delete'),trans('message.mensajes_alert.msg_modulo_01').$nombre_modulo. trans('message.mensajes_alert.msg_no_delete')); 
+            session(['delete_02' => true]);
+            //alert()->error(trans('message.mensajes_alert.modulo_no_delete'),trans('message.mensajes_alert.msg_modulo_01').$nombre_modulo. trans('message.mensajes_alert.msg_no_delete')); 
         }        
         return redirect('/modulos');
     }
