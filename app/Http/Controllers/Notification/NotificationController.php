@@ -56,7 +56,8 @@ class NotificationController extends Controller
     * Correo: telecom.com.ve@gmail.com
     */
     public function setNotifications($id){                
-        $set_read_at = (new User)->setRead_at($id);            
+        $set_read_at = (new User)->setRead_at($id);
+        toast(trans('message.mensajes_alert.notification_read'),'success')->timerProgressBar();
         return redirect()->back();
     }
     

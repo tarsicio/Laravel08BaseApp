@@ -16,7 +16,7 @@ use App\Models\Security\CreateRecordPermiso AS InsertRecord;
 
 class PermisoController extends Controller{
     /**
-     * Display a listing of the resource.
+     * Display a listintostg of the resource.
      * @author Tarsicio Carrizales telecom.com.ve@gmail.com
      * @return \Illuminate\Http\Response
      */

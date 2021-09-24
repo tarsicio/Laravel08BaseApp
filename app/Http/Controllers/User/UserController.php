@@ -27,12 +27,16 @@ class UserController extends Controller
      */
     public function index(){        
         $count_notification = (new User)->count_noficaciones_user();
-        $eliminado = "";
-        if(session('eliminado') == true){
-            $eliminado = true;
-            session(['eliminado' => false]);
+        $tipo_alert = "";
+        if(session('delete') == true){
+            $tipo_alert = "Delete";
+            session(['delete' => false]);
+        }        
+        if(session('update') == true ){
+            $tipo_alert = "Update";
+            session(['update' => false]);
         }
-        return view('User.users',compact('count_notification','eliminado'));
+        return view('User.users',compact('count_notification','tipo_alert'));
     }
 
     public function getUsers(Request $request){
@@ -97,7 +101,6 @@ class UserController extends Controller
         $dompdf->setPaper('latter', 'portrait');
         $dompdf->render();
         $dompdf->stream("users.pdf", array("Attachment"=>1));        
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
         return redirect()->back();
     }    
 
@@ -109,7 +112,7 @@ class UserController extends Controller
         $this->update_image($request,$avatar_viejo,$user_Update);
         $user_Update->updated_at = \Carbon\Carbon::now();
         $user_Update->save();
-        alert()->success(trans('message.mensajes_alert.user_update'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_02'));        
+        session(['update' => true]);        
         return redirect('/users');
     }
 
@@ -159,8 +162,7 @@ class UserController extends Controller
             $Host="8.8.8.8";
             $ping = exec("ping -c 4 " . $Host, $output, $result);
             //dd($result);
-        }catch(Exception $e){
-            alert()->error(trans('message.mensajes_alert.sin_interner').'TARSICIO', trans('message.mensajes_alert.no_guardo'));
+        }catch(Exception $e){            
             return view('User.users',compact('count_notification'));
         }
         $avatar = '';
@@ -197,12 +199,12 @@ class UserController extends Controller
             $user->notify(new NotificarEventos($notificacion));
             $when = \Carbon\Carbon::now()->addMinutes(1);
             $user->notify((new WelcomeUser)->delay($when));
-            $user->notify((new RegisterConfirm)->delay($when));                        
-            alert()->success(trans('message.mensajes_alert.user_create'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_03'));
-        }else{ 
-            alert()->error(trans('message.mensajes_alert.sin_interner'), trans('message.mensajes_alert.no_guardo'));
+            $user->notify((new RegisterConfirm)->delay($when));
+            $tipo_alert = "Create";            
+        }else{
+            $tipo_alert = "SIN_INTERNET";
         }        
-        return view('User.users',compact('count_notification'));
+        return view('User.users',compact('count_notification','tipo_alert'));
     }        
 
     /**
@@ -265,7 +267,7 @@ class UserController extends Controller
             $user_Update->updated_at = \Carbon\Carbon::now();
             $user_Update->save();
         }
-            alert()->success(trans('message.mensajes_alert.user_update'),trans('message.mensajes_alert.msg_01').$user->name. trans('message.mensajes_alert.msg_02'));
+        session(['update' => true]);            
         return redirect('/users');
     }
 
@@ -299,7 +301,7 @@ class UserController extends Controller
         if($user_delete->avatar != 'default.jpg' && $esta){                            
             unlink(public_path('/storage/avatars/'.$user_delete->avatar));
         }  
-        session(['eliminado' => true]);
+        session(['delete' => true]);
         return redirect('/users');
     }
 

@@ -32,12 +32,9 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 
     
 @section('main-content')
-@if($eliminado) 
-<div class="alert alert-success alert-dismissable" style="text-align: center;" id="success-alert">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong >{{ trans('message.mensajes_alert.record_delete') }}</strong>
-</div>
-@endif
+@component('components.alert_msg',['tipo_alert'=>$tipo_alert])
+ Componentes para los mensajes de Alert, No Eliminar
+@endcomponent
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">            

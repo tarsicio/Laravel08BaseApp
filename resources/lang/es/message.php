@@ -214,6 +214,7 @@ return [
         'modulo_no_delete'    => 'El módulo no fue Eliminado',
         'new_permission'      => 'Se crearon permisos para el nuevo módulo: ',
         'record_delete'       => 'Registro Eliminado Correctamente.',
+        'notification_read'   => 'Notificación leida',
     ],
     'botones'                 => [
         'delete'              => 'Eliminar',

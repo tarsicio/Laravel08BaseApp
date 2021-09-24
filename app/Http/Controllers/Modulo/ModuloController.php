@@ -99,7 +99,6 @@ class ModuloController extends Controller
                     ]);
         $modulo->save();        
         $tipo_alert = "Create";
-        //alert()->success(trans('message.mensajes_alert.modulo_create'),trans('message.mensajes_alert.msg_modulo_01').$modulo->name. trans('message.mensajes_alert.msg_03'));
         return view('Modulo.modulos',compact('count_notification','tipo_alert'));
     }
 
@@ -159,17 +158,15 @@ class ModuloController extends Controller
         //dd($no_Asociado);
         if(!$no_Asociado){
             Modulo::destroy($id);
-            session(['delete' => true]);
-            //alert()->success(trans('message.mensajes_alert.modulo_delete'),trans('message.mensajes_alert.msg_modulo_01').$nombre_modulo. trans('message.mensajes_alert.msg_04')); 
+            session(['delete' => true]);            
         }else{
-            session(['delete_02' => true]);
-            //alert()->error(trans('message.mensajes_alert.modulo_no_delete'),trans('message.mensajes_alert.msg_modulo_01').$nombre_modulo. trans('message.mensajes_alert.msg_no_delete')); 
+            session(['delete_02' => true]);            
         }        
         return redirect('/modulos');
     }
 
     public function modulosPrint(){
-        alert()->warning(trans('message.mensajes_alert.invite_cafe'),trans('message.mensajes_alert.mensaje_invite'));
+        
         return redirect()->back();
     }
 }

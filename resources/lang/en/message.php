@@ -216,6 +216,7 @@ return [
         'modulo_no_delete'    => 'El módulo no fue Eliminado',
         'new_permission'      => 'Permissions were created for the new module: ',
         'record_delete'       => 'Correct Delete Record.',
+        'notification_read'   => 'Read Notification',
     ],
     'botones'                 => [
         'delete'              => 'Delete',

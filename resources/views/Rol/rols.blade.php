@@ -30,6 +30,9 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 @endsection
     
 @section('main-content')
+@component('components.alert_msg',['tipo_alert'=>$tipo_alert])
+ Componentes para los mensajes de Alert, No Eliminar
+@endcomponent
 <div class="container-fluid">
 <div class="card" id="mostar_ocultar_permisos">
     <div class="card-body">            
@@ -58,6 +61,7 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 <script src="{{ url ('/js_datatable/dataTables.responsive.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/responsive.bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/dataTables.buttons.min.js') }}" type="text/javascript"></script>
+<script src="{{ url ('/js_delete/sweetalert.min.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
   $(function () {
     
@@ -105,5 +109,6 @@ Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
     });    
   });
 </script>
+<script src="{{ url ('/js_delete/delete_confirm.js') }}" type="text/javascript"></script>
 @endsection
 
