@@ -60,11 +60,11 @@
                         </div>
                         <div style="text-align:left;">                            
                             {!! Form::label('init_day',trans('message.users_action.fecha_inicio'), ['class' => 'control-label']) !!}                            
-                            {!! Form::text('init_day',$user_View[0]->FECHA_INICIO,['class' => 'form-control','id' => 'init_day','disabled' => true]) !!}                            
+                            {!! Form::date('init_day',$user_View[0]->FECHA_INICIO,['class' => 'form-control','id' => 'init_day','disabled' => true]) !!}                            
                         </div>
                         <div style="text-align:left;">                            
                             {!! Form::label('end_day',trans('message.users_action.fecha_fin'), ['class' => 'control-label']) !!}
-                            {!! Form::text('end_day',$user_View[0]->FECHA_FIN,['class' => 'form-control','id' => 'end_day','disabled' => true]) !!}
+                            {!! Form::date('end_day',$user_View[0]->FECHA_FIN,['class' => 'form-control','id' => 'end_day','disabled' => true]) !!}                            
                         </div>                        
                 </div>                        
                 </div>

@@ -85,14 +85,14 @@
                             @else
                                 {!! Form::select('rols_id', $roles, $user_edit->rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id']) !!}
                             @endif
-                        </div>                        
+                        </div>
                         <div style="text-align:left;">                            
                             @if($user_edit->id == 1)
                                 {!! Form::label('init_day',trans('message.users_action.fecha_inicio'), ['class' => 'control-label']) !!}
-                                {!! Form::date('init_day',$user_edit->init_day,['class' => 'form-control','id' => 'init_day','disabled' => true, 'value' => $user_edit->init_day]) !!}
+                                {!! Form::date('init_day',$user_edit->init_day,['class' => 'form-control','id' => 'init_day','disabled' => true]) !!}
                             @else
-                                {!! Form::label('init_day',trans('message.users_action.fecha_inicio'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>                                 
-                                {!! Form::date('init_day',$user_edit->init_day,['class' => 'form-control','id' => 'init_day','value' => $user_edit->init_day]) !!}
+                                {!! Form::label('init_day',trans('message.users_action.fecha_inicio'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
+                                {!! Form::date('init_day',$user_edit->init_day,['class' => 'form-control','id' => 'init_day']) !!}
                             @endif
                         </div>
                         <div style="text-align:left;">                            
