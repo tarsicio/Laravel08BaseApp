@@ -95,7 +95,11 @@ class UserController extends Controller
     
     public function usersPrint(){
         //generate some PDFs!
-        $html = 'Tarsicio Carrizales telecom.com.ve@gmail.com';
+        $html = '<div style="text-align:center"><h1>(PROYECT / PROYECTO) HORUS VENEZUELA</h1></div>
+        <div style="text-align:center">(Create By / Creado Por) - Tarsicio Carrizales</div>
+        <div style="text-align:center">(Mail / Correo) -  telecom.com.ve@gmail.com</div>
+        <div style="text-align:center">(Contact Cell Phone / Número Movil Contacto) - +58+412-054.53.69</div>
+        <div style="text-align:center">LARAVEL 8, PHP 7.3 DATE: OCT / 2021</div>';
         $dompdf = new DOMPDF();  //if you use namespaces you may use new \DOMPDF()
         $dompdf->loadHtml($html);
         $dompdf->setPaper('latter', 'portrait');
