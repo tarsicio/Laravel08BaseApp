@@ -214,11 +214,13 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function view($id){
-        $user_View =  (new User)->ver_User($id);
-        $init_day = Carbon::parse($user_View[0]->FECHA_INICIO)->format('Y-m-d');
-        $end_day = Carbon::parse($user_View[0]->FECHA_FIN)->format('Y-m-d');
-        $user_View[0]->FECHA_INICIO = $init_day;
-        $user_View[0]->FECHA_FIN = $end_day;                
+        $user_View =  (new User)->ver_User($id);        
+        if($user_View[0]->ID != 1){
+            $init_day = Carbon::parse($user_View[0]->FECHA_INICIO)->format('Y-m-d');
+            $end_day = Carbon::parse($user_View[0]->FECHA_FIN)->format('Y-m-d');
+            $user_View[0]->FECHA_INICIO = $init_day;
+            $user_View[0]->FECHA_FIN = $end_day;
+        }        
         $count_notification = (new User)->count_noficaciones_user();
         $titulo_modulo = trans('message.users_action.show_user');
         return view('User.show',compact('count_notification','titulo_modulo','user_View'));
@@ -231,11 +233,13 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        $user_edit = User::find($id);
-        $init_day = Carbon::parse($user_edit->init_day)->format('Y-m-d');
-        $end_day = Carbon::parse($user_edit->end_day)->format('Y-m-d');
-        $user_edit->init_day = $init_day;
-        $user_edit->end_day = $end_day;        
+        $user_edit = User::find($id);        
+        if($user_edit->id != 1){
+            $init_day = Carbon::parse($user_edit->init_day)->format('Y-m-d');
+            $end_day = Carbon::parse($user_edit->end_day)->format('Y-m-d');
+            $user_edit->init_day = $init_day;
+            $user_edit->end_day = $end_day;        
+        }        
         $titulo_modulo = trans('message.users_action.edit_user');
         $count_notification = (new User)->count_noficaciones_user();
         $roles = (new Rol)->datos_roles();        

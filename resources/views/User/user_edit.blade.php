@@ -88,7 +88,7 @@
                         </div>
                         <div style="text-align:left;">                            
                             @if($user_edit->id == 1)
-                                {!! Form::label('init_day',trans('message.users_action.fecha_inicio'), ['class' => 'control-label']) !!}
+                                {!! Form::label('init_day',trans('message.users_action.fecha_inicio'), ['class' => 'control-label']) !!}                                
                                 {!! Form::date('init_day',$user_edit->init_day,['class' => 'form-control','id' => 'init_day','disabled' => true]) !!}
                             @else
                                 {!! Form::label('init_day',trans('message.users_action.fecha_inicio'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>

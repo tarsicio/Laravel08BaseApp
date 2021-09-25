@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User\User;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 /**
  * Class HomeController
@@ -51,9 +52,17 @@ class HomeController extends Controller
         $confirmation_code = auth()->user()->confirmation_code;
         $confirmed_at = auth()->user()->confirmed_at;         
         $user_deny_allow = auth()->user()->activo;
-        //$fecha_end = date('d-m-Y', strtotime(auth()->user()->end_day));
-        //$now = date('d-m-Y', strtotime(NOW()));        
-        if($user_deny_allow == 'DENY'){
+        $fecha = false;
+        if(auth()->user()->end_day == null && auth()->user()->init_day == null){
+            $fecha = true;
+        }else{            
+            $fecha_actual = date('Y-m-d');            
+            $fecha_end_day = Carbon::parse(auth()->user()->end_day)->format('Y-m-d');            
+            if($fecha_actual <= $fecha_end_day ){
+                $fecha = true;
+            }
+        }
+        if($user_deny_allow == 'DENY' || !$fecha){
             auth()->logout();
             alert()->warning(trans('message.mensajes_alert.denegado'),trans('message.mensajes_alert.mensaje'));
             return redirect('/deny');            
