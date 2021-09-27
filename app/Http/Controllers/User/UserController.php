@@ -74,7 +74,7 @@ class UserController extends Controller
                 })
                 ->addColumn('del', function ($data) {
                     if($data->id == 1){
-                        $del ='<a href="javascript:void(0)" action="'.route('users.destroy', $data->id).'" onclick="deleteData(this)"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;" disabled><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b>';
+                        $del ='<a href="javascript:void(0)" action=""><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;" disabled><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b>';
                     }else{
                         $del ='<a href="javascript:void(0)" action="'.route('users.destroy', $data->id).'" onclick="deleteData(this)"><button type="submit" class="btn btn-danger btn-xs" data-toggle="tooltip" data-title="Eliminar" data-container="body" style="color:black;"><b><i class="fa fa-trash"></i>&nbsp;' .trans('message.botones.delete').'</b>';
                     }
@@ -99,7 +99,7 @@ class UserController extends Controller
         <div style="text-align:center">(Create By / Creado Por) - Tarsicio Carrizales</div>
         <div style="text-align:center">(Mail / Correo) -  telecom.com.ve@gmail.com</div>
         <div style="text-align:center">(Contact Cell Phone / Número Movil Contacto) - +58+412-054.53.69</div>
-        <div style="text-align:center">LARAVEL 8, PHP 7.3 DATE: OCT / 2021</div>';
+        <div style="text-align:center">LARAVEL 8 and PWA, PHP 7.3 DATE: OCT / 2021</div>';
         $dompdf = new DOMPDF();  //if you use namespaces you may use new \DOMPDF()
         $dompdf->loadHtml($html);
         $dompdf->setPaper('latter', 'portrait');

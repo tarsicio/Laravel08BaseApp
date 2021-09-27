@@ -16,7 +16,7 @@
     <link href="{{ url ('/css_datatable/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url ('/css_bootstrap/bootstrap-theme.min.css') }}" rel="stylesheet">
     <link href="{{ url ('/css_datatable/responsive.bootstrap.min.css') }}" rel="stylesheet">
-    @laravelPWA
+    @laravelPWA    
 </head>
 
 <body data-spy="scroll" data-target="#navigation" data-offset="50">

@@ -33,12 +33,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/offline', function () {    
+Route::get('/offline', function () {
     return view('laravelpwa::offline');
 });
 
 /**
- * Se creó un middleware de nombre middleware('permiso:user,view') el cual verifica antes de 
+ * Se creó un middleware('permiso:user,view') el cual verifica antes de 
  * acceder al recurso solicitado si el usuario tiene permiso de ver dicho recurso.
  * Este middleware es parte de la seguridad de la aplicación en conjunto cn los permisos
  * asignados a cada rol. 
@@ -76,7 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users/{user}/delete', 'User\UserController@destroy')->name('users.destroy')->middleware('permiso:user,delete');
     Route::get('/users/list', 'User\UserController@getUsers')->name('users.list')->middleware('permiso:user,view');
     Route::get('/users/profile', 'User\UserController@profile')->name('users.profile');
-    Route::post('/users/profile/{id}', 'User\UserController@update_avatar')->name('users.profile');
+    Route::post('/users/profile/{id}', 'User\UserController@update_avatar')->name('users.profile')->middleware('permiso:user,update');
     Route::get('/users/usuarioRol', 'User\UserController@usuarioRol')->name('users.usuarioRol');
     Route::get('/users/notificationsUser', 'User\UserController@notificationsUser')->name('users.notificationsUser');
     Route::get('/users/print', 'User\UserController@usersPrint')->name('users.usersPrint')->middleware('permiso:user,print');
