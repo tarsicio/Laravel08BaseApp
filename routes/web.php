@@ -5,6 +5,7 @@
 */
 use App\Http\Controllers\NotificarController;
 use Illuminate\Support\Facades\Route;
+use App\Models\User\User;
 //use App\Http\Controllers\User\UserController;
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +34,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/offline', function () {
-    return view('laravelpwa::offline');
-});
-
 /**
  * Se creó un middleware('permiso:user,view') el cual verifica antes de 
  * acceder al recurso solicitado si el usuario tiene permiso de ver dicho recurso.
@@ -49,6 +46,11 @@ Route::get('/offline', function () {
     */
 // *********************************************************************************************************
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/offline', function () {
+        $count_notification = (new User)->count_noficaciones_user();
+        return view('laravelpwa::offline',compact('count_notification'));
+    });
 
     Route::get('/mail', 'Mail\MailController@index')->name('mail.index');
     Route::get('/homework', 'Tarea\TareaController@index')->name('homework.index');

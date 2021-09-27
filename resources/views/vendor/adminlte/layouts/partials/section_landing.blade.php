@@ -17,9 +17,9 @@
 <!-- no borrar la línea </div> de abajo, va con otra div  -->
 </div>
   @include('sweetalert::alert')
-  <script src="{{ url ('/js_datatable/jquery-3.5.1.js') }}" type="text/javascript"></script>
-  <script src="{{ url ('/js_bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
-  <script src="{{ url ('/js_delete/sweetalert.min.js') }}" type="text/javascript"></script>
-  <script src="{{ url ('indexdDB/indexdDB.js') }}" type="text/javascript"></script>
+    <script src="{{ url ('/js_datatable/jquery-3.5.1.js') }}" type="text/javascript"></script>
+    <script src="{{ url ('/js_bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url ('/js_delete/sweetalert.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url ('indexdDB/indexdDB.js') }}" type="text/javascript"></script>
 </body>
 </html>
