@@ -7,6 +7,10 @@
     @laravelPWA
 </head>
 <body>
+  <hr>
+    <div style="text-align: center;">
+        <a href="{{ url('/') }}" id="id_return" class="btn btn-sm btn-primary" style="color:black;" data-toggle="tooltip" title="retornar"><b>Welcome to Internet / Bienvenido a Internet</b></a>
+    </div>
     <div style="text-align:center">
     <h1>{{ trans('message.home.modopwa') }}</h1>
     </div>
