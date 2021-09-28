@@ -30,6 +30,10 @@ Route::get('/check_your_mail', function () {
     return view('adminlte::mail.check_your_mail');
 });
 
+Route::get('/offline', function () {        
+        return view('laravelpwa::offline');
+    });
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -46,11 +50,6 @@ Route::get('/', function () {
     */
 // *********************************************************************************************************
 Route::group(['middleware' => 'auth'], function () {
-
-    Route::get('/offline', function () {
-        $count_notification = (new User)->count_noficaciones_user();
-        return view('laravelpwa::offline',compact('count_notification'));
-    });
 
     Route::get('/mail', 'Mail\MailController@index')->name('mail.index');
     Route::get('/homework', 'Tarea\TareaController@index')->name('homework.index');

@@ -148,9 +148,10 @@ return [
     'home'                    => [
         'sistema'             => 'SISTEMA BASE LARAVEL 8',
         'titulo_01'           => 'Manejo de Usuarios, Roles, Permiso, Notificaciones y Módulos',
-        'titulo_02'           => '100% Funcional y PWA',
+        'titulo_02'           => '100% Funcional y preparada para PWA',
         'realizado'           => 'Realizado por: ',
         'mail'                => 'Correo: ',
+        'modopwa'             => 'Usted esta en modo PWA en este momento',
     ],
     'dashboard_user'          => [
         'user_allow'          => 'Usuarios activos',
@@ -215,6 +216,7 @@ return [
         'new_permission'      => 'Se crearon permisos para el nuevo módulo: ',
         'record_delete'       => 'Registro Eliminado Correctamente.',
         'notification_read'   => 'Notificación leida',
+        'pwa'                 => 'USTED ESTA FUERA DE LÍNEA, SIN INTERNET, PWA',
     ],
     'botones'                 => [
         'delete'              => 'Eliminar',

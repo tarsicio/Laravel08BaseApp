@@ -1,14 +1,14 @@
 var staticCacheName = "pwa-v" + new Date().getTime();
 var filesToCache = [
-    '/',    
+    '/offline',    
     '/css/app.css',
     '/css/bootstrap.min.css',
     '/css/all-landing.css',
     '/css_datatable/bootstrap.min.css',
     '/css_bootstrap/bootstrap-theme.min.css',
-    '/css_datatable/responsive.bootstrap.min.css',
-    '/banderas/es.png',
+    '/css_datatable/responsive.bootstrap.min.css',    
     '/banderas/us.png',
+    '/banderas/es.png',    
     '/intro-img.svg',
     '/js_datatable/jquery-3.5.1.js',
     '/js_bootstrap/bootstrap.min.js',
