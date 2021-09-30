@@ -30,10 +30,6 @@ Route::get('/check_your_mail', function () {
     return view('adminlte::mail.check_your_mail');
 });
 
-Route::get('/offline', function () {        
-        return view('laravelpwa::offline');
-    });
-
 Route::get('/', function () {
     return view('welcome');
 });
