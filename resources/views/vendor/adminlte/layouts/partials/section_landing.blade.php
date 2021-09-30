@@ -1,5 +1,8 @@
 <section id="intro" class="clearfix">
   <div class="container">
+    <div style="float: right;">
+        <img src="{{ url('/images/icons/icon-96x96.png') }}" alt="" class="img-fluid" style="width: 96px; height: 96px;">
+    </div>
     <div style="text-align:center;"><h1>{{ trans('message.home.sistema') }}</h1></div>
     <div style="text-align:center;"><h3>{{ trans('message.home.titulo_01') }}</h3></div>
     <div style="text-align:center;"><h3>{{ trans('message.home.titulo_02') }}</h3></div>

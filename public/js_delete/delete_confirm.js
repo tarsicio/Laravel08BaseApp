@@ -1,7 +1,7 @@
 function deleteData(link) {
     swal({
         icon: 'warning',
-        title: 'Eliminar Registro?',
+        title: '¿Eliminar Registro?',
         text: 'Realmente desea eliminar este registro',
         buttons: ["No", "Yes"],
         dangerMode: true,
