@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+let mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -10,6 +10,15 @@ const { mix } = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+
+ /**
+  * ATENCIÓN:
+  * Antes de Ejecutar este archivo, debe saber que modificará su estructura CSS de Bootstrap 3
+  * por Bootstrap 4, esto cambiará todo el Sitio Web,
+  * Por favor verifique bien antes de ejecutar "<<<< npm run production >>>"
+  * y realice los cambios pertinentes
+  * Att, Tarsicio Carrizales
+  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/app-landing.js', 'public/js/app-landing.js')
@@ -38,8 +47,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .copy('node_modules/icheck/skins/square/blue.png','public/css')
    .copy('node_modules/icheck/skins/square/blue@2x.png','public/css');
 
-if (mix.config.inProduction) {
+if (mix.inProduction) {
   mix.version();
-  mix.minify();
+  //mix.minify(); para realizar el minify, ejecute el cambio correcto
 }
-

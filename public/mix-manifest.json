@@ -9,7 +9,7 @@
     "/js_permiso/view_permisos.js": "/js_permiso/view_permisos.js",
     "/js_permiso/update_permisos.js": "/js_permiso/update_permisos.js",
     "/js_dashboard/graficos_dashboard.js": "/js_dashboard/graficos_dashboard.js",
-    "indexdDB/indexdDB.js": "indexdDB/indexdDB.js",
+    "/indexdDB/indexdDB.js": "/indexdDB/indexdDB.js",
     "/img/app-bg.png": "/img/app-bg.png",
     "/img/arrow1.png": "/img/arrow1.png",
     "/img/arrow2.png": "/img/arrow2.png",
