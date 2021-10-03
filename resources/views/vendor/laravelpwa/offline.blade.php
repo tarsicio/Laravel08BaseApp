@@ -32,6 +32,6 @@
     </section><!-- #intro -->
     <script src="{{ url ('/js_datatable/jquery-3.5.1.js') }}" type="text/javascript"></script>
     <script src="{{ url ('/js_delete/sweetalert.min.js') }}" type="text/javascript"></script>
-    <script src="{{ url (mix('indexdDB/indexdDB.js')) }}" type="text/javascript"></script>    
+    <script src="{{ url (mix('indexdDB/indexdDB.min.js')) }}" type="text/javascript"></script>    
 </body>
 </html>

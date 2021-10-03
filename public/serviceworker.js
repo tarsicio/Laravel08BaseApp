@@ -13,7 +13,7 @@ var filesToCache = [
     '/js_datatable/jquery-3.5.1.js',
     '/js_bootstrap/bootstrap.min.js',
     '/js_delete/sweetalert.min.js',
-    '/indexdDB/indexdDB.js',
+    '/indexdDB/indexdDB.min.js',
     '/manifest.json',
     '/js/app.js',
     '/images/icons/icon-72x72.png',

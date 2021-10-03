@@ -93,5 +93,5 @@
 </div>
 @endsection
 @section('script_datatable')
-    <script src="{{ url (mix('/js_users/js_users.js')) }}" type="text/javascript"></script>
+    <script src="{{ url ('/js_users/js_users.min.js') }}" type="text/javascript"></script>
 @endsection  

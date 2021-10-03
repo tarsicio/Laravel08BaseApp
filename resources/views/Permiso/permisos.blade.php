@@ -90,14 +90,14 @@ Componente, Ventana Modal para Editar los Permisos
 @endsection
 
 @section('script_datatable')
-<script src="{{ url (mix('/js_permiso/control_roles.js')) }}" type="text/javascript"></script>
+<script src="{{ url ('/js_permiso/control_roles.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/jquery.dataTables.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/dataTables.responsive.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/responsive.bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/js_datatable/dataTables.buttons.min.js') }}" type="text/javascript"></script>
-<script src="{{ url (mix('/js_permiso/view_permisos.js')) }}" type="text/javascript"></script>   
-<script src="{{ url (mix('/js_permiso/update_permisos.js')) }}" type="text/javascript"></script>   
+<script src="{{ url ('/js_permiso/view_permisos.min.js') }}" type="text/javascript"></script>   
+<script src="{{ url ('/js_permiso/update_permisos.min.js') }}" type="text/javascript"></script>   
 <script type="text/javascript">
   $(function () {    
     var table = $('.permiso_all').DataTable({

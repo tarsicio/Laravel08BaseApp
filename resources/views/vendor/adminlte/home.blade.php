@@ -55,5 +55,5 @@
 
 @section('script_Chart')
 <script src="{{ url ('/js_Chart/Chart.min.js') }}" type="text/javascript"></script>
-<script src="{{ url (mix('/js_dashboard/graficos_dashboard.js')) }}" type="text/javascript"></script>
+<script src="{{ url ('/js_dashboard/graficos_dashboard.min.js') }}" type="text/javascript"></script>
 @endsection
