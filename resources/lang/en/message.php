@@ -154,7 +154,7 @@ return [
         'titulo_02'           => 'Functional 100% and prepare with PWA',
         'realizado'           => 'Made by:',
         'mail'                => 'EMail: ',
-        'modopwa'             => 'You are in PWA mode at the moment',
+        'modopwa'             => 'You are in PWA mode, without internet connection',
     ],
     'dashboard_user'          => [
         'user_allow'          => 'Allow Users',
