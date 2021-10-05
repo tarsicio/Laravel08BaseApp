@@ -9,7 +9,7 @@
 <body>
   <hr>    
     <div style="text-align: center;">
-        <a href="{{ url('/') }}" id="id_return" class="btn btn-sm btn-primary" style="color:black;" data-toggle="tooltip" title="retornar"><b>Welcome to Internet / Bienvenido a Internet</b></a>
+        <a href="{{ url('/') }}" id="id_return" class="btn btn-sm btn-primary" style="color:black;" data-toggle="tooltip" title="retornar"><b>Go to Internet / Ir a Internet</b></a>
     </div>
     <div style="text-align:center">
     <h1>{{ trans('message.home.modopwa') }}</h1>
@@ -32,6 +32,6 @@
     </section><!-- #intro -->
     <script src="{{ url ('/js_datatable/jquery-3.5.1.js') }}" type="text/javascript"></script>
     <script src="{{ url ('/js_delete/sweetalert.min.js') }}" type="text/javascript"></script>
-    <script src="{{ url (mix('indexdDB/indexdDB.min.js')) }}" type="text/javascript"></script>    
+    <script src="{{ url ('/indexdDB/indexdDB.min.js') }}" type="text/javascript"></script>    
 </body>
 </html>
