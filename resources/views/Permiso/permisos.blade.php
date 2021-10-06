@@ -36,7 +36,7 @@
                         {!! Form::select('name', $roles, $rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id']) !!}                                            
                         </div>
                         <hr>
-                        {!! Form::submit(trans('message.mensajes_alert.submit_01'),['class'=> 'form-control btn btn-primary','title' => trans('message.tooltip.procesa_rol'),'data-toggle' => 'tooltip']) !!}
+                        {!! Form::submit(trans('message.mensajes_alert.submit_01'),['class'=> 'form-control btn btn-primary','title' => trans('message.tooltip.procesa_rol'),'data-toggle' => 'tooltip','style' => 'background-color: #5333ed']) !!}
                     </div>                
                 {!!  Form::close() !!}                
             </div>

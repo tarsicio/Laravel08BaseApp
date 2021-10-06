@@ -48,7 +48,7 @@
                     </div>                            
                 </div>        
                 <hr>
-                        {!! Form::submit(trans('message.rols_action.new_rols'),['class'=> 'form-control btn btn-primary','title' => trans('message.rols_action.new_rols'),'data-toggle' => 'tooltip']) !!}                     
+                        {!! Form::submit(trans('message.rols_action.new_rols'),['class'=> 'form-control btn btn-primary','title' => trans('message.rols_action.new_rols'),'data-toggle' => 'tooltip','style' => 'background-color: #5333ed']) !!}                     
                 </div>      
                 {!!  Form::close() !!}
             </div>             

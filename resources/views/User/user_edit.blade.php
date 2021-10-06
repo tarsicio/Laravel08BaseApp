@@ -106,7 +106,7 @@
                         </div>                        
                 </div>        
                 <hr>
-                        {!! Form::submit(trans('message.users_action.update_user'),['class'=> 'form-control btn btn-primary','title' => trans('message.users_action.update_user'),'data-toggle' => 'tooltip']) !!}                     
+                        {!! Form::submit(trans('message.users_action.update_user'),['class'=> 'form-control btn btn-primary','title' => trans('message.users_action.update_user'),'data-toggle' => 'tooltip','style' => 'background-color: #5333ed']) !!}                     
                 </div>
                 <input type="hidden" name="id_user" value="{{$user_edit->id}}">
                 {!!  Form::close() !!}

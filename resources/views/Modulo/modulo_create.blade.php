@@ -48,7 +48,7 @@
                     </div>                            
                 </div>        
                 <hr>
-                        {!! Form::submit(trans('message.modulo_action.new_modulo'),['class'=> 'form-control btn btn-primary','title' => trans('message.modulo_action.new_modulo'),'data-toggle' => 'tooltip']) !!}                     
+                        {!! Form::submit(trans('message.modulo_action.new_modulo'),['class'=> 'form-control btn btn-primary','title' => trans('message.modulo_action.new_modulo'),'data-toggle' => 'tooltip','style' => 'background-color: #5333ed']) !!}                     
                 </div>      
                 {!!  Form::close() !!}
             </div>             

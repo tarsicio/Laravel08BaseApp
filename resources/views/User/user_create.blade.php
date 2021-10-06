@@ -84,7 +84,7 @@
                         </div>                        
                 </div>        
                 <hr>
-                        {!! Form::submit(trans('message.users_action.new_user'),['class'=> 'form-control btn btn-primary','title' => trans('message.users_action.new_user'),'data-toggle' => 'tooltip']) !!}                     
+                        {!! Form::submit(trans('message.users_action.new_user'),['class'=> 'form-control btn btn-primary','title' => trans('message.users_action.new_user'),'data-toggle' => 'tooltip','style' => 'background-color: #5333ed']) !!}                     
                 </div>      
                 {!!  Form::close() !!}
             </div>             

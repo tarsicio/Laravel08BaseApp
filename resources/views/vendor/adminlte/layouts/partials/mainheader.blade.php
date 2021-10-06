@@ -2,17 +2,17 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{ url('/') }}" class="logo">
+    <a style="background-color: #5333ed;" href="{{ url('/') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>HORUS</b></span>
+        <span style="background-color: #5333ed;" class="logo-mini"><b>HORUS</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>{{ trans('message.home_1') }}</b></span>
+        <span style="background-color: #5333ed;" class="logo-lg"><b>{{ trans('message.home_1') }}</b></span>
     </a>
 
     <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
+    <nav class="navbar navbar-static-top" role="navigation" style="background-color: #5333ed;">
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <a  style="background-color: #5333ed;" href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">{{ trans('message.togglenav') }}</span>
         </a>
         <!-- Navbar Right Menu -->
@@ -127,7 +127,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
-                            <li class="user-header">
+                            <li class="user-header" style="background-color: #5333ed;">
                               <!--  <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image" /> -->
                                 @if (Auth::user()->avatar == 'default.jpg' || is_null(Auth::user()->avatar))
                                     <img src="{{ url('/storage/avatars/default.jpg') }}" class="img-circle" alt="User Image"/>

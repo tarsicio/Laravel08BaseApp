@@ -1,1 +1,1 @@
-<a href="{{$ruta}}" id="id_return" class="btn btn-sm btn-primary" style="color:black;" data-toggle="tooltip" title="retornar"><b>BACK / RETORNAR</b></a>
+<a  style="background-color: #5333ed;" href="{{$ruta}}" id="id_return" class="btn btn-sm btn-primary" style="color:black;" data-toggle="tooltip" title="retornar"><b>BACK / RETORNAR</b></a>

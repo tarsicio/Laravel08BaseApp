@@ -85,14 +85,14 @@ class PermisoController extends Controller{
                 ->addColumn('edit', function ($data) {
                     $rols_id = Auth::user()->rols_id;                    
                     if(session('rols_id') == 1){
-                        $edit ='<a href="" id="edit_'.$data->id.'" class=" editar_permiso btn btn-xs btn-warning disabled" style="color:black;" data-toggle="modal" data-backdrop="static" data-target="#edit_permisos" onclick="update_permisos('.$data->id.')"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                        $edit ='<a href="" id="edit_'.$data->id.'" class=" editar_permiso btn btn-xs btn-primary disabled" style="background-color: #2962ff;" data-toggle="modal" data-backdrop="static" data-target="#edit_permisos" onclick="update_permisos('.$data->id.')"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
                     }else{
-                        $edit ='<a href="" id="edit_'.$data->id.'" class=" editar_permiso btn btn-xs btn-warning" style="color:black;" data-toggle="modal" data-backdrop="static" data-target="#edit_permisos" onclick="update_permisos('.$data->id.')"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
+                        $edit ='<a href="" id="edit_'.$data->id.'" class=" editar_permiso btn btn-xs btn-primary" style="background-color: #2962ff;" data-toggle="modal" data-backdrop="static" data-target="#edit_permisos" onclick="update_permisos('.$data->id.')"><b><i class="fa fa-pencil"></i>&nbsp;' .trans('message.botones.edit').'</b></a>';
                     }
                     return $edit;
                 })
                 ->addColumn('view', function ($data) {
-                    return '<a href="" id="view_'.$data->id.'" class="ver_permiso btn btn-xs btn-primary" style="color:black;" data-toggle="modal" data-backdrop="static" data-target="#view_permisos" onclick="mostrar_permisos('.$data->id.')"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
+                    return '<a href="" id="view_'.$data->id.'" class="ver_permiso btn btn-xs btn-primary" style="background-color: #5333ed;" data-toggle="modal" data-backdrop="static" data-target="#view_permisos" onclick="mostrar_permisos('.$data->id.')"><b><i class="fa fa-eye"></i>&nbsp;' .trans('message.botones.view').'</b></a>';
                 })
                 ->rawColumns(['edit','view'])->toJson();
             }
