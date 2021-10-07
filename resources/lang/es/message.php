@@ -217,6 +217,7 @@ return [
         'record_delete'       => 'Registro Eliminado Correctamente.',
         'notification_read'   => 'Notificación leida',
         'pwa'                 => 'USTED ESTA FUERA DE LÍNEA, SIN INTERNET, PWA',
+        'mit'                 => 'Bajo licencia MIT',
     ],
     'botones'                 => [
         'delete'              => 'Eliminar',

@@ -219,6 +219,7 @@ return [
         'record_delete'       => 'Correct Delete Record.',
         'notification_read'   => 'Read Notification',
         'pwa'                 => 'Usted esta fuera de linea sin Internet, PWA',
+        'mit'                 => 'Under license MIT',
     ],
     'botones'                 => [
         'delete'              => 'Delete',
