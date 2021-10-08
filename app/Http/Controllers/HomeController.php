@@ -12,6 +12,7 @@ use App\Models\User\User;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Http\Controllers\User\Colores;
 
 /**
  * Class HomeController
@@ -38,7 +39,14 @@ class HomeController extends Controller
         $confirmation_code = auth()->user()->confirmation_code;
         $confirmed_at = auth()->user()->confirmed_at;        
         session(['menu_color' => auth()->user()->colores['menu']]);
-        session(['encabezado_color' => auth()->user()->colores['encabezado_principal']]);        
+        session(['encabezado_color' => auth()->user()->colores['encabezado']]);
+        session(['group_button_color' => auth()->user()->colores['group_button']]);
+        session(['back_button_color' => auth()->user()->colores['back_button']]);
+        session(['process_button_color' => auth()->user()->colores['process_button']]);
+        session(['create_button_color' => auth()->user()->colores['create_button']]);
+        session(['update_button_color' => auth()->user()->colores['update_button']]);
+        session(['edit_button_color' => auth()->user()->colores['edit_button']]);
+        session(['view_button_color' => auth()->user()->colores['view_button']]);
         if(is_null($confirmation_code) && isset($confirmed_at)){            
             return redirect('/dashboard');
         }else{
@@ -73,10 +81,9 @@ class HomeController extends Controller
             $user_total_activos = (new User)->userTotalActivo();
             $total_roles = (new User)->totalRoles();
             $user_total_Deny = (new User)->userTotalDeny();
-            $menu_color = session('menu_color');
-            $encabezado_color = session('encabezado_color');
+            $array_color = (new Colores)->getColores();            
             return view('adminlte::home',compact('count_notification','user_total_activos',
-                                                  'total_roles','user_total_Deny','menu_color','encabezado_color'));
+                                                  'total_roles','user_total_Deny','array_color'));
         }else{
             auth()->logout();
             alert()->info(trans('message.mensajes_alert.view_mail'),trans('message.mensajes_alert.view_mail_02'));

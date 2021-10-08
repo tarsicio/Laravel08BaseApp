@@ -260,8 +260,8 @@ return [
         'fecha_inicio'        => 'INIT DATE',
         'fecha_fin'           => 'END DATE',
         'cambiar_colores'     => 'COLORS CHANGE',
-        'color_menu'          => 'MENU COLOR',
-        'color_encabezado'    => 'HEARD COLOR',
+        'color_menu'          => 'COLOR MENU ',
+        'color_encabezado'    => ' COLOR HEARD',
     ],
     'rols_action'             => [
         'new_rols'            => 'ROL CREATE',

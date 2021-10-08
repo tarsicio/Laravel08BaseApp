@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Rol\StoreRol;
 use App\Http\Requests\Rol\UpdateRol;
 use App\Models\User\User;
+use App\Http\Controllers\User\Colores;
 use App\Models\Security\Modulo;
 use App\Models\Security\Rol;
 use App\Models\Security\Permiso;
@@ -38,9 +39,8 @@ class RolController extends Controller
             $tipo_alert = "Update";
             session(['update' => false]);
         }
-        $menu_color = session('menu_color');
-        $encabezado_color = session('encabezado_color');
-        return view('Rol.rols',compact('count_notification','tipo_alert','menu_color','encabezado_color'));
+        $array_color = (new Colores)->getColores();
+        return view('Rol.rols',compact('count_notification','tipo_alert','array_color'));
     }
 
     /**
@@ -89,9 +89,8 @@ class RolController extends Controller
     public function create(){
         $count_notification = (new User)->count_noficaciones_user();
         $titulo_modulo = trans('message.rols_action.new_rols');
-        $menu_color = session('menu_color');
-        $encabezado_color = session('encabezado_color');        
-        return view('Rol.rols_create',compact('count_notification','titulo_modulo','menu_color','encabezado_color'));
+        $array_color = (new Colores)->getColores();        
+        return view('Rol.rols_create',compact('count_notification','titulo_modulo','array_color'));
     }
 
     /**
@@ -110,9 +109,8 @@ class RolController extends Controller
                     ]);
         $rol->save();
         $tipo_alert = "Create";
-        $menu_color = session('menu_color');
-        $encabezado_color = session('encabezado_color');               
-        return view('Rol.rols',compact('count_notification','tipo_alert','menu_color','encabezado_color'));
+        $array_color = (new Colores)->getColores();               
+        return view('Rol.rols',compact('count_notification','tipo_alert','array_color'));
     }
 
     /**
@@ -125,9 +123,8 @@ class RolController extends Controller
         $rol = Rol::find($id);
         $count_notification = (new User)->count_noficaciones_user();
         $titulo_modulo = trans('message.rols_action.show_rols');
-        $menu_color = session('menu_color');
-        $encabezado_color = session('encabezado_color');               
-        return view('Rol.rols_show',compact('count_notification','titulo_modulo','rol','menu_color','encabezado_color'));
+        $array_color = (new Colores)->getColores();               
+        return view('Rol.rols_show',compact('count_notification','titulo_modulo','rol','array_color'));
     }
 
     /**
@@ -140,9 +137,8 @@ class RolController extends Controller
         $rol = Rol::find($id);
         $count_notification = (new User)->count_noficaciones_user();
         $titulo_modulo = trans('message.rols_action.edit_rols');
-        $menu_color = session('menu_color');
-        $encabezado_color = session('encabezado_color');               
-        return view('Rol.rols_edit',compact('count_notification','titulo_modulo','rol','menu_color','encabezado_color'));
+        $array_color = (new Colores)->getColores();               
+        return view('Rol.rols_edit',compact('count_notification','titulo_modulo','rol','array_color'));
     }
 
     /**

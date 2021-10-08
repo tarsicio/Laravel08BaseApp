@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Modulo\StoreModulo;
 use App\Http\Requests\Modulo\UpdateModulo;
 use App\Models\User\User;
+use App\Http\Controllers\User\Colores;
 use App\Models\Security\Modulo;
 use App\Models\Security\Rol;
 use App\Models\Security\Permiso;
@@ -38,9 +39,8 @@ class ModuloController extends Controller
             $tipo_alert = "Update";
             session(['update' => false]);
         }
-        $menu_color = session('menu_color');
-        $encabezado_color = session('encabezado_color');
-        return view('Modulo.modulos',compact('count_notification','tipo_alert','menu_color','encabezado_color'));
+        $array_color = (new Colores)->getColores();
+        return view('Modulo.modulos',compact('count_notification','tipo_alert','array_color'));
     }
 
     public function getModulos(Request $request){
@@ -82,9 +82,8 @@ class ModuloController extends Controller
     public function create(){
         $count_notification = (new User)->count_noficaciones_user();
         $titulo_modulo = trans('message.modulo_action.new_modulo');
-        $menu_color = session('menu_color');
-        $encabezado_color = session('encabezado_color');
-        return view('Modulo.modulo_create',compact('count_notification','titulo_modulo','menu_color','encabezado_color'));
+        $array_color = (new Colores)->getColores();
+        return view('Modulo.modulo_create',compact('count_notification','titulo_modulo','array_color'));
     }
 
     /**
@@ -103,9 +102,8 @@ class ModuloController extends Controller
                     ]);
         $modulo->save();        
         $tipo_alert = "Create";
-        $menu_color = session('menu_color');
-        $encabezado_color = session('encabezado_color');
-        return view('Modulo.modulos',compact('count_notification','tipo_alert','menu_color','encabezado_color'));
+        $array_color = (new Colores)->getColores();
+        return view('Modulo.modulos',compact('count_notification','tipo_alert','array_color'));
     }
 
     /**
@@ -118,9 +116,8 @@ class ModuloController extends Controller
         $modulo = Modulo::find($id);
         $count_notification = (new User)->count_noficaciones_user();
         $titulo_modulo = trans('message.modulo_action.show_modulo');
-        $menu_color = session('menu_color');
-        $encabezado_color = session('encabezado_color');
-        return view('Modulo.modulo_show',compact('count_notification','titulo_modulo','modulo','menu_color','encabezado_color'));
+        $array_color = (new Colores)->getColores();
+        return view('Modulo.modulo_show',compact('count_notification','titulo_modulo','modulo','array_color'));
     }
 
     /**
@@ -133,9 +130,8 @@ class ModuloController extends Controller
         $modulo = Modulo::find($id);
         $count_notification = (new User)->count_noficaciones_user();
         $titulo_modulo = trans('message.modulo_action.edit_modulo');
-        $menu_color = session('menu_color');
-        $encabezado_color = session('encabezado_color');
-        return view('Modulo.modulo_edit',compact('count_notification','titulo_modulo','modulo','menu_color','encabezado_color'));
+        $array_color = (new Colores)->getColores();
+        return view('Modulo.modulo_edit',compact('count_notification','titulo_modulo','modulo','array_color'));
     }
 
     /**

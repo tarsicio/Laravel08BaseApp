@@ -1,5 +1,5 @@
 <!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar" style="background-color: {{$menu_color}};">
+<aside class="main-sidebar" style="background-color: {{$array_color['menu_color']}};">
 
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">

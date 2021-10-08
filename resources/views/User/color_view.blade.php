@@ -31,11 +31,12 @@
                 <div class="col-lg-6 col-xs-6">                    
                         <div style="text-align:left;">
                             {!! Form::label('menu',trans('message.users_action.color_menu'), ['class' => 'control-label']) !!}
-                            {!! Form::color('menu_user',$color_menu,['class' => 'form-control','id' => 'menu_user']) !!}
+                            
+                            {!! Form::color('menu_user',$colores['menu'],['class' => 'form-control','id' => 'menu_user', 'value' => $colores['menu']]) !!}
                         </div>                        
                         <div style="text-align:left;">
                             {!! Form::label('encabezado',trans('message.users_action.color_encabezado'), ['class' => 'control-label']) !!}
-                            {!! Form::color('encabezado_user',$color_encabezado,['class' => 'form-control','id' => 'encabezado_user']) !!}
+                            {!! Form::color('encabezado_user',$colores['encabezado'],['class' => 'form-control','id' => 'encabezado_user', 'value' => $colores['encabezado']]) !!}
                         </div>
                 </div>        
                 <hr>

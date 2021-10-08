@@ -8,6 +8,7 @@ namespace App\Http\Controllers\Permiso;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User\User;
+use App\Http\Controllers\User\Colores;
 use App\Models\Security\Modulo;
 use App\Models\Security\Rol;
 use App\Models\Security\Permiso;
@@ -67,11 +68,10 @@ class PermisoController extends Controller{
                 toast(trans('message.mensajes_alert.new_permission') .$modulo->name,'success')->timerProgressBar();
             }                
         }
-        $menu_color = session('menu_color');
-        $encabezado_color = session('encabezado_color');                              
+        $array_color = (new Colores)->getColores();                              
         return view('Permiso.permisos',
             compact('count_notification','permisos',
-                    'roles','nombre_rol','rols_id','menu_color','encabezado_color'));        
+                    'roles','nombre_rol','rols_id','array_color'));        
     }
 
     /**
