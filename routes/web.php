@@ -77,6 +77,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users/usuarioRol', 'User\UserController@usuarioRol')->name('users.usuarioRol');
     Route::get('/users/notificationsUser', 'User\UserController@notificationsUser')->name('users.notificationsUser');
     Route::get('/users/print', 'User\UserController@usersPrint')->name('users.usersPrint')->middleware('permiso:user,print');
+    Route::get('/users/color_view', 'User\UserController@colorView')->name('users.colorView');
+    Route::get('/users/color_change', 'User\UserController@colorChange')->name('users.colorChange');
     /*
     * Fin de las Rutas de Usuarios, para todas las operaciones
     */

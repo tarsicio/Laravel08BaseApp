@@ -1,5 +1,5 @@
 <!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar" style="background-color: #0B0E66;">
+<aside class="main-sidebar" style="background-color: {{$menu_color}};">
 
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -50,6 +50,7 @@
                     <li><a href="{{ url('/permisos') }}">{{ trans('message.menu_permiso') }}</a></li>
                 </ul>
             </li>
+            <li><a href="{{ url('/users/color_view') }}"><i class='fa fa-link'></i> <span>{{ trans('message.menu_color') }}</span></a></li>
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

@@ -66,10 +66,12 @@ class PermisoController extends Controller{
                 $bolean = (new InsertRecord)->generarPermisosModuloRol($modulo->id,$rols_id);
                 toast(trans('message.mensajes_alert.new_permission') .$modulo->name,'success')->timerProgressBar();
             }                
-        }                
+        }
+        $menu_color = session('menu_color');
+        $encabezado_color = session('encabezado_color');                              
         return view('Permiso.permisos',
             compact('count_notification','permisos',
-                    'roles','nombre_rol','rols_id'));        
+                    'roles','nombre_rol','rols_id','menu_color','encabezado_color'));        
     }
 
     /**

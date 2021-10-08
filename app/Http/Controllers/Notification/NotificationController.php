@@ -23,8 +23,10 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $count_notification = (new User)->count_noficaciones_user();        
-        return view('Notificacion.notificaciones',compact('count_notification'));
+        $count_notification = (new User)->count_noficaciones_user();
+        $menu_color = session('menu_color');
+        $encabezado_color = session('encabezado_color');
+        return view('Notificacion.notificaciones',compact('count_notification','menu_color','encabezado_color'));
     }
 
     public function getNotifications(Request $request){        

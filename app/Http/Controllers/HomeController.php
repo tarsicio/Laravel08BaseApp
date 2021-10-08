@@ -36,7 +36,9 @@ class HomeController extends Controller
      */
     public function index(){
         $confirmation_code = auth()->user()->confirmation_code;
-        $confirmed_at = auth()->user()->confirmed_at;
+        $confirmed_at = auth()->user()->confirmed_at;        
+        session(['menu_color' => auth()->user()->colores['menu']]);
+        session(['encabezado_color' => auth()->user()->colores['encabezado_principal']]);        
         if(is_null($confirmation_code) && isset($confirmed_at)){            
             return redirect('/dashboard');
         }else{
@@ -70,9 +72,11 @@ class HomeController extends Controller
             $count_notification = (new User)->count_noficaciones_user();
             $user_total_activos = (new User)->userTotalActivo();
             $total_roles = (new User)->totalRoles();
-            $user_total_Deny = (new User)->userTotalDeny();            
+            $user_total_Deny = (new User)->userTotalDeny();
+            $menu_color = session('menu_color');
+            $encabezado_color = session('encabezado_color');
             return view('adminlte::home',compact('count_notification','user_total_activos',
-                                                  'total_roles','user_total_Deny'));
+                                                  'total_roles','user_total_Deny','menu_color','encabezado_color'));
         }else{
             auth()->logout();
             alert()->info(trans('message.mensajes_alert.view_mail'),trans('message.mensajes_alert.view_mail_02'));

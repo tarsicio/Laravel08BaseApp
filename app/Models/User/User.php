@@ -32,7 +32,8 @@ class User extends Authenticatable
         'init_day',
         'end_day',
         'confirmation_code',
-        'confirmed_at',  
+        'confirmed_at',
+        'colores',  
     ];
 
     /**
@@ -52,6 +53,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'colores' => 'json',
     ];
 
     /**

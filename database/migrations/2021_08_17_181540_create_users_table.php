@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('confirmation_code')->nullable();
             $table->dateTime('confirmed_at')->nullable();
+            $table->json('colores')->nullable();
             $table->timestamps();
             $table->foreign('rols_id')->references('id')->on('rols');
         });

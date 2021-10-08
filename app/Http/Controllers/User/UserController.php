@@ -36,7 +36,9 @@ class UserController extends Controller
             $tipo_alert = "Update";
             session(['update' => false]);
         }
-        return view('User.users',compact('count_notification','tipo_alert'));
+        $menu_color = session('menu_color');
+        $encabezado_color = session('encabezado_color');
+        return view('User.users',compact('count_notification','tipo_alert','menu_color','encabezado_color'));
     }
 
     public function getUsers(Request $request){
@@ -89,8 +91,10 @@ class UserController extends Controller
 
     public function profile(){
         $count_notification = (new User)->count_noficaciones_user();
-        $user = Auth::user();        
-        return view('User.profile',compact('count_notification','user'));
+        $user = Auth::user();
+        $menu_color = session('menu_color');
+        $encabezado_color = session('encabezado_color');
+        return view('User.profile',compact('count_notification','user','menu_color','encabezado_color'));
     }
     
     public function usersPrint(){
@@ -128,8 +132,10 @@ class UserController extends Controller
     public function create(){
         $titulo_modulo = trans('message.users_action.new_user');
         $count_notification = (new User)->count_noficaciones_user();
-        $roles = (new Rol)->datos_roles();        
-        return view('User.user_create',compact('count_notification','titulo_modulo','roles'));        
+        $roles = (new Rol)->datos_roles();
+        $menu_color = session('menu_color');
+        $encabezado_color = session('encabezado_color');        
+        return view('User.user_create',compact('count_notification','titulo_modulo','roles','menu_color','encabezado_color'));        
     }
 
     /**
@@ -192,8 +198,10 @@ class UserController extends Controller
             $tipo_alert = "Create";            
         }else{
             $tipo_alert = "SIN_INTERNET";
-        }        
-        return view('User.users',compact('count_notification','tipo_alert'));
+        }
+        $menu_color = session('menu_color');
+        $encabezado_color = session('encabezado_color');        
+        return view('User.users',compact('count_notification','tipo_alert','menu_color','encabezado_color'));
     }        
 
     /**
@@ -212,7 +220,9 @@ class UserController extends Controller
         }        
         $count_notification = (new User)->count_noficaciones_user();
         $titulo_modulo = trans('message.users_action.show_user');
-        return view('User.show',compact('count_notification','titulo_modulo','user_View'));
+        $menu_color = session('menu_color');
+        $encabezado_color = session('encabezado_color');        
+        return view('User.show',compact('count_notification','titulo_modulo','user_View','menu_color','encabezado_color'));
     }
 
     /**
@@ -231,8 +241,10 @@ class UserController extends Controller
         }        
         $titulo_modulo = trans('message.users_action.edit_user');
         $count_notification = (new User)->count_noficaciones_user();
-        $roles = (new Rol)->datos_roles();        
-        return view('User.user_edit',compact('count_notification','titulo_modulo','roles','user_edit'));
+        $roles = (new Rol)->datos_roles();
+        $menu_color = session('menu_color');
+        $encabezado_color = session('encabezado_color');                
+        return view('User.user_edit',compact('count_notification','titulo_modulo','roles','user_edit','menu_color','encabezado_color'));
     }
 
     /**
@@ -313,6 +325,29 @@ class UserController extends Controller
         $countNotificationsUsers = (new User)->count_User_notifications();        
         return response()->json($countNotificationsUsers);
       }
+    }
+
+    public function colorView(){
+        $titulo_modulo = trans('message.users_action.cambiar_colores');
+        $count_notification = (new User)->count_noficaciones_user();
+        $menu_color = session('menu_color');
+        $encabezado_color = session('encabezado_color');
+        $color_menu = auth()->user()->colores['menu'];
+        $color_encabezado = auth()->user()->colores['encabezado_principal'];
+        return view('User.color_view',compact('count_notification','titulo_modulo','menu_color','encabezado_color','color_menu','color_encabezado'));
+    }
+
+    public function colorChange(Request $request){
+        if($request->encabezado_user != null && $request->menu_user != null){
+            $id = auth()->user()->id;            
+            $user = User::find($id);            
+            $json = '{"encabezado_principal":"'.$request->encabezado_user.';","menu":"'.$request->menu_user.';"}';            
+            $user->colores = json_decode($json, true);          
+            $user->save();
+            session(['menu_color' => $request->menu_user]);
+            session(['encabezado_color' => $request->encabezado_user]);
+        }        
+        return redirect('/dashboard');    
     }
 
 } // Fin de la clase UserController.

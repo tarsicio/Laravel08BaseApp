@@ -146,6 +146,7 @@ return [
     'menu_modulo'             => 'Modules',
     'menu_permiso'            => 'Permissions',
     'menu_notificaciones'     => 'Notifications',
+    'menu_color'              => 'Color Change',
     'count_users_rol'         => 'TOTAL USERS BY ROLE',
     'countUsersNotifications' => 'TOTAL NOTIFICATIONS BY USERS',
     'home'                    => [
@@ -258,6 +259,9 @@ return [
         'activo'              => 'ACTIVE CONDITION',
         'fecha_inicio'        => 'INIT DATE',
         'fecha_fin'           => 'END DATE',
+        'cambiar_colores'     => 'COLORS CHANGE',
+        'color_menu'          => 'MENU COLOR',
+        'color_encabezado'    => 'HEARD COLOR',
     ],
     'rols_action'             => [
         'new_rols'            => 'ROL CREATE',

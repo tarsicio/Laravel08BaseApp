@@ -143,6 +143,7 @@ return [
     'menu_modulo'             => 'Módulos',
     'menu_permiso'            => 'Permisos',
     'menu_notificaciones'     => 'Notificaciones',
+    'menu_color'              => 'Cambiar Color',
     'count_users_rol'         => 'TOTAL DE USUARIOS POR ROL',
     'countUsersNotifications' => 'TOTAL DE NOTIFICACIONES POR USUARIOS',
     'home'                    => [
@@ -256,6 +257,9 @@ return [
         'activo'              => 'CONDICIÓN ACTIVO',
         'fecha_inicio'        => 'FECHA INICIO',
         'fecha_fin'           => 'FECHA FIN',
+        'cambiar_colores'     => 'CAMBIAR COLORES',
+        'color_menu'          => 'COLOR MENU',
+        'color_encabezado'    => 'COLOR ENCABEZADO',
     ],
     'rols_action'             => [
         'new_rols'            => 'CREAR ROL',
