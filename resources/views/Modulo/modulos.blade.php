@@ -17,7 +17,8 @@
                                 'route_print' => route('modulos.modulosPrint'),
                                 'route_download' => route('modulos.modulosPrint'),
                                 'route_upload' => route('modulos.modulosPrint'),
-                                'tooltip' => trans('message.tooltip.new_module')])
+                                'tooltip' => trans('message.tooltip.new_module'),
+                                'color' => $array_color['group_button_color']])
 Componentes para los Módulos del Sistema, (New,Print,Download and Upload)
 @endcomponent
 @endsection

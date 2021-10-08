@@ -17,6 +17,7 @@ class button extends Component{
     public string $route_download;
     public string $route_upload;
     public string $tooltip;
+    public string $color;
 
     /**
      * Create a new component instance.
@@ -25,7 +26,7 @@ class button extends Component{
      */
     public function __construct(string $titulo_modulo, string $router_modulo_create, string $id_new_modulo, 
                                 string $boton_crear, string $route_print, string $route_download, 
-                                string $route_upload, string $tooltip)
+                                string $route_upload, string $tooltip,string $color)
     {
         $this->titulo_modulo = $titulo_modulo;
         $this->$router_modulo_create = $router_modulo_create;
@@ -35,6 +36,7 @@ class button extends Component{
         $this->route_download = $route_download;
         $this->route_upload = $route_upload;
         $this->tooltip = $tooltip;
+        $this->ruta = $color;
     }
 
     /**

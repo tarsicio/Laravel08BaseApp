@@ -27,7 +27,7 @@
                             <label>{{ trans('message.update_profile') }}</label>
                             <input type="file" name="avatar" id="avatar_user">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input  style="background-color: #5333ed;" type="submit" class="pull-right btn btn-sm btn-primary">
+                            <input  style="background-color: {{$array_color['group_button_color']}};" type="submit" class="pull-right btn btn-sm btn-primary">
                         </form>
                     </div>
                 </div>

@@ -43,7 +43,7 @@ class UserController extends Controller
 
     public function getUsers(Request $request){
         try{
-            if ($request->ajax()) {
+            if ($request->ajax()) {                
                 $data =  (new User)->getUsersList_DataTable();                
                 return datatables()->of($data)
                 ->editColumn('activo', function($data){
@@ -326,24 +326,36 @@ class UserController extends Controller
         $titulo_modulo = trans('message.users_action.cambiar_colores');
         $count_notification = (new User)->count_noficaciones_user();
         $array_color = (new Colores)->getColores();
-        $id = auth()->user()->id;            
-        $user = User::find($id);            
-        $colores = $user->colores;            
-        return view('User.color_view',compact('count_notification','titulo_modulo','array_color','colores'));
+        return view('User.color_view',compact('count_notification','titulo_modulo','array_color'));
     }
 
     public function colorChange(Request $request){
-        if($request->encabezado_user != null && $request->menu_user != null){
-            $id = auth()->user()->id;            
-            $user = User::find($id);            
-            $colores = $user->colores;            
-            $colores['encabezado'] = $request->encabezado_user;            
+        $id = auth()->user()->id;            
+        $user = User::find($id);            
+        $colores = $user->colores;            
+        if($request->dafault_color_01 == 'NO'){            
+            $colores['encabezado'] = $request->encabezado_user;
             $colores['menu'] = $request->menu_user;
+            $colores['group_button'] = $request->group_button;
+            $colores['back_button'] = $request->back_button;                        
             $user->colores = $colores;            
             $user->save();
             session(['menu_color' => $request->menu_user]);
             session(['encabezado_color' => $request->encabezado_user]);
-        }        
+            session(['group_button_color' => $request->group_button]);
+            session(['back_button_color' => $request->back_button]);            
+        }else{            
+            $colores['encabezado'] = '#5333ed';
+            $colores['menu'] = '#0B0E66';
+            $colores['group_button'] = '#5333ed';
+            $colores['back_button'] = '#5333ed';                        
+            $user->colores = $colores;            
+            $user->save();
+            session(['menu_color' => '#0B0E66']);
+            session(['encabezado_color' => '#5333ed']);
+            session(['group_button_color' => '#5333ed']);
+            session(['back_button_color' => '#5333ed']);            
+        }
         return redirect('/dashboard');    
     }
 

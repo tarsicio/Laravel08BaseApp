@@ -11,7 +11,7 @@
 @section('contentheader_title')
 <div>
     <h2 class="mb-4">{{ $titulo_modulo}}</h2>
-    @component('components.boton_back',['ruta' => route('modulos.index') ])
+    @component('components.boton_back',['ruta' => route('modulos.index'),'color' => $array_color['back_button_color']])
         Botón de retorno
     @endcomponent   
 </div>

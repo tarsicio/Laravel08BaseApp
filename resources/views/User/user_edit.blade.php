@@ -11,7 +11,7 @@
 @section('contentheader_title')
 <div>
     <h2 class="mb-4">{{ $titulo_modulo}}</h2>
-    @component('components.boton_back',['ruta' => route('users.index') ])
+    @component('components.boton_back',['ruta' => route('users.index'),'color' => $array_color['back_button_color']])
         Botón de retorno
     @endcomponent   
 </div>
@@ -106,7 +106,7 @@
                         </div>                        
                 </div>        
                 <hr>
-                        {!! Form::submit(trans('message.users_action.update_user'),['class'=> 'form-control btn btn-primary','title' => trans('message.users_action.update_user'),'data-toggle' => 'tooltip','style' => 'background-color: #5333ed']) !!}                     
+                        {!! Form::submit(trans('message.users_action.update_user'),['class'=> 'form-control btn btn-primary','title' => trans('message.users_action.update_user'),'data-toggle' => 'tooltip','style' => 'background-color:'.$array_color['group_button_color'].';']) !!}                     
                 </div>
                 <input type="hidden" name="id_user" value="{{$user_edit->id}}">
                 {!!  Form::close() !!}

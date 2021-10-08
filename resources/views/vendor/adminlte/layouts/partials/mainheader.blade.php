@@ -2,17 +2,17 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a style="background-color: {{$array_color['encabezado_color']}}" href="{{ url('/') }}" class="logo">
+    <a style="background-color: {{$array_color['encabezado_color']}};" href="{{ url('/') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span style="background-color: {{$array_color['encabezado_color']}}" class="logo-mini"><b>HORUS</b></span>
+        <span style="background-color: {{$array_color['encabezado_color']}};" class="logo-mini"><b>HORUS</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span style="background-color: {{$array_color['encabezado_color']}}" class="logo-lg"><b>{{ trans('message.home_1') }}</b></span>
+        <span style="background-color: {{$array_color['encabezado_color']}};" class="logo-lg"><b>{{ trans('message.home_1') }}</b></span>
     </a>
 
     <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation" style="background-color: {{$array_color['encabezado_color']}}">
+    <nav class="navbar navbar-static-top" role="navigation" style="background-color: {{$array_color['encabezado_color']}};">
         <!-- Sidebar toggle button-->
-        <a  style="background-color: {{$array_color['encabezado_color']}}" href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <a  style="background-color: {{$array_color['encabezado_color']}};" href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             <span class="sr-only">{{ trans('message.togglenav') }}</span>
         </a>
         <!-- Navbar Right Menu -->
@@ -127,7 +127,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
-                            <li class="user-header" style="background-color: {{$array_color['encabezado_color']}}">
+                            <li class="user-header" style="background-color: {{$array_color['encabezado_color']}};">
                               <!--  <img src="{{ Gravatar::get($user->email) }}" class="img-circle" alt="User Image" /> -->
                                 @if (Auth::user()->avatar == 'default.jpg' || is_null(Auth::user()->avatar))
                                     <img src="{{ url('/storage/avatars/default.jpg') }}" class="img-circle" alt="User Image"/>

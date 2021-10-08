@@ -7,14 +7,16 @@ use Illuminate\View\Component;
 class Boton_Back extends Component
 {
     public string $ruta;
+    public string $color;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $ruta)
+    public function __construct(string $ruta,string $color)
     {
-        $this->ruta = $ruta;    
+        $this->ruta = $ruta;
+        $this->ruta = $color;
     }
 
     /**
