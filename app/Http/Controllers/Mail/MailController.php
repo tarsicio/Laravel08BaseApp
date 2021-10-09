@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User\User;
 use Auth;
 use Dompdf\Dompdf;
+use App\Http\Controllers\User\Colores;
 
 class MailController extends Controller
 {
@@ -17,8 +18,9 @@ class MailController extends Controller
      */
     public function index()
     {
-        $count_notification = (new User)->count_noficaciones_user();        
-        return view('Correo.correos',compact('count_notification'));
+        $count_notification = (new User)->count_noficaciones_user();
+        $array_color = (new Colores)->getColores();        
+        return view('Correo.correos',compact('count_notification','array_color'));
     }
 
     public function getMail(Request $request){

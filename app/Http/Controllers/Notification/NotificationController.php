@@ -13,6 +13,7 @@ use App\Models\Security\Rol;
 use App\Models\Security\Permiso;
 use Auth;
 use App\Notifications\NotificarEventos;
+use App\Http\Controllers\User\Colores;
 
 class NotificationController extends Controller
 {
@@ -24,9 +25,8 @@ class NotificationController extends Controller
     public function index()
     {
         $count_notification = (new User)->count_noficaciones_user();
-        $menu_color = session('menu_color');
-        $encabezado_color = session('encabezado_color');
-        return view('Notificacion.notificaciones',compact('count_notification','menu_color','encabezado_color'));
+        $array_color = (new Colores)->getColores();
+        return view('Notificacion.notificaciones',compact('count_notification','array_color'));
     }
 
     public function getNotifications(Request $request){        
