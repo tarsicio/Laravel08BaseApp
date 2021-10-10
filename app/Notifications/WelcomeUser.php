@@ -46,7 +46,8 @@ class WelcomeUser extends Notification implements ShouldQueue
                     ->line('Bienvenido a HORUS Venezuela,')
                     ->line('Esperamos que sea de su agrado la presente aplicación')
                     ->line('y que pueda ahorrar tiempo en su trabajo de desarrollo.')
-                    ->line('Gracias por utilizar la aplicación HORUS');
+                    ->line('Gracias por utilizar la aplicación HORUS')
+                    ->line('Att, Tarsicio Carrizales telecom.com.ve@gmail.com');
     }   
 
     /**

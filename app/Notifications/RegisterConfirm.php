@@ -45,7 +45,8 @@ class RegisterConfirm extends Notification implements ShouldQueue
                     ->line('Estimado(a). '.$notifiable->name)
                     ->line('Bienvenido a HORUS Venezuela,')
                     ->action('Confirme para culminar el registro',url('register/confirm/'.$notifiable->confirmation_code))
-                    ->line('Gracias por utilizar la aplicación HORUS');
+                    ->line('Gracias por utilizar la aplicación HORUS')
+                    ->line('Att, Tarsicio Carrizales telecom.com.ve@gmail.com');
     }   
 
     /**
