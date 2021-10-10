@@ -84,6 +84,17 @@ class RegisterController extends Controller{
             'confirmation_code' => \Str::random(25),
             'init_day'          => \Carbon\Carbon::now(),
             'end_day'           => \Carbon\Carbon::now()->addMonth(6),
+            'colores'           => array(
+                                        'encabezado'=>'#5333ed',
+                                        'menu'=>'#0B0E66',
+                                        'group_button'=>'#5333ed',
+                                        'back_button'=>'#5333ed',
+                                        'process_button'=>'#5333ed',
+                                        'create_button'=>'#5333ed',
+                                        'update_button'=>'#5333ed',
+                                        'edit_button'=>'#2962ff',
+                                        'view_button'=>'#5333ed'
+                                    ),
         ];
         if (config('auth.providers.users.field', 'email') === 'username' && isset($data['username'])) {
             $fields['username'] = $data['username'];
@@ -105,14 +116,29 @@ class RegisterController extends Controller{
      * @param $confirmation_code
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function confirm($confirmation_code){       
-        $user = User::where('confirmation_code', $confirmation_code)->firstOrFail();
-        $user->confirmation_code = null;
-        $user->confirmed_at = now();
-        $user->activo = 'ALLOW';
-        $user->save();
-        $this->guard()->login($user);
-
+    public function confirm($confirmation_code){
+        try{
+            $user = User::where('confirmation_code', $confirmation_code)->firstOrFail();            
+            $user->confirmation_code = null;
+            $user->confirmed_at = now();
+            $user->activo = 'ALLOW';
+            $colores = $user->colores;
+            $user->save();
+            $this->guard()->login($user);
+            session(['menu_color' => $colores['menu']]);
+            session(['encabezado_color' => $colores['encabezado']]);
+            session(['group_button_color' => $colores['group_button']]);
+            session(['back_button_color' => $colores['back_button']]);
+            session(['process_button_color' => $colores['process_button']]);
+            session(['create_button_color' => $colores['create_button']]);
+            session(['update_button_color' => $colores['update_button']]);
+            session(['edit_button_color' => $colores['edit_button']]);
+            session(['view_button_color' => $colores['view_button']]);
+        }catch(Exception $e){
+            return redirect('/');    
+        }catch(Throwable $e){
+            return redirect('/');
+        }               
         return redirect('/dashboard');
     }
 }

@@ -150,13 +150,15 @@ class UserController extends Controller
          * no se se podrá guarda el nuevo usuario
          */        
         // Target URL
+        $array_color = (new Colores)->getColores();
         try{
             $count_notification = (new User)->count_noficaciones_user();            
             $Host="8.8.8.8";
             $ping = exec("ping -c 4 " . $Host, $output, $result);
             //dd($result);
-        }catch(Exception $e){            
-            return view('User.users',compact('count_notification'));
+        }catch(Exception $e){
+            $tipo_alert = "SIN_INTERNET";          
+            return view('User.users',compact('count_notification','tipo_alert','array_color'));
         }
         $avatar = '';
         $filename = '';        
@@ -169,7 +171,7 @@ class UserController extends Controller
                 \Image::make($avatar)->resize(300, 300)
                 ->save( public_path('/storage/avatars/' . $filename ) );            
                 $avatar = $filename;
-            }
+            }            
             $user = new User([
                             'avatar' => $avatar,
                             'name' => $request->name,
@@ -178,12 +180,23 @@ class UserController extends Controller
                             'activo' => $request->activo,
                             'rols_id' => $request->rols_id,
                             'init_day' => $request->init_day,
-                            'end_day' => $request->end_day,
+                            'end_day' => $request->end_day,                            
                             'confirmation_code' => \Str::random(25),
                             'remember_token' => \Str::random(100),
+                            'colores' => array(
+                                            'encabezado'=>'#5333ed',
+                                            'menu'=>'#0B0E66',
+                                            'group_button'=>'#5333ed',
+                                            'back_button'=>'#5333ed',
+                                            'process_button'=>'#5333ed',
+                                            'create_button'=>'#5333ed',
+                                            'update_button'=>'#5333ed',
+                                            'edit_button'=>'#2962ff',
+                                            'view_button'=>'#5333ed'
+                                        ),
                             'created_at' => \Carbon\Carbon::now(),
                             'updated_at' => \Carbon\Carbon::now(),
-                            ]);
+            ]);
             $user->save();            
             $notificacion = [
                 'title' => trans('message.msg_notification.title'),
@@ -196,8 +209,7 @@ class UserController extends Controller
             $tipo_alert = "Create";            
         }else{
             $tipo_alert = "SIN_INTERNET";
-        }
-        $array_color = (new Colores)->getColores();        
+        }        
         return view('User.users',compact('count_notification','tipo_alert','array_color',));
     }        
 
