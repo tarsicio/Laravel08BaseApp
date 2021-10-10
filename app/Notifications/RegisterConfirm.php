@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class RegisterConfirm extends Notification
+class RegisterConfirm extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -40,10 +40,12 @@ class RegisterConfirm extends Notification
      */
     public function toMail($notifiable)
     {        
-        return (new MailMessage)                    
+        return (new MailMessage)
+                    ->subject('Confirme el registro de HORUS')
                     ->line('Estimado(a). '.$notifiable->name)
                     ->line('Bienvenido a HORUS Venezuela,')
-                    ->action('Confirme para culminar el registro',url('register/confirm/'.$notifiable->confirmation_code));
+                    ->action('Confirme para culminar el registro',url('register/confirm/'.$notifiable->confirmation_code))
+                    ->line('Gracias por utilizar la aplicación HORUS');
     }   
 
     /**

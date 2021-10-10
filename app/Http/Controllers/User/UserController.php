@@ -144,72 +144,65 @@ class UserController extends Controller
      */
     public function store(StoreUser $request){
         /**
-         * Verificamos que el servidor este conectado a internet
-         * para que pueda enviar los correo y notificaciones de 
-         * bienvenida, y no nos de error. si no tiene conexión a Internet
-         * no se se podrá guarda el nuevo usuario
-         */        
+         * Recuerde de Activar la cola de trabajo con
+         * php artisan queue:work database --tries=3 --backoff=10
+         * o instalar en su servidor linux (Debian ó Ubuntu) el supervisor de la siguiente manera
+         * sudo apt-get install supervisor
+         * Si no realiza ninguna configuración todos los trabajos se iran guardando en la 
+         * tabla jobs, y una vez configure, los trabajos en cola se iran ejecutando
+         * Si se ejecuta algún error estos se guardan en la tabla failed_jobs.
+         * Debe realizar configuraciones adicionales,
+         * busque información en Internet para culminar la configuracion.
+         * https://laravel.com/docs/8.x/queues#supervisor-configuration
+         */
         // Target URL
-        $array_color = (new Colores)->getColores();
-        try{
-            $count_notification = (new User)->count_noficaciones_user();            
-            $Host="8.8.8.8";
-            $ping = exec("ping -c 4 " . $Host, $output, $result);
-            //dd($result);
-        }catch(Exception $e){
-            $tipo_alert = "SIN_INTERNET";          
-            return view('User.users',compact('count_notification','tipo_alert','array_color'));
-        }
+        $array_color = (new Colores)->getColores();        
+        $count_notification = (new User)->count_noficaciones_user();            
         $avatar = '';
-        $filename = '';        
-        if($result == 0){
-            if(!$request->hasFile('avatar')){        
-                $avatar = 'default.jpg';
-            }else{            
-                $avatar = $request->file('avatar');            
-                $filename = time() . '.' . $avatar->getClientOriginalExtension();            
-                \Image::make($avatar)->resize(300, 300)
-                ->save( public_path('/storage/avatars/' . $filename ) );            
-                $avatar = $filename;
-            }            
-            $user = new User([
-                            'avatar' => $avatar,
-                            'name' => $request->name,
-                            'email' => $request->email,                        
-                            'password' => \Hash::make($request->password),
-                            'activo' => $request->activo,
-                            'rols_id' => $request->rols_id,
-                            'init_day' => $request->init_day,
-                            'end_day' => $request->end_day,                            
-                            'confirmation_code' => \Str::random(25),
-                            'remember_token' => \Str::random(100),
-                            'colores' => array(
-                                            'encabezado'=>'#5333ed',
-                                            'menu'=>'#0B0E66',
-                                            'group_button'=>'#5333ed',
-                                            'back_button'=>'#5333ed',
-                                            'process_button'=>'#5333ed',
-                                            'create_button'=>'#5333ed',
-                                            'update_button'=>'#5333ed',
-                                            'edit_button'=>'#2962ff',
-                                            'view_button'=>'#5333ed'
-                                        ),
-                            'created_at' => \Carbon\Carbon::now(),
-                            'updated_at' => \Carbon\Carbon::now(),
-            ]);
-            $user->save();            
-            $notificacion = [
-                'title' => trans('message.msg_notification.title'),
-                'body' => trans('message.msg_notification.body')
-            ]; 
-            $user->notify(new NotificarEventos($notificacion));
-            $when = \Carbon\Carbon::now()->addMinutes(1);
-            $user->notify((new WelcomeUser)->delay($when));
-            $user->notify((new RegisterConfirm)->delay($when));
-            $tipo_alert = "Create";            
-        }else{
-            $tipo_alert = "SIN_INTERNET";
-        }        
+        $filename = '';                
+        if(!$request->hasFile('avatar')){        
+            $avatar = 'default.jpg';
+        }else{            
+            $avatar = $request->file('avatar');            
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();            
+            \Image::make($avatar)->resize(300, 300)
+            ->save( public_path('/storage/avatars/' . $filename ) );            
+            $avatar = $filename;
+        }            
+        $user = new User([
+            'avatar' => $avatar,
+            'name' => $request->name,
+            'email' => $request->email,                        
+            'password' => \Hash::make($request->password),
+            'activo' => $request->activo,
+            'rols_id' => $request->rols_id,
+            'init_day' => $request->init_day,
+            'end_day' => $request->end_day,                            
+            'confirmation_code' => \Str::random(25),
+            'remember_token' => \Str::random(100),
+            'colores' => array(
+                            'encabezado'=>'#5333ed',
+                            'menu'=>'#0B0E66',
+                            'group_button'=>'#5333ed',
+                            'back_button'=>'#5333ed',
+                            'process_button'=>'#5333ed',
+                            'create_button'=>'#5333ed',
+                            'update_button'=>'#5333ed',
+                            'edit_button'=>'#2962ff',
+                            'view_button'=>'#5333ed'
+                        ),
+                'created_at' => \Carbon\Carbon::now(),
+                'updated_at' => \Carbon\Carbon::now(),
+        ]);
+        $user->save();            
+        $notificacion = [
+            'title' => trans('message.msg_notification.title'),
+            'body' => trans('message.msg_notification.body')
+        ]; 
+        $user->notify(new NotificarEventos($notificacion));            
+        $user->notify((new WelcomeUser));
+        $user->notify((new RegisterConfirm));
+        $tipo_alert = "Create";                    
         return view('User.users',compact('count_notification','tipo_alert','array_color',));
     }        
 

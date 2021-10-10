@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class WelcomeUser extends Notification
+class WelcomeUser extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -40,11 +40,13 @@ class WelcomeUser extends Notification
      */
     public function toMail($notifiable)
     {        
-        return (new MailMessage)                    
+        return (new MailMessage)
+                    ->subject('Mensaje de Bienvenida HORUS')                    
                     ->line('Estimado(a). '.$notifiable->name)
                     ->line('Bienvenido a HORUS Venezuela,')
-                    ->line('Esperamos que sea de su agrado el apoyo que le ofrecemos y le brindamos')
-                    ->line('Gracias por preferirnos, hora de registro: '. now());                    
+                    ->line('Esperamos que sea de su agrado la presente aplicación')
+                    ->line('y que pueda ahorrar tiempo en su trabajo de desarrollo.')
+                    ->line('Gracias por utilizar la aplicación HORUS');
     }   
 
     /**
