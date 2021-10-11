@@ -38,19 +38,19 @@
                         </div>
                         <div class="id_colores" style="text-align:left; display:block;">
                             {!! Form::label('menu',trans('message.users_action.color_menu'), ['class' => 'control-label']) !!}
-                            {!! Form::text('menu_user',$array_color['menu_color'],['class' => 'form-control colorpicker','id' => 'menu_user', 'value' => $array_color['menu_color']]) !!}
+                            {!! Form::text('menu_user',$array_color['menu_color'],['class' => 'form-control colorpicker','id' => 'menu_user', 'value' => $array_color['menu_color'],'style' => 'background-color:'.$array_color['menu_color']]) !!}                            
                         </div>                        
                         <div class="id_colores" style="text-align:left; display:block;">
                             {!! Form::label('encabezado',trans('message.users_action.color_encabezado'), ['class' => 'control-label']) !!}
-                            {!! Form::text('encabezado_user',$array_color['encabezado_color'],['class' => 'form-control colorpicker','id' => 'encabezado_user', 'value' => $array_color['encabezado_color']]) !!}
+                            {!! Form::text('encabezado_user',$array_color['encabezado_color'],['class' => 'form-control colorpicker','id' => 'encabezado_user', 'value' => $array_color['encabezado_color'],'style' => 'background-color:'.$array_color['encabezado_color']]) !!}
                         </div>
                         <div class="id_colores" style="text-align:left; display:block;">
                             {!! Form::label('group','GROUP BUTTON / GRUPO DE BOTONES', ['class' => 'control-label']) !!}
-                            {!! Form::text('group_button',$array_color['group_button_color'],['class' => 'form-control colorpicker','id' => 'group_button', 'value' => $array_color['group_button_color']]) !!}
+                            {!! Form::text('group_button',$array_color['group_button_color'],['class' => 'form-control colorpicker','id' => 'group_button', 'value' => $array_color['group_button_color'],'style' => 'background-color:'.$array_color['group_button_color']]) !!}
                         </div>
                         <div class="id_colores" style="text-align:left; display:block;">
                             {!! Form::label('back','BACK / RETORNAR', ['class' => 'control-label']) !!}
-                            {!! Form::text('back_button',$array_color['back_button_color'],['class' => 'form-control colorpicker','id' => 'back_button', 'value' => $array_color['back_button_color']]) !!}
+                            {!! Form::text('back_button',$array_color['back_button_color'],['class' => 'form-control colorpicker','id' => 'back_button', 'value' => $array_color['back_button_color'],'style' => 'background-color:'.$array_color['back_button_color']]) !!}
                         </div>                        
                 </div>
                 <div class="col-lg-6 col-xs-6">                    
@@ -78,6 +78,27 @@
         });
         $('#NO').click(function () {          
           $('.id_colores').show();
+        });
+        //Al cambiar
+        $(document).on('change','#menu_user', function (e) {
+            var color = $('#menu_user').val();
+            var background_color = "background-color:" + color + ";";
+            $('#menu_user').attr('style',background_color);
+        });
+        $(document).on('change','#encabezado_user', function (e) {
+            var color = $('#encabezado_user').val();
+            var background_color = "background-color:" + color + ";";
+            $('#encabezado_user').attr('style',background_color);
+        });
+        $(document).on('change','#group_button', function (e) {
+            var color = $('#group_button').val();
+            var background_color = "background-color:" + color + ";";
+            $('#group_button').attr('style',background_color);
+        });
+        $(document).on('change','#back_button', function (e) {
+            var color = $('#back_button').val();
+            var background_color = "background-color:" + color + ";";
+            $('#back_button').attr('style',background_color);
         });
     });
 </script>
