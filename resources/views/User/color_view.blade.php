@@ -14,10 +14,12 @@
     @component('components.boton_back',['ruta' => route('dashboard.dashboard'),'color' => $array_color['back_button_color']])
         Botón de retorno
     @endcomponent   
-</div>
-    
-@endsection
+</div>    
 
+@endsection
+@section('link_css_datatable')
+    <link href="{{ url ('/css_bootstrap/bootstrap-colorpicker.min.css') }}" rel="stylesheet">    
+@endsection
     
 @section('main-content')
 
@@ -36,22 +38,22 @@
                         </div>
                         <div class="id_colores" style="text-align:left; display:block;">
                             {!! Form::label('menu',trans('message.users_action.color_menu'), ['class' => 'control-label']) !!}
-                            {!! Form::color('menu_user',$array_color['menu_color'],['class' => 'form-control','id' => 'menu_user', 'value' => $array_color['menu_color']]) !!}
+                            {!! Form::text('menu_user',$array_color['menu_color'],['class' => 'form-control colorpicker','id' => 'menu_user', 'value' => $array_color['menu_color']]) !!}
                         </div>                        
                         <div class="id_colores" style="text-align:left; display:block;">
                             {!! Form::label('encabezado',trans('message.users_action.color_encabezado'), ['class' => 'control-label']) !!}
-                            {!! Form::color('encabezado_user',$array_color['encabezado_color'],['class' => 'form-control','id' => 'encabezado_user', 'value' => $array_color['encabezado_color']]) !!}
+                            {!! Form::text('encabezado_user',$array_color['encabezado_color'],['class' => 'form-control colorpicker','id' => 'encabezado_user', 'value' => $array_color['encabezado_color']]) !!}
                         </div>
                         <div class="id_colores" style="text-align:left; display:block;">
                             {!! Form::label('group','GROUP BUTTON / GRUPO DE BOTONES', ['class' => 'control-label']) !!}
-                            {!! Form::color('group_button',$array_color['group_button_color'],['class' => 'form-control','id' => 'group_button', 'value' => $array_color['group_button_color']]) !!}
+                            {!! Form::text('group_button',$array_color['group_button_color'],['class' => 'form-control colorpicker','id' => 'group_button', 'value' => $array_color['group_button_color']]) !!}
                         </div>
                         <div class="id_colores" style="text-align:left; display:block;">
                             {!! Form::label('back','BACK / RETORNAR', ['class' => 'control-label']) !!}
-                            {!! Form::color('back_button',$array_color['back_button_color'],['class' => 'form-control','id' => 'back_button', 'value' => $array_color['back_button_color']]) !!}
+                            {!! Form::text('back_button',$array_color['back_button_color'],['class' => 'form-control colorpicker','id' => 'back_button', 'value' => $array_color['back_button_color']]) !!}
                         </div>                        
                 </div>
-                <div class="col-lg-6 col-xs-6">
+                <div class="col-lg-6 col-xs-6">                    
                     <div class="id_colores" style="display:block;">
                         {!! Form::label('colores','COLORS | COLORES', ['class' => 'control-label']) !!}
                         <img style="width: 100%; height: 100%;" src="{{ url('/storage/img/colores_varios.png') }}" alt="paleta_colores"/>
@@ -67,14 +69,16 @@
 </div>
 @endsection
 @section('script_datatable')
+    <script src="{{ url ('/js_bootstrap/bootstrap-colorpicker.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-       $('#YES').click(function () {           
+        $('.colorpicker').colorpicker();
+        $('#YES').click(function () {           
             $('.id_colores').hide();
-       });
-       $('#NO').click(function () {          
+        });
+        $('#NO').click(function () {          
           $('.id_colores').show();
-       });
-   });
+        });
+    });
 </script>
 @endsection
