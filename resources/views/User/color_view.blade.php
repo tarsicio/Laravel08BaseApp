@@ -54,9 +54,9 @@
                         </div>                        
                 </div>
                 <div class="col-lg-6 col-xs-6">                    
-                    <div class="id_colores" style="display:block;">
+                    <div class="id_colores" style="display:block;">                        
                         {!! Form::label('colores','COLORS | COLORES', ['class' => 'control-label']) !!}
-                        <img style="width: 100%; height: 100%;" src="{{ url('/storage/img/colores_varios.png') }}" alt="paleta_colores"/>
+                        <img style="width: 100%; height: 100%;" src="{{ url('/storage/img/colores_varios.png') }}" alt="paleta_colores"/>                           
                     </div>
                 </div>        
                 <hr>
@@ -89,11 +89,13 @@
             var color = $('#encabezado_user').val();
             var background_color = "background-color:" + color + ";";
             $('#encabezado_user').attr('style',background_color);
+            $('#encabezado_user_02').attr('style',background_color);
         });
         $(document).on('change','#group_button', function (e) {
             var color = $('#group_button').val();
             var background_color = "background-color:" + color + ";";
             $('#group_button').attr('style',background_color);
+            $('#group_button_02').attr('style',background_color)
         });
         $(document).on('change','#back_button', function (e) {
             var color = $('#back_button').val();
