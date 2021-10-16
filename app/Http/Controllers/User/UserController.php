@@ -151,8 +151,10 @@ class UserController extends Controller
          * Si no realiza ninguna configuración todos los trabajos se iran guardando en la 
          * tabla jobs, y una vez configure, los trabajos en cola se iran ejecutando
          * Si se ejecuta algún error estos se guardan en la tabla failed_jobs.
-         * Debe realizar configuraciones adicionales,
-         * busque información en Internet para culminar la configuracion.
+         * Para ejcutar los trabajos en failed_jobs ejecute:
+         * php artisan queue:retry all
+         * Debe realizar configuraciones adicionales, en caso de requerir
+         * busque información en Internet para culminar la configuracion de requerir.
          * https://laravel.com/docs/8.x/queues#supervisor-configuration
          */
         // Target URL

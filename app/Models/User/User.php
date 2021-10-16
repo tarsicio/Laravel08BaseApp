@@ -69,7 +69,7 @@ class User extends Authenticatable
     * Correo: telecom.com.ve@gmail.com
     */
     public function count_noficaciones_user(){
-        $user_id = auth()->user()->id;        
+        $user_id = auth()->user()->id;
         $sql_count_notifications = DB::table('notifications')
                                         ->where('notifiable_id', $user_id)
                                         ->where('read_at', null)->count();        
@@ -80,11 +80,21 @@ class User extends Authenticatable
     * Realizado por @author Tarsicio Carrizales 
     * Correo: telecom.com.ve@gmail.com
     */
-    public function getUsersList_DataTable(){        
-        return DB::table('users')
-                ->join('rols', 'users.rols_id', '=', 'rols.id')
-                ->select('users.id','users.name','rols.name AS rol','users.avatar',
-                    'users.email','users.activo','users.confirmed_at')->get();
+    public function getUsersList_DataTable(){
+        $rols_id = auth()->user()->rols_id;
+        $user_id = auth()->user()->id;
+        if($rols_id == 1){
+            return DB::table('users')
+                    ->join('rols', 'users.rols_id', '=', 'rols.id')
+                    ->select('users.id','users.name','rols.name AS rol','users.avatar',
+                        'users.email','users.activo','users.confirmed_at')->get();
+        }else{
+            return DB::table('users')
+                    ->join('rols', 'users.rols_id', '=', 'rols.id')
+                    ->select('users.id','users.name','rols.name AS rol','users.avatar',
+                        'users.email','users.activo','users.confirmed_at')
+                    ->where('users.id',$user_id)->get();
+        }
     }
 
     /**

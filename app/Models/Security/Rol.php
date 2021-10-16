@@ -39,7 +39,13 @@ class Rol extends Model
     * Correo: telecom.com.ve@gmail.com
     */
     public function datos_roles(){
-        return DB::table('rols')->select('id','name')->orderBy('id')->pluck('name', 'id')->toArray();        
+        $rols_id = auth()->user()->rols_id;
+        if($rols_id == 1){
+            return DB::table('rols')->select('id','name')->orderBy('id')->pluck('name', 'id')->toArray();
+        }else{
+            return DB::table('rols')->select('id','name')
+                    ->where('id',$rols_id)->orderBy('id')->pluck('name', 'id')->toArray();
+        }
     }
 
     /**
