@@ -281,4 +281,12 @@ return [
         'title'               => 'Bienvenido a nuestro sistema base HORUS Venezuela',
         'body'                => 'Les doy las gracias por utilizar nuestro sistema base para Laravel 8, Atentamente, Tarsicio Carrizales telecom.com.ve@gmail.com, | 2021',
     ],
+    'colores'                 => [
+        'yes'                 => 'SI',
+        'blue'                => 'AZUL',
+        'default'             => 'PREDETERMINADO',
+        'green'               => 'VERDE',
+        'black'               => 'NEGRO',
+        'select'              => 'ESCOGER EL COLOR',
+    ],
 ];

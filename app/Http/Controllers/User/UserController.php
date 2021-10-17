@@ -388,7 +388,16 @@ class UserController extends Controller
             session(['group_button_color' => '#008080']);
             session(['back_button_color' => '#008080']);
         }else{
-            //No Hace Nada
+            $colores['encabezado'] = '#000000';
+            $colores['menu'] = '#000000';
+            $colores['group_button'] = '#000000';
+            $colores['back_button'] = '#000000';                        
+            $user->colores = $colores;            
+            $user->save();
+            session(['menu_color' => '#000000']);
+            session(['encabezado_color' => '#000000']);
+            session(['group_button_color' => '#000000']);
+            session(['back_button_color' => '#000000']);
         }    
         return redirect('/dashboard');    
     }

@@ -32,11 +32,12 @@
                 <div class="form-group">
                 <div class="col-lg-6 col-xs-6">
                         <div style="text-align:left;">
-                            {!! Form::label('inicio','DEFAULT / PREDETERMINADO', ['class' => 'control-label']) !!}
-                            {!! Form::radio('dafault_color_01','YES',false,['id' => 'YES']) !!} YES
-                            {!! Form::radio('dafault_color_01','NO',true,['id' => 'NO']) !!} NO
-                            {!! Form::radio('dafault_color_01','BLUE',false,['id' => 'blue']) !!} Class_01
-                            {!! Form::radio('dafault_color_01','GREEN',false,['id' => 'green']) !!} Class_02
+                            {!! Form::label('inicio',trans('message.colores.default'), ['class' => 'control-label']) !!}
+                            {!! Form::radio('dafault_color_01','YES',false,['id' => 'YES']) !!} {{trans('message.colores.yes')}}
+                            {!! Form::radio('dafault_color_01','NO',true,['id' => 'NO']) !!} {{trans('message.colores.select')}}
+                            {!! Form::radio('dafault_color_01','BLUE',false,['id' => 'blue']) !!} {{trans('message.colores.blue')}}
+                            {!! Form::radio('dafault_color_01','GREEN',false,['id' => 'green']) !!} {{trans('message.colores.green')}} 
+                            {!! Form::radio('dafault_color_01','BLACK',false,['id' => 'black']) !!} {{trans('message.colores.black')}}
                         </div>
                         <div class="id_colores" style="text-align:left; display:block;">
                             {!! Form::label('menu',trans('message.users_action.color_menu'), ['class' => 'control-label']) !!}
@@ -85,6 +86,9 @@
             $('.id_colores').hide();
         });
         $('#green').click(function () {           
+            $('.id_colores').hide();
+        });
+        $('#black').click(function () {           
             $('.id_colores').hide();
         });
         //Al cambiar
