@@ -75,7 +75,11 @@
                             @if($user_edit->id == 1)
                                 {!! Form::select('activo',['DENY' => 'DENY','ALLOW' => 'ALLOW'],$user_edit->activo,['class' => 'form-control','id' => 'activo_user','disabled' => true]) !!}
                             @else
-                                {!! Form::select('activo',['DENY' => 'DENY','ALLOW' => 'ALLOW'],$user_edit->activo,['class' => 'form-control','id' => 'activo_user']) !!}
+                                @if($rols_id == 1)
+                                    {!! Form::select('activo',['DENY' => 'DENY','ALLOW' => 'ALLOW'],$user_edit->activo,['class' => 'form-control','id' => 'activo_user']) !!}
+                                @else
+                                    {!! Form::select('activo',['DENY' => 'DENY','ALLOW' => 'ALLOW'],$user_edit->activo,['class' => 'form-control','id' => 'activo_user','disabled' => true]) !!}
+                                @endif                                
                             @endif    
                         </div>
                         <div style="text-align:left;">
@@ -83,7 +87,11 @@
                             @if($user_edit->id == 1)
                                 {!! Form::select('rols_id', $roles, $user_edit->rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id','disabled' => true]) !!}
                             @else
-                                {!! Form::select('rols_id', $roles, $user_edit->rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id']) !!}
+                                @if($rols_id == 1)
+                                    {!! Form::select('rols_id', $roles, $user_edit->rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id']) !!}
+                                @else
+                                    {!! Form::select('rols_id', $roles, $user_edit->rols_id, ['placeholder' => trans('message.permisos_rol.opcion'),'class' => 'form-control','id' => 'rols_id','disabled' => true]) !!}
+                                @endif                                
                             @endif
                         </div>
                         <div style="text-align:left;">                            
@@ -92,7 +100,12 @@
                                 {!! Form::date('init_day',$user_edit->init_day,['class' => 'form-control','id' => 'init_day','disabled' => true]) !!}
                             @else
                                 {!! Form::label('init_day',trans('message.users_action.fecha_inicio'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
-                                {!! Form::date('init_day',$user_edit->init_day,['class' => 'form-control','id' => 'init_day']) !!}
+                                @if($rols_id == 1)
+                                    {!! Form::date('init_day',$user_edit->init_day,['class' => 'form-control','id' => 'init_day']) !!}
+                                @else
+                                    {!! Form::date('init_day',$user_edit->init_day,['class' => 'form-control','id' => 'init_day','disabled' => true]) !!}
+                                @endif
+                                
                             @endif
                         </div>
                         <div style="text-align:left;">                            
@@ -101,7 +114,11 @@
                                 {!! Form::date('end_day',$user_edit->end_day,['class' => 'form-control','id' => 'end_day','disabled' => true]) !!}
                             @else
                                 {!! Form::label('end_day',trans('message.users_action.fecha_fin'), ['class' => 'control-label']) !!}<span class="required" style="color:red;">*</span>
-                                {!! Form::date('end_day',$user_edit->end_day,['class' => 'form-control','id' => 'end_day']) !!}
+                                @if($rols_id == 1)
+                                    {!! Form::date('end_day',$user_edit->end_day,['class' => 'form-control','id' => 'end_day']) !!}
+                                @else
+                                    {!! Form::date('end_day',$user_edit->end_day,['class' => 'form-control','id' => 'end_day','disabled' => true]) !!}
+                                @endif                                
                             @endif
                         </div>                        
                 </div>        

@@ -235,7 +235,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        $user_edit = User::find($id);        
+        $user_edit = User::find($id);
+        $rols_id = auth()->user()->rols_id;        
         if($user_edit->id != 1){
             $init_day = Carbon::parse($user_edit->init_day)->format('Y-m-d');
             $end_day = Carbon::parse($user_edit->end_day)->format('Y-m-d');
@@ -246,7 +247,7 @@ class UserController extends Controller
         $count_notification = (new User)->count_noficaciones_user();
         $roles = (new Rol)->datos_roles();
         $array_color = (new Colores)->getColores();
-        return view('User.user_edit',compact('count_notification','titulo_modulo','roles','user_edit','array_color'));
+        return view('User.user_edit',compact('count_notification','titulo_modulo','roles','user_edit','array_color','rols_id'));
     }
 
     /**
@@ -260,7 +261,7 @@ class UserController extends Controller
         $count_notification = (new User)->count_noficaciones_user();
         $user = Auth::user();        
         $user_Update = User::find( $id);
-        $avatar_viejo = $user_Update->avatar;        
+        $avatar_viejo = $user_Update->avatar;            
         if($id == 1){            
             $user_Update->password = \Hash::make($request->password);
             $this->update_image($request,$avatar_viejo,$user_Update);
@@ -269,10 +270,12 @@ class UserController extends Controller
         }else{
             $user_Update->name = $request->name;
             $user_Update->password = \Hash::make($request->password);
-            $user_Update->activo = $request->activo;
-            $user_Update->rols_id = $request->rols_id;
-            $user_Update->init_day = $request->init_day;
-            $user_Update->end_day = $request->end_day;
+            if($user->rols_id == 1){
+                $user_Update->activo = $request->activo;
+                $user_Update->rols_id = $request->rols_id;
+                $user_Update->init_day = $request->init_day;
+                $user_Update->end_day = $request->end_day;
+            }            
             $this->update_image($request,$avatar_viejo,$user_Update);
             $user_Update->updated_at = \Carbon\Carbon::now();
             $user_Update->save();
