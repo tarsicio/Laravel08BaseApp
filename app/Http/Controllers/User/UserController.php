@@ -354,7 +354,7 @@ class UserController extends Controller
             session(['encabezado_color' => $request->encabezado_user]);
             session(['group_button_color' => $request->group_button]);
             session(['back_button_color' => $request->back_button]);            
-        }else{            
+        }elseif($request->dafault_color_01 == 'YES'){
             $colores['encabezado'] = '#5333ed';
             $colores['menu'] = '#0B0E66';
             $colores['group_button'] = '#5333ed';
@@ -364,8 +364,32 @@ class UserController extends Controller
             session(['menu_color' => '#0B0E66']);
             session(['encabezado_color' => '#5333ed']);
             session(['group_button_color' => '#5333ed']);
-            session(['back_button_color' => '#5333ed']);            
-        }
+            session(['back_button_color' => '#5333ed']);
+        }elseif($request->dafault_color_01 == 'BLUE'){
+            $colores['encabezado'] = '#81898f';
+            $colores['menu'] = '#3e5f8a';
+            $colores['group_button'] = '#474b4e';
+            $colores['back_button'] = '#474b4e';                        
+            $user->colores = $colores;            
+            $user->save();
+            session(['menu_color' => '#3e5f8a']);
+            session(['encabezado_color' => '#81898f']);
+            session(['group_button_color' => '#474b4e']);
+            session(['back_button_color' => '#474b4e']);
+        }elseif($request->dafault_color_01 == 'GREEN'){
+            $colores['encabezado'] = '#0b9a93';
+            $colores['menu'] = '#198c86';
+            $colores['group_button'] = '#008080';
+            $colores['back_button'] = '#008080';                        
+            $user->colores = $colores;            
+            $user->save();
+            session(['menu_color' => '#198c86']);
+            session(['encabezado_color' => '#0b9a93']);
+            session(['group_button_color' => '#008080']);
+            session(['back_button_color' => '#008080']);
+        }else{
+            //No Hace Nada
+        }    
         return redirect('/dashboard');    
     }
 

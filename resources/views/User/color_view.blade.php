@@ -35,6 +35,8 @@
                             {!! Form::label('inicio','DEFAULT / PREDETERMINADO', ['class' => 'control-label']) !!}
                             {!! Form::radio('dafault_color_01','YES',false,['id' => 'YES']) !!} YES
                             {!! Form::radio('dafault_color_01','NO',true,['id' => 'NO']) !!} NO
+                            {!! Form::radio('dafault_color_01','BLUE',false,['id' => 'blue']) !!} Class_01
+                            {!! Form::radio('dafault_color_01','GREEN',false,['id' => 'green']) !!} Class_02
                         </div>
                         <div class="id_colores" style="text-align:left; display:block;">
                             {!! Form::label('menu',trans('message.users_action.color_menu'), ['class' => 'control-label']) !!}
@@ -78,6 +80,12 @@
         });
         $('#NO').click(function () {          
           $('.id_colores').show();
+        });
+        $('#blue').click(function () {           
+            $('.id_colores').hide();
+        });
+        $('#green').click(function () {           
+            $('.id_colores').hide();
         });
         //Al cambiar
         $(document).on('change','#menu_user', function (e) {
