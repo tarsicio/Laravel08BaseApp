@@ -32,7 +32,7 @@
                 <div class="form-group">
                 <div class="col-lg-6 col-xs-6">
                         <div style="text-align:left;">
-                            {!! Form::label('inicio','COLORS DEFAULT / COLORES PREDETERMINADO', ['class' => 'control-label']) !!}
+                            {!! Form::label('inicio','DEFAULT / PREDETERMINADO', ['class' => 'control-label']) !!}
                             {!! Form::radio('dafault_color_01','YES',false,['id' => 'YES']) !!} YES
                             {!! Form::radio('dafault_color_01','NO',true,['id' => 'NO']) !!} NO
                         </div>
