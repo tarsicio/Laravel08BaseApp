@@ -51,7 +51,7 @@ return [
     'recentactivity'          => 'Recent Activity',
     'descriptionpackage'      => 'Base System for Laravel_8',
     'createdby'               => 'Created by',
-    'seecode'                 => 'See code at',
+    'seecode'                 => 'See code version 1.0 in',
     'online'                  => 'Online',
     'home_1'                    => 'Home',
     'header'                  => 'HEADER',
@@ -150,7 +150,7 @@ return [
     'count_users_rol'         => 'TOTAL USERS BY ROLE',
     'countUsersNotifications' => 'TOTAL NOTIFICATIONS BY USERS',
     'home'                    => [
-        'sistema'             => 'BASE SYSTEM LARAVEL 8',
+        'sistema'             => 'BASE SYSTEM LARAVEL 8, VERSION 2.0',
         'titulo_01'           => 'Management of Users, Rols, Permission, Notifications and Modules',
         'titulo_02'           => 'Functional 100% and prepare with PWA',
         'realizado'           => 'Made by:',

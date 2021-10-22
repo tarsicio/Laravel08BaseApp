@@ -49,7 +49,7 @@ return [
     'here'                    => 'Aquí',
     'descriptionpackage'      => 'Sistema Base para Laravel_8',
     'createdby'               => 'Creado por',
-    'seecode'                 => 'Ver código en',
+    'seecode'                 => 'Ver código versión 1.0 en',
     'online'                  => 'En Línea',
     'home_1'                  => 'Inicio',
     'header'                  => 'ENCABEZAMIENTO',
@@ -147,7 +147,7 @@ return [
     'count_users_rol'         => 'TOTAL DE USUARIOS POR ROL',
     'countUsersNotifications' => 'TOTAL DE NOTIFICACIONES POR USUARIOS',
     'home'                    => [
-        'sistema'             => 'SISTEMA BASE LARAVEL 8',
+        'sistema'             => 'SISTEMA BASE LARAVEL 8, VERSIÓN 2.0',
         'titulo_01'           => 'Manejo de Usuarios, Roles, Permiso, Notificaciones y Módulos',
         'titulo_02'           => '100% Funcional y preparada para PWA',
         'realizado'           => 'Realizado por: ',
