@@ -11,7 +11,12 @@
             <div class="login-logo">
                 <a href="{{ url('/dashboard') }}"><b>Dashboard</a>
             </div><!-- /.login-logo -->
-
+            <div style="text-align:center">
+                mail: telecom.com.ve@gmail.com
+            </div>
+            <div style="text-align:center">
+                password: 123456789
+            </div>        
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> {{ trans('message.someproblems') }}<br><br>

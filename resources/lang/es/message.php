@@ -147,7 +147,7 @@ return [
     'count_users_rol'         => 'TOTAL DE USUARIOS POR ROL',
     'countUsersNotifications' => 'TOTAL DE NOTIFICACIONES POR USUARIOS',
     'home'                    => [
-        'sistema'             => 'SISTEMA BASE LARAVEL 8, VERSIÓN 2.0',
+        'sistema'             => 'SISTEMA BASE LARAVEL 8',
         'titulo_01'           => 'Manejo de Usuarios, Roles, Permiso, Notificaciones y Módulos',
         'titulo_02'           => '100% Funcional y preparada para PWA',
         'realizado'           => 'Realizado por: ',

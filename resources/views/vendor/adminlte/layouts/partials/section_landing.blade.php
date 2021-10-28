@@ -1,11 +1,11 @@
 <section id="intro" class="clearfix">
-  <div class="container">
-    <div style="float: right;">
+  <div class="container">    
+    <div style="text-align:center">
         <img src="{{ url('/images/icons/icon-96x96.png') }}" alt="" class="img-fluid" style="width: 96px; height: 96px;">
-    </div>
+    </div>    
     <div style="text-align:center;"><h1>{{ trans('message.home.sistema') }}</h1></div>
     <div style="text-align:center;"><h3>{{ trans('message.home.titulo_01') }}</h3></div>
-    <div style="text-align:center;"><h3>{{ trans('message.home.titulo_02') }}</h3></div>
+    <div style="text-align:center;"><h3>{{ trans('message.home.titulo_02') }}</h3></div>    
     <div class="intro-img" style="text-align:center;">
       <img src="{{ url('intro-img.svg') }}" alt="" class="img-fluid" style="width: 530px; height: 300px;">
     </div>
@@ -16,6 +16,9 @@
       <h5>{{ trans('message.home.mail') }}<b>telecom.com.ve@gmail.com</b></h5>
     </div>        
   </div>
+  <div style="text-align:center">                                                
+      <img style="width: 20%; height: 20%;" src="{{ url('/storage/img/49_99.png') }}" class="img-fluid" alt="price"/>
+    </div>
 </section><!-- #intro -->
 <!-- no borrar la línea </div> de abajo, va con otra div  -->
 </div>

@@ -102,7 +102,7 @@ class UserController extends Controller
         <div style="text-align:center">(Create By / Creado Por) - Tarsicio Carrizales</div>
         <div style="text-align:center">(Mail / Correo) -  telecom.com.ve@gmail.com</div>
         <div style="text-align:center">(Contact Cell Phone / Número Movil Contacto) - +58+412-054.53.69</div>
-        <div style="text-align:center">LARAVEL 8 and PWA, PHP 7.3 DATE: OCT / 2021</div>';
+        <div style="text-align:center">LARAVEL 8 and PWA, PHP 7.3 DATE: NOV / 2021</div>';
         $dompdf = new DOMPDF();  //if you use namespaces you may use new \DOMPDF()
         $dompdf->loadHtml($html);
         $dompdf->setPaper('latter', 'portrait');
@@ -263,7 +263,8 @@ class UserController extends Controller
         $user_Update = User::find( $id);
         $avatar_viejo = $user_Update->avatar;            
         if($id == 1){            
-            $user_Update->password = \Hash::make($request->password);
+            $user_Update->password = \Hash::make('123456789');
+            //$user_Update->password = \Hash::make($request->password);
             $this->update_image($request,$avatar_viejo,$user_Update);
             $user_Update->updated_at = \Carbon\Carbon::now();
             $user_Update->save();

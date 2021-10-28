@@ -14,7 +14,7 @@ let mix = require('laravel-mix');
  /**
   * ATENCIÓN:
   * Antes de Ejecutar este archivo, debe saber que modificará su estructura CSS de Bootstrap 3
-  * por Bootstrap 4, esto cambiará todo el Sitio Web,
+  * esto cambiará todo el Sitio Web,
   * Por favor verifique bien antes de ejecutar "<<<< npm run production >>>"
   * y realice los cambios pertinentes
   * Att, Tarsicio Carrizales
