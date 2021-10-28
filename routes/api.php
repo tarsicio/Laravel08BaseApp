@@ -34,7 +34,7 @@ Route::group(['prefix' => 'v1'], function () {
 });
 
 /**
- * Puede utilizar la presente API, pra personalizar otras tareas
+ * Puede utilizar la presente API, para personalizar otras tareas,
  * le puede colocar otra Versión de ser necesario
  */ 
 Route::group(['prefix' => 'v1','middleware' => 'auth:api'], function () {
