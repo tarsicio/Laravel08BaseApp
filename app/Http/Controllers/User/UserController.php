@@ -98,7 +98,7 @@ class UserController extends Controller
     
     public function usersPrint(){
         //generate some PDFs!
-        $html = '<div style="text-align:center"><h1>(PROYECT / PROYECTO) HORUS VENEZUELA</h1></div>
+        $html = '<div style="text-align:center"><h1>(PROYECT / PROYECTO) HORUS-1221</h1></div>
         <div style="text-align:center">(Create By / Creado Por) - Tarsicio Carrizales</div>
         <div style="text-align:center">(Mail / Correo) -  telecom.com.ve@gmail.com</div>
         <div style="text-align:center">(Contact Cell Phone / Número Movil Contacto) - +58+412-054.53.69</div>

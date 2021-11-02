@@ -192,7 +192,7 @@ class User extends Authenticatable
         return DB::table('notifications')        
                     ->where('notifiable_id',$user->id)
                     ->where('read_at',null)                    
-                    ->select('id',DB::raw('CONCAT(JSON_UNQUOTE(JSON_EXTRACT(Notifications.data, "$.title")), ", ",JSON_UNQUOTE(JSON_EXTRACT(Notifications.data, "$.body"))) AS data'),'read_at','created_at')
+                    ->select('id',DB::raw('CONCAT(JSON_UNQUOTE(JSON_EXTRACT(notifications.data, "$.title")), ", ",JSON_UNQUOTE(JSON_EXTRACT(notifications.data, "$.body"))) AS data'),'read_at','created_at')
                     ->orderByDesc('created_at')->get();
     } 
 

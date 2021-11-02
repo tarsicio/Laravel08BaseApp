@@ -13,7 +13,7 @@
       <h3>{{ trans('message.home.realizado') }}<b>Tarsicio Carrizales</b></h3>
     </div>
     <div style="text-align:center;">
-      <h5>{{ trans('message.home.mail') }}<b>telecom.com.ve@gmail.com</b></h5>
+      <h5>{{ trans('message.home.mail') }}<b>info@horus-1221.com</b></h5>
     </div>        
   </div>
   <div style="text-align:center">                                                
