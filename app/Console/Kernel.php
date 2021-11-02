@@ -25,6 +25,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        //$schedule->command('queue:work --tries=3')->cron('* * * * *')->withoutOverlapping(5);
+        $schedule->command('queue:work --tries=3 --delay=5')
+            ->everyFiveMinutes()
+            ->withoutOverlapping()
+            ->runInBackground();
+        // Opcionalmente si queremos reinicar la cola cada 10 minutos
+        $schedule->command('queue:restart')->everyTenMinutes();
     }
 
     /**
