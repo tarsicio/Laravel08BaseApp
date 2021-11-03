@@ -282,6 +282,10 @@ return [
     'msg_notification'        => [
         'title'               => 'Welcome to our base system HORUS Venezuela',
         'body'                => 'Thank you for using our base system for Laravel 8, Sincerely, Tarsicio Carrizales telecom.com.ve@gmail.com, | 2021',
+        'mensaje1'            => 'Welcome to the base system',
+        'mensaje2'            => 'You must enter your email and confirm the link',
+        'mensaje3'            => 'sent to be able to access the system.',
+        'mensaje4'            => 'Thanks.',
     ],
     'colores'                 => [
         'yes'                 => 'SI',

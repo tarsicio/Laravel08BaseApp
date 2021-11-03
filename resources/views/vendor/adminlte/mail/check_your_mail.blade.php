@@ -2,16 +2,16 @@
 
 <section>
     <div style="text-align: center;">
-        <h1><b>Bienvenido al sistema base</b></h1>
+        <h1><b>{{ trans('message.msg_notification.mensaje1') }}</b></h1>
     </div>
     <div style="text-align: center;">
-        <h1>Debe entrar en su correo y confirmar el link</h1>
+        <h1>{{ trans('message.msg_notification.mensaje2') }}</h1>
     </div>    
     <div style="text-align: center;">
-        <h1>enviado para poder tener acceso al sistema.</h1>
+        <h1>{{ trans('message.msg_notification.mensaje3') }}</h1>
     </div>    
     <div style="text-align: center;">
-        <h1>Gracias.</h1>
+        <h1>{{ trans('message.msg_notification.mensaje4') }}</h1>
     </div>
 </section>
     <!-- Fixed navbar -->
