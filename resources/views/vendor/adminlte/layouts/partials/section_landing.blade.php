@@ -5,7 +5,8 @@
     </div>    
     <div style="text-align:center;"><h1>{{ trans('message.home.sistema') }}</h1></div>
     <div style="text-align:center;"><h3>{{ trans('message.home.titulo_01') }}</h3></div>
-    <div style="text-align:center;"><h3>{{ trans('message.home.titulo_02') }}</h3></div>    
+    <div style="text-align:center;"><h3>{{ trans('message.home.titulo_02') }}</h3></div>
+    <div style="text-align:center;"><a href="{{ url('Proyecto_HORUS.pdf')}}" target="_blank"><img  border="0" src="{{ url('pdf.jpeg') }}" alt="" class="img-fluid" style="width: 32px; height: 32px;"><h3>Documento | Document</h3></a></div>    
     <div class="intro-img" style="text-align:center;">
       <img src="{{ url('intro-img.svg') }}" alt="" class="img-fluid" style="width: 530px; height: 300px;">
     </div>
