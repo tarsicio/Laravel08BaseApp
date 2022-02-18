@@ -19,12 +19,12 @@
   </div>
   <div style="text-align:center">                                                
       <img style="width: 20%; height: 20%;" src="{{ url('/storage/img/49_99.png') }}" class="img-fluid" alt="price"/>
-    </div>
+    </div>  
 </section><!-- #intro -->
 <!-- no borrar la línea </div> de abajo, va con otra div  -->
 </div>
     @include('sweetalert::alert')
     <script src="{{ url ('/js_datatable/jquery-3.5.1.js') }}" type="text/javascript"></script>
-    <script src="{{ url ('/js_bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>    
+    <script src="{{ url ('/js_bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>       
 </body>
 </html>
