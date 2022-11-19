@@ -205,7 +205,7 @@ class AcachaAdminLTELaravelTest extends TestCase
      *
      * @return void
      */
-    public function testLogin()
+/**    public function testLogin()
     {
         $user = User::factory()->create(['password' => Hash::make('passw0RD')]);
 
@@ -216,7 +216,7 @@ class AcachaAdminLTELaravelTest extends TestCase
 
         $response->assertSuccessful();
     }
-
+*/
     /**
      * Test login failed.
      *
@@ -292,7 +292,7 @@ class AcachaAdminLTELaravelTest extends TestCase
      *
      * @group
      */
-    public function testAdminlteAdminCommand()
+/**    public function testAdminlteAdminCommand()
     {
         $seeder = database_path('seeders/AdminUserSeeder.php');
         try {
@@ -301,5 +301,5 @@ class AcachaAdminLTELaravelTest extends TestCase
         }
         Artisan::call('adminlte:admin');
         $this->assertFileExists($seeder);
-    }
+    } */
 }

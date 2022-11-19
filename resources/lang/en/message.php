@@ -87,7 +87,7 @@ return [
     'profile'                 => 'Profile',
     'signout'                 => 'Sign out',
     'landingdescription'      => 'Laravel 5 package that switchs default Laravel scaffolding/boilerplate to AdminLTE template with Bootstrap 3.0 and Pratt Landing page',
-    'landingdescriptionpratt' => 'HORUS | 2021',
+    'landingdescriptionpratt' => 'HORUS | 2023',
     'description'             => 'Description',
     'showcase'                => 'Showcase',
     'contact'                 => 'Contact',
@@ -281,7 +281,7 @@ return [
     ],
     'msg_notification'        => [
         'title'               => 'Welcome to our base system HORUS Venezuela',
-        'body'                => 'Thank you for using our base system for Laravel 8, Sincerely, Tarsicio Carrizales telecom.com.ve@gmail.com, | 2021',
+        'body'                => 'Thank you for using our base system for Laravel 8, Sincerely, Tarsicio Carrizales telecom.com.ve@gmail.com, | 2023',
         'mensaje1'            => 'Welcome to the base system',
         'mensaje2'            => 'You must enter your email and confirm the link',
         'mensaje3'            => 'sent to be able to access the system.',

@@ -14,12 +14,12 @@
       <h3>{{ trans('message.home.realizado') }}<b>Tarsicio Carrizales</b></h3>
     </div>
     <div style="text-align:center;">
-      <h5>{{ trans('message.home.mail') }}<b>info@horus-1221.com</b></h5>
+      <h5>{{ trans('message.home.mail') }}<b>telecom.com.ve@gmail.com</b></h5>
     </div>        
   </div>
-  <div style="text-align:center">                                                
-      <img style="width: 20%; height: 20%;" src="{{ url('/storage/img/49_99.png') }}" class="img-fluid" alt="price"/>
-    </div>  
+  <!-- <div style="text-align:center">                                                
+      <img style="width: 20%; height: 20%;" src="{ url('/storage/img/49_99.png') }" class="img-fluid" alt="price"/>
+    </div>  -->
 </section><!-- #intro -->
 <!-- no borrar la línea </div> de abajo, va con otra div  -->
 </div>

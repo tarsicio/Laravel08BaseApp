@@ -5,6 +5,9 @@
 /vendor
 .env
 .env.backup
+.env.testing
+.env.dusk.local
+.env.dusk.testing
 .DS_store
 .phpunit.result.cache
 docker-compose.override.yml
