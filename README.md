@@ -12,7 +12,7 @@ composer install
 
 php artisan storage:link
 
-create new folder the name "avatars" in /storage/app/public/
+create new folder name "avatars" in /storage/app/public/
 
 php artisan migrate
 
