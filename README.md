@@ -8,6 +8,8 @@
 </p>
 
 ## Command Line
+Clone Laravel08BaseApp
+
 composer install
 
 run .env.example with .env
