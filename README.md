@@ -23,6 +23,8 @@ create new folder name "avatars" in /storage/app/public/
 
 php artisan migrate
 
+change into /database/seeders/usersSeeders.php your true or real information
+
 php artisan db:seed
 
 php artisan serve
