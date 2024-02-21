@@ -181,7 +181,7 @@ class User extends Authenticatable
         $total = 0;                    
             if(!$countActivos->isEmpty()){
                 foreach($countActivos as $countActivo){
-                    if (property_exists($totalRole, 'total_deny')) { 
+                    if (property_exists($countActivo, 'total_deny')) { 
                         $total = $countActivo->total_deny;
                     }
                 }
