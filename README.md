@@ -10,6 +10,13 @@
 ## Command Line
 composer install
 
+run .env.example with .env
+configure your access database (MySQl || PostgreSQL | more...)
+
+php artisan key:generate
+
+configure your smtp gmail, mail and password
+
 php artisan storage:link
 
 create new folder name "avatars" in /storage/app/public/
