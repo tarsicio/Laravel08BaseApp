@@ -133,9 +133,12 @@ class User extends Authenticatable
                             ->select(DB::raw('COUNT(users.activo) AS TOTAL_ALLOW'))
                             ->where('users.activo','ALLOW')                    
                             ->groupBy('users.activo')->get();
+        $total = 0;                    
             if(!$countActivos->isEmpty()){
                 foreach($countActivos as $countActivo){
-                   $total = $countActivo->TOTAL_ALLOW;
+                    if (property_exists($countActivo, 'total_allow')) {
+                        $total = $countActivo->total_allow;
+                    }
                 }
             }else{
                 $total = 0;
@@ -152,9 +155,12 @@ class User extends Authenticatable
     public function totalRoles(){
         $totalRoles = DB::table('rols')            
                             ->select(DB::raw('COUNT(rols.id) AS TOTAL_ALLOW'))->get();
+        $total = 0;                    
             if(!$totalRoles->isEmpty()){
                 foreach($totalRoles as $totalRole){
-                   $total = $totalRole->TOTAL_ALLOW;
+                    if (property_exists($totalRole, 'total_allow')) {
+                        $total = $totalRole->total_allow;
+                    }
                 }
             }else{
                 $total = 0;
@@ -172,9 +178,12 @@ class User extends Authenticatable
                             ->select(DB::raw('COUNT(users.activo) AS TOTAL_DENY'))
                             ->where('users.activo','DENY')                    
                             ->groupBy('users.activo')->get();
+        $total = 0;                    
             if(!$countActivos->isEmpty()){
                 foreach($countActivos as $countActivo){
-                   $total = $countActivo->TOTAL_DENY;
+                    if (property_exists($totalRole, 'total_deny')) { 
+                        $total = $countActivo->total_deny;
+                    }
                 }
             }else{
                 $total = 0;
