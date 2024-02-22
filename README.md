@@ -36,6 +36,10 @@ php artisan serve
 
 the server run in port=8000 default.
 
+In new terminal run this command #--> nohup php artisan queue:work database &
+
+and then read the file pdf in folder public the file Proyecto_HORUS.pdf
+
 
 ## About Laravel
 
