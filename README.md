@@ -13,30 +13,31 @@ Use PHP 7.4 Version
 
 Clone Laravel08BaseApp
 
-composer install
+$ composer install
 
 run .env.example with .env
 configure your access database (MySQl || PostgreSQL | more...)
 
-php artisan key:generate
+$ php artisan key:generate
 
 configure your smtp gmail, mail and password
 
-php artisan storage:link
+$ php artisan storage:link
 
 create new folder name "avatars" in /storage/app/public/
 
-php artisan migrate
+$ php artisan migrate
 
 change into /database/seeders/usersSeeders.php your true or real information
 
-php artisan db:seed
+$ php artisan db:seed
 
-php artisan serve
+ $ php artisan serve
 
 the server run in port=8000 default.
 
-In new terminal run this command #--> nohup php artisan queue:work database &
+In new terminal run this command #--> 
+$ nohup php artisan queue:work database &
 
 and then read the file pdf in folder public the file Proyecto_HORUS.pdf
 
