@@ -8,6 +8,9 @@
 </p>
 
 ## Command Line
+
+Use PHP 7.4 Version
+
 Clone Laravel08BaseApp
 
 composer install
